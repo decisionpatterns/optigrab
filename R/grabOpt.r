@@ -10,68 +10,77 @@
 #  1. Store the call into the options for optigrab for help message.
 #  2. Test for naming conflict of similar options.  Error if exists.
 #  3. Scan command args for occurence of name --name | -name | --n | --n
-#  4. Expand
+#  4. Allow n to accept a model formula that will greedily take upto that
+#     many arguments.  It will be stopped by another flag or by the end
+#     of the args array.
+# 5.  Allow for -v -v -v  meaning v=3  (Not very useful.)
 
-grabOpt <- 
-function( name, n=1, default=NULL, required=FALSE, fun=NULL, help=NULL, args=commandArgs() )
+grabOpt <- function( 
+# function( name, n=1, default=NULL, required=FALSE, fun=NULL, help=NULL, args=commandArgs() )
+# This is the workhorse of optigrab package. It parses 'args' array for the given options and 
+# to give the best values.
+  flag,
+  default  = NA,
+  n        = if(substitute(coerce)=="as.logical") 0 else 1,
+  coerce   = if(n==0) as.logical else as.character, 
+  required = FALSE, 
+  help     = NULL,
+  args     = commandArgs()
+)
 {
   
   # EXPAND ARGS
   args <- expandArgs(args)
 
-  # LET'S CALL THIS SOMETHING
-  opt.str <- name[[1]]
-  if( length(name) > 1 ) 
-    for( i in 2:length(name) ) opt.str <- paste( opt.str, name[[i]], sep=" | " )
-
+  # THE STRING OF OPTIONS USED FOR OUTPUT
+  opt.str <- Reduce( function(...) paste(..., sep=" | " ), flag )
+  
   # STORE help 
   
   # IDENTIFY name/alias FLAG(s)
   wh.alias <- c() 
-  for ( alias in name ) {
-    pattern <- paste( "^--?", alias, "$", sep="" )
+  for ( alias in flag ) {
+    pattern   <- paste( "^", alias, "$", sep="" )
     wh.alias  <- union(wh.alias, grep( pattern, args )) 
   }  
-  
-  # HANDLE default
-  if( length(wh.alias) == 0 && ! is.null(default) ) return(default) 
-  
-  # HANDLE required 
-  if ( length(wh.alias) == 0 && required ) 
-    stop( "\n\tOption(s): [", opt.str, "] is required, but was not supplied." )
-  
-  # WARN THE option WAS NOT FOUND
-  if ( length(wh.alias) == 0 ) { 
-    warning( "\n\tNo option(s), [", opt.str, "], found" )
-    return()
+
+  # FLAG OR ALIAS NOT SUPPLIED  
+  if( length(wh.alias) == 0 ) {
+    
+    if( 
+        ( n == 0 || as.character(substitute(coerce)) == "as.logical" ) && 
+        is.na(default) 
+    ) return(FALSE)  
+    
+    if (required && is.na(default) ) 
+      stop( "\n\tOption(s): [", opt.str, "] is required, but was not supplied." )
+
+    return(default)
+    
   }
   
-  # Rigth now raise error if multiple values are supplied
+  # MULTIPLE MATCHING FLAGS OR ALIAS FOUND
   # allow.multiple (-tk)
   if ( length(wh.alias) > 1 ) 
     stop( "\n\tMultiple values supplied for options [", opt.str, "]" )
- 
-  # GET ARGUMENT(S) AFTER FLAGS
-  # TEST THAT WE ARE GETTING THE NUMBER EXPECTED
-  # vals <- lapply( args[(wh.alias+1):(wh.alias+n)], I ) 
-  # if specified
+
   
-  # TEST FOR SINGLE LOGICAL OPTION n=0, last argument or following is a flag
+  # SINGLE FLAG OR ALIAS FOUND.
+    
+  # CHANGE opt.str TO THE PARTICULAR OPTION FOUND    
+  opt.str <- args[wh.alias]  
+    
   if ( n == 0 ) vals <- TRUE 
-  if ( n == 1 && wh.alias == length(args) || is.flag( args[wh.alias+1] ) vals <- TRUE  
+  
+  # N is deterministic
+  if( n > 0 ) {
+    # TEST FOR AVAILABILITY OF ENOUGH ARGUMENTS
+    if( wh.alias+n > length(args) )
+      stop( 
+        "\n\tEnd of arugments reached. [", opt.str, "] requires ", n, 
+        " arguments but ", max(0, length(args) - wh.alias), " is/are available."
+      )
 
-  # TEST FOR DEFAULT 1 ARGUMENT. 
-  # if ( is.null(n) && ! is.flag( args[wh.alias+1] ) ) vals <- args[wh.alias+1]
-
-  # TEST FOR AVAILABILITY OF ENOUGH ARGUMENTS
-  if( wh.alias+n > length(args) )
-    stop( 
-      "\n\tEnd of arugments reached. [", opt.str, "] requires ", n, 
-      " arguments but ", max(0, length(args) - wh.alias), " arguments are available."
-    )
-
-
-  if ( ! is.null(n) ) {
     rng <- (wh.alias+1):(wh.alias+n)  
   
     # TEST: enough values available make sure we don't 
@@ -80,20 +89,17 @@ function( name, n=1, default=NULL, required=FALSE, fun=NULL, help=NULL, args=com
       wh <- intersect(which.flag(args), rng)   
       flags <- Reduce( paste, args[wh] ) 
       stop( 
-        "\n\tUnexpected option flag(s): ", flags, "\n\t", 
-        "[", opt.str, "] requires ", n, " arguments."
+        "\n\tUnexpected option flag(s): ", flag, "\n\t", 
+        "[", flag, "] requires ", n, " arguments."
       )
     }  
     
     vals <- args[rng] 
+
   }
   
-  # vals[ grepl( "^-+", vals ) ] <- TRUE 
-  # val <- rev( vals )[[1]]
-  # val <- vals
-    
   # APPLY FUNCTION IF GIVEN
-  if( ! is.null(fun) ) vals <- fun(vals) 
+  if( ! is.null(coerce) ) vals <- coerce(vals) 
   
   return(vals) 
     

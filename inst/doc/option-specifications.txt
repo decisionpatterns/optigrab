@@ -1,0 +1,189 @@
+= Comand-Line Option Processing Specifications =
+
+These are the specifications for processing of command-line options. 
+In R, Command-line processing is tricky because of the vectorized 
+nature of the language. In other languages, a variables generally
+refer to single value, i.e. a scalar.  In R, a variable is most 
+commonly a vector.  Thus, it is not unreasonable to assume that 
+command-line options in R should accomodate vectors.
+
+
+== Option ==
+
+An option is one or more values provided to the program from the 
+command-line. They: 
+ * can be optional or required
+ * have 0 or more values 
+ * may have a default value
+ * may be coerced into various types or classes
+
+
+== Arguments ==
+
+In addition to options, the command line may also contain argument
+such as one or more filenames.  The distinction of between options 
+and arguments is not always clear.  Both occur on the command-line 
+and both supply values to the program.  The main differnce is that 
+options provide a name and a value and can always appear in any 
+order.  This is nice since it requires the user to remember the 
+name of arguments rather than there order.  This is cognitively 
+much simpler and is analogous to the difference between calling a 
+function with named arguments rather than positional ones.
+
+Arguments, on the other hand, follow two patterns. They are either 
+all the same type, such as a list of filenames or they are 
+dependent upon the ordering such as x,y,z coordinates.  
+
+Many programs use both arguments and options.  In this situation, 
+it is good practice to have all options preceed all arguments.  
+Some programs allow arguments and options can be interspersed.  
+When interspersed, it becomes cumbersome to seperate options from 
+arguments.  In fact, tt can be impossible to distinguish the if the number of values supplied 
+for each option is unknown. Thus, it is important to always 
+specify the number of values required by the option.
+                                         
+
+
+
+== Flags ==
+
+* Option names are specified with flags. Flags should begin with 
+  "--" or "-" followed by one or more alpha-characters. Generally,
+
+    * long versions of flags begin with "--" followed by the full
+      name for the option.  
+
+    * Short versions of the flags begin with a
+      single hyphen, "-" and usually are named with a single
+      alpha-character.
+
+* Many names/aliases for the same option are not a good idea. 
+
+* Always have a long version flag.
+
+* Consider short versions for very common arguments.
+
+* Flags should be named with names understandable 
+  to the user and not the author.  
+
+* All flags and aliases should be explicitly specified.
+
+* 
+
+
+== Values ==
+
+* Are always initially interpretted as character values. Later, 
+  they may be coerced into different types.
+  
+* Options may have 0, 1 or more values.  
+
+* The type of value returned may be specified through a coercion
+  function.
+
+* Only logical options can have 0 values. If present, the option
+  is set to TRUE.  Otherwise, it is FALSE. Logical values may take
+  more than 0 values, e.g. if an array of logical is wanted, but 
+  by convention should take 0 values for simple options.
+                                
+* The number of values may be deterministic or indeterminstice. 
+  In the  later case, it is most common to want at least n 
+  values.  These values are taken greedily.  This is generally
+  not supported.
+
+* Values may also have an indeterminate number of values.
+                          
+* Flags requested, but not found should return the 'NA' value.
+
+* Required values.  Values may be required. If this
+  is the case and no value is supplied, then an error should be
+  thrown indicating that a required value was not supplied.  
+
+* If a value is not required nor provided, then the default 
+  should be used.  If no default has been specified than NA
+  should be returned.                                      
+
+* Greediness. One alternative to specifying the number of 
+  values is to greedily accept values. Thus, 
+  a flag indicates that all the arguments following it should 
+  be considered values until either another flag is encountered
+  or the end of the argument array is reached. 
+
+=== Logical Values ===
+
+Logical values present an interesting challenge to command-line
+processing.  They are the only type that can accept 0
+values. In fact, this is the default for logical values. 
+If the flag is present, then the value is set to TRUE
+otherwise it is set to FALSE or it's default 
+
+
+=== Default Values ===
+
+The use of default values is an a nice addition to command-line
+processing.
+
+
+== Coercion ==
+
+The flags and values are initially interpreted as strings.  These
+may be subsequently coerced into any valid type or class through 
+a coercion function.  
+
+
+== Processing ==
+
+At present, most command line processing libraries require full
+specification for all options. This requires a often very 
+complicated specifications at the program's beginning.  Most programs, 
+however, have very simple option processing requirements. It is,
+therefore, desirable that options be able to be processed with
+a very simply and clean syntax -- one that better fits into 
+the flow of the program. An example would allow the retrival
+of one option on every line.  For example, to get a name and date, 
+you might do the following:
+ 
+    name <- grabOpt( "--name" )
+    date <- grabOpt( "--date", default=Sys.Date, coerce=as.Date )
+       
+In the first line, all we need to do is specify the option flag. 
+This is because the default is to return a single character value
+or NA if not found.  On the second line, the function returns
+a single value coerced by as.Date.  If no value is supplied it
+defaults to today's date.
+
+Since the processing of options is serialized, the processing
+of all options should be done prior to grabing arguments. 
+If this is done, we can use the grabOpt functions to specify 
+do the apriori specifications to handle the  
+                       
+
+=== Batch -vs- Interactive mode ===
+
+Command-line option processing should mostly focus on batch
+processing since this is the most common usage scenario. Still, 
+processing should work in Interactive mode for development. In fact,
+in this use case, it is important that the parsing be able to handle
+an array of options different from the actual arguments used to start
+the session. 
+
+In Batch processing, the preferred way to launch a session is 
+by using Rscript. Rscript introduces several arguments to the 
+command-line.  These are:  
+  [1] "/opt/r/R-2.13.0-default/lib/R/bin/exec/R" "--slave"                                 
+  [3] "--no-restore"                             "--file=./test.r"                         
+  [5] "--args
+
+These are not really arguments from the script itself, thus all 
+arguments up to and including the first '--args' are not considered
+part of the command arguments.
+
+
+
+
+# REF
+gnu command line option reference
+getopt library
+
+
+

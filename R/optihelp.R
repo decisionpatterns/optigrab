@@ -1,3 +1,6 @@
+# If the --help flag is enabled, then an is printed and the program
+# is exited.
+
 optihelp <- function( args=commandArgs() ) {
   args <- expandArgs( args ) 
   
@@ -8,4 +11,5 @@ optihelp <- function( args=commandArgs() ) {
 }
 
 
-  
+
+a <- 3
