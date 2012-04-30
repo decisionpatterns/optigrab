@@ -1,6 +1,45 @@
+* Make this compatible with RApache/Rook.
+
+
+* We should allow for different option starters? 
+ 
+  Options: 
+  optihelp$starter <- c( "--", "-" )
+  Default.    
+ 
+
+  optihelp.option.starters <- c("--", "-" )
+  optihelp.option.starter( "--", "-" )
+
+  option.starter <- c( "--", "-" ) 
+  option( optihelp$starter = c("--", "-" ) )
+
+  # makeActiveBinding( "option.starter" , f, baseenv(baseenv()) ) 
+
+  
+
+  'is.flag' requires to know what the flag specifiers are.  
+  
+* Do we enforce different starting options or bundling?
+
+
+Require exact flag specification vs. match?
+exact flag vs. specify flag indicators seperately.  If the flag indicators
+are seperate, it allows 
+
+  * Do we enforce single-letter options with  a single-dash?
+  * If we do not know what the indicators are, how can we make it
+    greedy?
+  * How do we specify multiple values:
+    n = 1, n = 2, n=1+, .n. >= 0 
+
+   
+
+
+
 
 * Use match.arg for matching flags?  I don't like this idea as it gets
-  too crazy.
+  too crazy, too quickly    examples.
 
 * n:
   0  Can only be logical. It is possible it is the name of the option

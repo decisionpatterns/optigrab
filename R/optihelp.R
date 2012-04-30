@@ -7,6 +7,14 @@ optihelp <- function( args=commandArgs() ) {
   args <- expandArgs( args ) 
   
   if( any( grepl( "--help|-?", args ) ) ) {
+    
+    opts <- getOption( "optigrab" )$options 
+    nms  <- sort( names(opts) )
+    for( nm in nms ) {
+        cat( nm"\n" )  
+    }  
+    
+
     # Construct help message 
   }
   

@@ -31,8 +31,8 @@ grabOpt <- function(
 {
   
   # STASH THE ARGUMENTS.
-  optigrab <- options( 'optigrab' )
-  optgrab[[ flag[[1]] ]] <- list( 
+  optigrab <- getOption( 'optigrab' )
+  optigrab$options[[ flag[[1]] ]] <- list( 
     flag=flag, default=default, n=n, required=required, help=help, args=args 
   )
   options( optigrab=optigrab ) 
