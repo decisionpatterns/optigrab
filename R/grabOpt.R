@@ -4,9 +4,8 @@
 #    vector of values. 
 #
 #    - flag      character vector of the flags that denote this option 
-#    - default   the value should it not be provided. This value is not coerced
+#    - default   the value should it not be provided. 
 #    - n         (integer) Number of values to be read following the flag. 
-#    - coerce    (function) Function to be applied to values
 #    - required  (logical) Whether or not the option is required.
 #    - help      (character) Message to be printed with optihelp 
 #    - args      (character) The vector to parse for options.
@@ -24,14 +23,21 @@
 grabOpt <- function( 
   flag,
   default  = NA,
-  n        = if(substitute(coerce)=="as.logical") 0 else 1,
-  coerce   = if(n==0) as.logical else as.character, 
+  n        = 1,
   required = FALSE, 
   help     = NULL,
   args     = commandArgs()
 ) 
 {
   
+  # STASH THE ARGUMENTS.
+  optigrab <- options( 'optigrab' )
+  optgrab[[ flag[[1]] ]] <- list( 
+    flag=flag, default=default, n=n, required=required, help=help, args=args 
+  )
+  options( optigrab=optigrab ) 
+  
+
   # EXPAND ARGS
   args <- expandArgs(args)
 
@@ -51,7 +57,7 @@ grabOpt <- function(
   if( length(wh.alias) == 0 ) {
     
     if( 
-        ( n == 0 || as.character(substitute(coerce)) == "as.logical" ) && 
+        ( n == 0 ) && 
         is.na(default) 
     ) return(FALSE)  
     
@@ -100,9 +106,6 @@ grabOpt <- function(
     vals <- args[rng] 
 
   }
-  
-  # APPLY FUNCTION IF GIVEN
-  if( ! is.null(coerce) ) vals <- coerce(vals) 
   
   return(vals) 
     

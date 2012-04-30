@@ -1,4 +1,4 @@
-expandArgs <- 
+# 
 # fully expand command args for easy parsing
 # * takes arguments after --args
 # * splits at '='
@@ -8,6 +8,7 @@ expandArgs <-
 #  The last is not universally accepted
 #  singledash
 #  
+expandArgs <- 
 function( args=commandArgs() )
 {
   # STRIP '--args' AND BEFORE

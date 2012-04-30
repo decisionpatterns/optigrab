@@ -1,10 +1,12 @@
 Package: optigrab
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
-Date: 2011-05-17
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
-LazyLoad: yes
+Title: Command-line option parsing desinged for R
+Version: 0.1.0
+Date: 2011-08-06
+Author: Christopher Brown 
+Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
+Description: The optigrab packages provides functions to 'grab' options from the using a simple, clean yet powerful syntax. It is desinged with the R in mind allowing the ability to grab vectors using a natural R style and syntax.
+Depends: R (>= 2.13.0), pragma
+License: GPL (>=2)
+URL: http://www.decisionpatterns.com
+LazyLoad: no

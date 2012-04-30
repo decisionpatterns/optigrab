@@ -1,0 +1,26 @@
+
+* Use match.arg for matching flags?  I don't like this idea as it gets
+  too crazy.
+
+* n:
+  0  Can only be logical. It is possible it is the name of the option
+  but why?
+  1  Most common
+  n  A specific number
+  n = up.to(3) 
+  n = greedy
+
+If greedy is used ... we should warn about args.
+
+* Read from config file:
+  * Prompt?
+  * Search on local?
+  An option can come from .rc, CLO, prompt or setting.  
+  If it is interactive
+  
+
+== Completed ==
+
+X  Drop the 'coerce' argument from 'grabOpt' since it is no different from
+  wrapping the call in an as.* function.  
+

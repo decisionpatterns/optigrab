@@ -1,7 +1,6 @@
 # optigrab.r
 #
 # HOW THIS WORKS:
-#  optigrab( option )
 #  date  <- grabOpt( c("date", "d"), default=Sys.Date(), required=TRUE )
 #  names <- grabOpt( c( "name" ), n, 
 #  optigrab(help)
@@ -156,7 +155,7 @@ function( opt=NULL, fun=NULL, required=FALSE, args=commandArgs() ) {
   if( is.null(opt) ) return(args) 
   
   if ( ! exists(opt, args) ) {
-    message <- paaste( opt
+    # message <- paste( opt
     if( required ) cat(message)
     return(NULL) 
   } 
@@ -171,5 +170,5 @@ function( opt=NULL, fun=NULL, required=FALSE, args=commandArgs() ) {
 # THIS NEEDS TO BE SET ON PACKAGE LOADING  
 options( optigrab=list( opts=list, args=list(), allow.multiple=FALSE ) )      
 
-  
+}  
 
