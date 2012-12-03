@@ -1,8 +1,38 @@
-= Comand-Line Option Processing Specifications =
 
-There are already at least two command line option ("CLOs") processing 
-solutionsfor R: optparse follows closely Python's optparse semantics 
-and syntax while getopt emulates C-like behaviors. Both of these are 
+# ABSTRACT # 
+
+optigrab is a package to simplify working with command line options.
+
+
+# FEATURES #
+
+* Simple syntax, using incremental function calls rather than one 
+  megalithic specification. Grabbing an options is simple as:
+  grab_opt("--foo").
+* Allows for retrieval of multiple values to align with R's vectors
+  
+# LIMITATIONS #
+* Does not allow option bundling
+
+
+# Comand-Line Option Processing Specifications # 
+
+
+# BACKGROUND # 
+
+To start, clearing up some nomenclature will be beneficial. Command-line
+options are known as both 'options' and 'arguments'. For this document,
+'options' are used.  The term 'arguments' is reserved to function/method
+arguments used within the R language. This distinction makes it clear
+the difference between those values provided on the command-line 
+("options") and those provided to functions and methods ("arguments").
+
+There are already at least three command line option ("CLOs") processing 
+solutions for R:
+* *commandArgs()* from the base package returns the command line arguments
+  from when the R program was invoked.
+* The *optparse* package follows closely Python's optparse semantics 
+and syntax. It provides a while getopt emulates C-like behaviors. Both of these are 
 designed for languages signigicantly different from R. The commandArgs 
 function in the base package returns a character vector. It can be used
 as a rudimentary method for option retrieval but lacks the features of 
@@ -16,19 +46,19 @@ vectors by default.
 It is common in programming to assign one variable at a time.  
 Both getopt and optparse require writing a specification which parses
 the command line and assigns all values at once. For a complex set of 
-options, the specification quickly becomes a complex and hard to read.
+options, the specification quickly becomes complex and hard to read.
 The values are assigned to a list and then subsequently referenced and
 validated as needed.  This means that the logic for parsing the command
 line and using those value, e.g. to build objects is often times 
 distant in the program, making debugging hard.  
 
-There are good reasons for the specification of option all-at-once. With 
-all specification in one place, you can provide an automatic help file.
-
+There are good reasons for the specification of option all-at-once. 
+With all specification in one place, you can easily provide an 
+automatic help file.
 
 The specification-of-all-options at a time works, but 
-generally results in dense or ugly syntax. A much better approach is
-to have the abillity to specify each option at a time.  
+generally results in dense and ugly syntax. A much better approach 
+is to have the abillity to specify each option at a time.  
 
 The optigrab package provides a solution to both of these problems. 
 Supplied flags can read and parse command-line options as vectors
@@ -38,10 +68,10 @@ readable syntax.
 
 == Examples ==
 
-  name  <- grabOpt( "--name" )
-  dates <- as.Date( grabOpt( "--dates", n=2 ) )  # SAME
-  yesNo <- grabOpt( c( "--yes", "y" ), n=0 )     # LOGICAL  
-                                       ^^^   
+  name  <- grab_opt( "--name" )
+  dates <- as.Date( grab_opt( "--dates", n=2 ) )  # SAME
+  yesNo <- grab_opt( c( "--yes", "y" ), n=0 )     # LOGICAL  
+                                        ^^^   
 
 == Command Line ==  
 
@@ -225,8 +255,8 @@ the flow of the program. An example would allow the retrival
 of one option on every line.  For example, to get a name and date, 
 you might do the following:
  
-    name <- grabOpt( "--name" )
-    date <- grabOpt( "--date", default=Sys.Date, coerce=as.Date )
+    name <- grab_opt( "--name" )
+    date <- grab_opt( "--date", default=Sys.Date )
        
 In the first line, all we need to do is specify the option flag. 
 This is because the default is to return a single character value
@@ -235,8 +265,8 @@ a single value coerced by as.Date.  If no value is supplied it
 defaults to today's date.
 
 Since the processing of options is serialized, the processing
-of all options should be done prior to grabing arguments. 
-If this is done, we can use the grabOpt functions to specify 
+of all options should be done prior to grabing options. 
+If this is done, we can use the grab_opt functions to specify 
 do the apriori specifications to handle the  
                        
 

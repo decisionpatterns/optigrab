@@ -1,11 +1,11 @@
 library(testthat)
 
 # HERE IS A TYPICAL RScirpt command
-args <- '/opt/r/R-2.13.0-default/lib/R/bin/exec/R --slave --no-restore  
+opts <- '/opt/r/R-2.13.0-default/lib/R/bin/exec/R --slave --no-restore  
          --file=./test.r --args --args --name fred --date 2011-05-17 -b=1 
          --end-date=2011-05-20 -a'
 
-args <- strsplit( args, "\\s+" )[[1]]
+opts <- strsplit( opts, "\\s+" )[[1]]
 
 # [1] "/opt/r/R-2.13.0-default/lib/R/bin/exec/R" "--slave"                                 
 # [3] "--no-restore"                             "--file=./test.r"                         
@@ -18,47 +18,47 @@ args <- strsplit( args, "\\s+" )[[1]]
 
 
 # TEST: Simple
-expect_that( grab_opt("--args", n=0, args=args),  is_true() )
-# grab_opt("--args", n=1, args=args) # FAIL
-expect_that( grab_opt("--name", args=args)     , is_identical_to('fred') )
-expect_that( grab_opt("--date", args=args)     , equals('2011-05-17') )
-expect_that( grab_opt("-b", args=args)         , equals("1") )
-expect_that( grab_opt("--end-date", args=args) , equals('2011-05-20') )
-expect_that( grab_opt("-a", args=args)          , throws_error() )
+expect_that( grab_opt("--args", n=0, opts=opts),  is_true() )
+# grab_opt("--args", n=1, opts=opts) # FAIL
+expect_that( grab_opt("--name", opts=opts)     , is_identical_to('fred') )
+expect_that( grab_opt("--date", opts=opts)     , equals('2011-05-17') )
+expect_that( grab_opt("-b", opts=opts)         , equals("1") )
+expect_that( grab_opt("--end-date", opts=opts) , equals('2011-05-20') )
+expect_that( grab_opt("-a", opts=opts)          , throws_error() )
 
 
 # TEST: MISSING VALUES
-expect_that( grab_opt("--missing", args=args), equals(NA) )
-expect_that( grab_opt("--missing", default=NULL, args=args), equals(NULL) )
-expect_that( grab_opt("--missing", default=NA, args=args), equals(NA) )
-expect_that( grab_opt("--missing", default=0, args=args), equals(0) )
+expect_that( grab_opt("--missing", opts=opts), equals(NA) )
+expect_that( grab_opt("--missing", default=NULL, opts=opts), equals(NULL) )
+expect_that( grab_opt("--missing", default=NA, opts=opts), equals(NA) )
+expect_that( grab_opt("--missing", default=0, opts=opts), equals(0) )
 
 
 # TEST: logical
 
-expect_that( grab_opt( "-a", args=args ), throws_error() )      # Error: No argument supplied. 
-expect_that( grab_opt( "-a", n=0, args=args ), is_true() )
-expect_that( grab_opt( "-a", n=1, args=args ), throws_error() )
+expect_that( grab_opt( "-a", opts=opts ), throws_error() )      # Error: No argument supplied. 
+expect_that( grab_opt( "-a", n=0, opts=opts ), is_true() )
+expect_that( grab_opt( "-a", n=1, opts=opts ), throws_error() )
 
-expect_that( grab_opt( "-b", args=args ), equals("1") )        
-expect_that( grab_opt( "-b", n=0, args=args ), is_true() ) #
-# expect_that( grab_opt( "-b", n=1, args=args, coerce=as.logical.character ), is_true() ) #FAIL.
-expect_that( grab_opt( "-b", n=1, args=args ), equals("1" ) )
-
-
+expect_that( grab_opt( "-b", opts=opts ), equals("1") )        
+expect_that( grab_opt( "-b", n=0, opts=opts ), is_true() ) #
+# expect_that( grab_opt( "-b", n=1, opts=opts, coerce=as.logical.character ), is_true() ) #FAIL.
+expect_that( grab_opt( "-b", n=1, opts=opts ), equals("1" ) )
 
 
 
-args <- '/opt/r/R-2.13.0-default/lib/R/bin/exec/R --slave --no-restore  
+
+
+opts <- '/opt/r/R-2.13.0-default/lib/R/bin/exec/R --slave --no-restore  
          --file=./test.r --args --args --name fred --dates 2011-05-17 2011-06-01 -b=1 
          --end-date=2011-05-20 -a'
-args <- strsplit( args, "\\s+" )[[1]]
+opts <- strsplit( opts, "\\s+" )[[1]]
 
 
 
-# TEST FOR BLANK ARGS
-args <- ''
+# TEST FOR BLANK opts
+opts <- ''
 
-args <- '-a'
+opts <- '-a'
 
-args <- strsplit( args, "\\s+" )[[1]]
+opts <- strsplit( opts, "\\s+" )[[1]]

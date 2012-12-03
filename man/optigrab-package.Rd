@@ -14,7 +14,7 @@
 Package: \tab optigrab\cr
 Type: \tab Package\cr
 Version: \tab 0.1.0\cr
-Date: \tab 2011-08-06\cr
+Date: \tab 2012-12-02\cr
 License: \tab GPLv2\cr
 LazyLoad: \tab no\cr
 }
@@ -27,6 +27,8 @@ LazyLoad: \tab no\cr
 
 \references{
   The Jerk. Dir. Carl Reiner. Perf Steve Martin, Bernadette Peters, Caitlin Adams. Universal Pictures, 1979.
+ 
+  http://www.gnu.org/prep/standards/standards.html
 }
 
 \keyword{ package }
@@ -36,9 +38,6 @@ LazyLoad: \tab no\cr
 }
 
 \examples{
-  
-# Some simple examples here
-  name <- optigrab( "--name" )
-  dates <- optigrab( "--dates", n=2 ) 
-
+  opts <- c( "--foo", "bar" ) 
+  name <- grab_opts( "--foo", opts=opts )
 }

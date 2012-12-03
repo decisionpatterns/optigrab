@@ -3,6 +3,15 @@
 # is exited.
 
 # optihelp <- function( args=commandArgs() ) {
+
+#' Provide program usage information and exit.  
+#' 
+#' Prints program usage information and exits. Usage information comes from 
+#' the \code{help} arguments to \code{grab_opt} function calls. Calls to 
+#' \code{grab_opt} following the \code{optihelp} call will not be considered.
+#' 
+#' @keyword utilities
+
 optihelp <- function( args=commandArgs() ) {
   args <- expand_opts( args ) 
   

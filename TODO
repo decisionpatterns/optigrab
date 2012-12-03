@@ -1,13 +1,9 @@
-* Make this compatible with RApache/Rook.
-
-
 * We should allow for different option starters? 
- 
+
   Options: 
   optihelp$starter <- c( "--", "-" )
   Default.    
  
-
   optihelp.option.starters <- c("--", "-" )
   optihelp.option.starter( "--", "-" )
 
@@ -15,13 +11,13 @@
   option( optihelp$starter = c("--", "-" ) )
 
   # makeActiveBinding( "option.starter" , f, baseenv(baseenv()) ) 
-
   
-
   'is.flag' requires to know what the flag specifiers are.  
   
-* Do we enforce different starting options or bundling?
+  I am not sure that the arguments of 
 
+
+* Do we enforce different starting options or bundling?
 
 Require exact flag specification vs. match?
 exact flag vs. specify flag indicators seperately.  If the flag indicators
@@ -33,11 +29,8 @@ are seperate, it allows
   * How do we specify multiple values:
     n = 1, n = 2, n=1+, .n. >= 0 
 
+DO NOT, INTIALLY SUPPORT BUNDLING
    
-
-
-
-
 * Use match.arg for matching flags?  I don't like this idea as it gets
   too crazy, too quickly    examples.
 
@@ -51,12 +44,17 @@ are seperate, it allows
 
 If greedy is used ... we should warn about args.
 
+
 * Read from config file:
   * Prompt?
   * Search on local?
   An option can come from .rc, CLO, prompt or setting.  
   If it is interactive
   
+
+== LESSER ==
+* Make this compatible with RApache/Rook (why)
+
 
 == Completed ==
 
