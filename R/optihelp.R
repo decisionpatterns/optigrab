@@ -4,17 +4,14 @@
 
 # optihelp <- function( args=commandArgs() ) {
 optihelp <- function( args=commandArgs() ) {
-  args <- expandArgs( args ) 
+  args <- expand_opts( args ) 
   
   if( any( grepl( "--help|-?", args ) ) ) {
     
     opts <- getOption( "optigrab" )$options 
     nms  <- sort( names(opts) )
-    for( nm in nms ) {
-        cat( nm"\n" )  
-    }  
-    
-
+    for( nm in nms ) cat( nm"\n" )  
+  
     # Construct help message 
   }
   
@@ -22,4 +19,4 @@ optihelp <- function( args=commandArgs() ) {
 
 
 
-a <- 3
+# a <- 3
