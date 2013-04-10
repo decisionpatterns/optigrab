@@ -1,10 +1,17 @@
-
-
 .onLoad <- function(libname, pkgname) {
 
  # DEFINE AUTOHELP ACTIVE BINDING
-   makeActiveBinding( "optihelp" , optihelp, baseenv() )   
-   options( optigrab = list( options=NULL, pattern = c( "--", "-" ) ) )
+   # makeActiveBinding( "optihelp" , optihelp, baseenv() )
+   
+   # set optigrab options
+   options( optigrab = list( 
+       help = hash() 
+     , option_identifier = c( '--', '-' )
+     # , greedy=FALSE  # SEE TODO
+     # , on_error=optihelp , # WHAT TO DO ON PARSE ERROR
+     # allow.multiple=FALSE )
+     )
+   )
 
 }
 

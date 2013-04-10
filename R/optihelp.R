@@ -8,12 +8,17 @@
 #' 
 #' Prints program usage information and exits. Usage information comes from 
 #' the \code{help} arguments to \code{grab_opt} function calls. Calls to 
-#' \code{grab_opt} following the \code{optihelp} call will not be considered.
+#' \code{grab_opt} following the \code{optihelp} call will not be considered, so
+#' it is best to specify make all \code{grab_opt} calls before \code{optihelp}.
+#' 
+#' @example
+#' opts <- c( "--foo", "bar")
+#' grab_opt( "--foo", help="Specifies Foo" )
+#' optihelp()
 #' 
 #' @keyword utilities
 
-optihelp <- function( args=commandArgs() ) {
-  args <- expand_opts( args ) 
+optihelp <- function( opts=commandArgs() ) { 
   
   if( any( grepl( "--help|-?", args ) ) ) {
     

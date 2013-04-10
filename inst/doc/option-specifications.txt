@@ -1,17 +1,19 @@
-
 # ABSTRACT # 
 
-optigrab is a package to simplify working with command line options.
+*optigrab* is a package to simplify working with command line options. It 
+favors a easy-to-use, straight-forward syntax that should cover 95%+ of use 
+cases in favor the flexibility and complexity of other command line parsing 
+packages. The philosophy of other packages is to create specifying Specifically, the design uses one function call for each
 
+## FEATURES ##
 
-# FEATURES #
-
-* Simple syntax, using incremental function calls rather than one 
-  megalithic specification. Grabbing an options is simple as:
+* Simple syntax
+** Incremental function calls rather than one megalithic specification. Grabbing an options is simple as:
   grab_opt("--foo").
 * Allows for retrieval of multiple values to align with R's vectors
   
-# LIMITATIONS #
+## LIMITATIONS ##
+
 * Does not allow option bundling
 
 

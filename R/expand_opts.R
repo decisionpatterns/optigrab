@@ -1,29 +1,17 @@
-# 
-# fully expand command options for easy parsing
-# * takes arguments after --args
-# * splits at '='
-# * takes any digit after '-x' e.g. '-x5'  
-#  
-# Note: 
-#  The last is not universally accepted
-#  singledash
-#  
-
 #' Expand argument vector to split names from values
 #' 
-#'  
+#' \code{expand_opts} does two things: 
+#'  1. removes values preceding and including --args' 
+#'  2. splits and value containing an equal (=) sign.    
 #' 
-#' @param args character vector of arguments.  (Default:commandArgs())
+#' @param args character vector of arguments. (Default: commandArgs())
 #' @keyword manip
 #' @examples
 #' expand_opts()
 #' expand_opts( args=c( "--foo", "bar") ) 
-
 expand_opts <- function( args=commandArgs() ) {
-  # STRIP '--args' AND BEFORE
-  #  - Generally we are not interested in arguments before (the first)
-  #    '--args' 
-  
+
+  # strip (first) '--args' value and all valus before/   
     wh.args <- grep( "--args", args )[1] 
     if( ! is.na(wh.args) )
       args <- args[ min(wh.args+1, length(args)):length(args) ] 

@@ -1,26 +1,3 @@
-#  grab_opt:
-#   
-#    Workhorse for the optigrab packages. Parses 'opts' and returns a
-#    vector of values. 
-#
-#    - flag      character vector of the flags that denote this option 
-#    - default   the value should it not be provided. 
-#    - n         (integer) Number of values to be read following the flag. 
-#    - required  (logical) Whether or not the option is required.
-#    - help      (character) Message to be printed with optihelp 
-#    - opts      (character) The vector to parse for options.
-
-# Do we parse the line looking for the option or do we 
-#  1. Store the call into the options for optigrab for help message.
-#  2. Test for naming conflict of similar options.  Error if exists.
-#  3. Scan command opts for occurence of name --name | -name | --n | --n
-#  4. Allow n to accept a model formula that will greedily take upto that
-#     many arguments.  It will be stopped by another flag or by the end
-#     of the opts array.
-# 5.  Allow for -v -v -v  meaning v=3  (Not very useful.)
-# 6.  
-
-
 #' Gets option's values from the command-line
 #'
 #' grab_opts parses out value(s) associated with options associated with the 
@@ -35,13 +12,16 @@
 #'  
 #' \code{default} provides value(s) for the option if no value is found.
 #' 
-#' \code{n} the number of value(s) to retrieve from the command line.
+#' \code{n} the number of value(s) to retrieve from the command line.  If 
+#' \code{n=0}, then a logical value is returned indicating whether the flag 
+#' exists 
 #' 
 #' \code{required} indicates if a value is required. If the the flag is not 
 #' found or if there is not the correct number of value(s) are not found. If 
 #' \code{default} is given, then no missing value error will occur.  
 #' 
-#' \code{help} is a short message about the option. It is saved and used with 
+#' \code{help} is a short message about the option. It is concatenated with the 
+#' \code{flag} option and stored in the 'optigrab' option.  This is used with 
 #' \code{\link{optihelp}}.  
 #' 
 #' \code{opts} is the vector from which options are parsed. By default, this is  
@@ -51,7 +31,7 @@
 #' @param default the value should the value not be provided
 #' @param n (integer) number of values to retrieve (default: 1)
 #' @param required (logical) whether the value is required.
-#' @param help (character) message to be printed with \code{optihelp}
+#' @param description (character) message to be printed with \code{optihelp}
 #' @param opts (character) vector to parse for options
 #' 
 #' @return a value parsed the opts vector associated with the flag.
@@ -68,29 +48,31 @@
 
 grab_opt <- function( 
   flag,
-  default  = NA,
-  n        = 1,
-  required = FALSE, 
-  help     = NULL,
-  opts     = commandArgs()
+  default     = NA,
+  n           = 1,
+  required    = FALSE, 
+  description = NULL,
+  opts        = commandArgs()
 ) 
 {
   
   # STASH THE ARGUMENTS.
-  optigrab <- getOption( 'optigrab' )
-  optigrab$options[[ flag[[1]] ]] <- list( 
-    flag=flag, default=default, n=n, required=required, help=help, opts=opts 
-  )
-  options( optigrab=optigrab ) 
+  op <- getOption( 'optigrab' )
+  # optigrab$options[[ flag[[1]] ]] <- list( 
+  #  flag=flag, default=default, n=n, required=required, help=help, opts=opts 
+  # )
+  # options( optigrab=optigrab ) 
   
-
   # EXPAND opts
   opts <- expand_opts(opts)
 
   # THE STRING OF OPTIONS USED FOR OUTPUT
-  opt.str <- Reduce( function(...) paste(..., sep=" | " ), flag )
-  
-  # STORE help 
+  flag.str <- Reduce( function(...) paste(..., sep=" | " ), flag )
+   
+  # STORE help
+  # hlp <- op$help 
+  op$help[ flag.str ] <- description 
+  options( optigrab=op )
   
   # IDENTIFY name/alias FLAG(s)
   wh.alias <- c() 
@@ -156,3 +138,26 @@ grab_opt <- function(
   return(vals) 
     
 }
+
+
+#  grab_opt:
+#   
+#    Workhorse for the optigrab packages. Parses 'opts' and returns a
+#    vector of values. 
+#
+#    - flag      character vector of the flags that denote this option 
+#    - default   the value should it not be provided. 
+#    - n         (integer) Number of values to be read following the flag. 
+#    - required  (logical) Whether or not the option is required.
+#    - help      (character) Message to be printed with optihelp 
+#    - opts      (character) The vector to parse for options.
+
+# Do we parse the line looking for the option or do we 
+#  1. Store the call into the options for optigrab for help message.
+#  2. Test for naming conflict of similar options.  Error if exists.
+#  3. Scan command opts for occurence of name --name | -name | --n | --n
+#  4. Allow n to accept a model formula that will greedily take upto that
+#     many arguments.  It will be stopped by another flag or by the end
+#     of the opts array.
+# 5.  Allow for -v -v -v  meaning v=3  (Not very useful.)
+# 6.  

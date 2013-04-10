@@ -1,23 +1,36 @@
-* We should allow for different option starters? 
+* CONSIDER: flag identifiers /  specification for option name.
+    This could be a set of fixed identifiers such as '--' and '--' 
+    prefixes OR a function applied to a character vector that indicates
+    that the argument is an option name rather than a specifier.
 
-  Options: 
-  optihelp$starter <- c( "--", "-" )
-  Default.    
- 
-  optihelp.option.starters <- c("--", "-" )
-  optihelp.option.starter( "--", "-" )
+    See, for example, is.flag which requires this.
 
-  option.starter <- c( "--", "-" ) 
-  option( optihelp$starter = c("--", "-" ) )
+    options$optigrab$option_identifier
+
+* CONSIDER: 
+    - 'greedy' option, i.e. take all values until the next 
+       option flag. This can be set at the option levels as in:
+
+          grab_opt( ..., n="greedy" ) 
+
+    - 'up.to(3)', i.e. take up to 3 values
+
+    Both require specifying how options are idenfied, see above.
+    It would be 
+
+
+* CONSIDERING: renaming 'expand_opts' -> 'split_opts' 
+
+
+* Help semantics: 
+  optihelp()
+  AUTOHELP()
+  AUTOHELP
+  _AUTOHELP_ : semantics
 
   # makeActiveBinding( "option.starter" , f, baseenv(baseenv()) ) 
   
-  'is.flag' requires to know what the flag specifiers are.  
-  
-  I am not sure that the arguments of 
-
-
-* Do we enforce different starting options or bundling?
+* CONSIDER: optiion bundling
 
 Require exact flag specification vs. match?
 exact flag vs. specify flag indicators seperately.  If the flag indicators
