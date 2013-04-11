@@ -1,11 +1,14 @@
 #' Expand argument vector to split names from values
 #' 
-#' \code{expand_opts} does two things: 
-#'  1. removes values preceding and including --args' 
-#'  2. splits and value containing an equal (=) sign.    
-#' 
+# \code{expand_opts} does two things: 
+#  1. removes values preceding and including --args' 
+#  2. splits and value containing an equal (=) sign.    
+# 
 #' @param args character vector of arguments. (Default: commandArgs())
-#' @keyword manip
+#' @details This is an internal function and should generally not be called 
+#' directly
+#' @seealso \code{\link{grabOpt}}
+#' @keywords manip
 #' @examples
 #' expand_opts()
 #' expand_opts( args=c( "--foo", "bar") ) 
