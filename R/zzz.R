@@ -7,6 +7,8 @@
    options( optigrab = list( 
        help = hash() 
      , option_identifier = c( '--', '-' )
+     , flag_test = flag_test_gnu 
+     , flag_name_getter = flag_name_getter_gnu 
      # , greedy=FALSE  # SEE TODO
      # , on_error=optihelp , # WHAT TO DO ON PARSE ERROR
      # allow.multiple=FALSE )
@@ -14,7 +16,6 @@
    )
 
 }
-
 
 
 .onAttach <- function( libname, pkgname ) {

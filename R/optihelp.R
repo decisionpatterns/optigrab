@@ -7,24 +7,28 @@
 #' Provide program usage information and exit.  
 #' 
 #' Prints program usage information and exits. Usage information comes from 
-#' the \code{help} arguments to \code{grab_opt} function calls. Calls to 
+#' the \code{help} arguments to \code{grab_opt}. Calls to 
 #' \code{grab_opt} following the \code{optihelp} call will not be considered, so
 #' it is best to specify make all \code{grab_opt} calls before \code{optihelp}.
 #' 
-#' @example
+#' @param opts character.  Vector from which to parse options (default: \code{commandArgs()} )
+#' @seealso \code{\link[base]{commandArgs}}
+#' @examples
 #' opts <- c( "--foo", "bar")
 #' grab_opt( "--foo", help="Specifies Foo" )
 #' optihelp()
 #' 
-#' @keyword utilities
+#' @keywords utils
 
 optihelp <- function( opts=commandArgs() ) { 
   
-  if( any( grepl( "--help|-?", args ) ) ) {
+  opts <- expand_opts(opts)
+  
+  if( any( grepl( "--help|-?", opts ) ) ) {
     
     opts <- getOption( "optigrab" )$options 
     nms  <- sort( names(opts) )
-    for( nm in nms ) cat( nm"\n" )  
+    for( nm in nms ) cat( nm, "\n" )  
   
     # Construct help message 
   }
@@ -32,5 +36,3 @@ optihelp <- function( opts=commandArgs() ) {
 }
 
 
-
-# a <- 3

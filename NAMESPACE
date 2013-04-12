@@ -1,3 +1,1 @@
-export( grab_opt )
-export( as.logical.character )
-export( optihelp ) 
+export(grab_opt)

@@ -1,4 +1,7 @@
+^.git/.*
+.git/
+.git/.*
+
+^.*\.Rproj$
 ^\.Rproj\.user$
-^.git.*
-^.gitignore
-.*\.RProj.*
+# *.Rproj

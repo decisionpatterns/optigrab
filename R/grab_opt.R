@@ -1,11 +1,17 @@
-#' Gets option's values from the command-line
+#' @title Get option's values from the command-line
 #'
-#' grab_opts parses out value(s) associated with options associated with the 
-#' \code{flag} arguments. It is useful with programs executed using 
-#' \code{Rscript} or \code{R CMD BATCH} and  closely follows the ubiquitous 
-#' GNU standards for command-line interfaces. It departs from other command-line
-#' interface packages by avoiding complex specifications in favor of a lighter
-#' more straight-forward interface.     
+#' @description 
+#' Returns value(s) from the command-line associated with the desired option.
+#' 
+#' @details 
+#' grab_opts parses the command line vector extracting value(s) that are identified
+#' by one or more \code{flag}s.  
+#'  
+#' command line"flags.   It is useful with code executed using \code{Rscript}, 
+#' a \code{#!} on linux or \code{R CMD BATCH}. By default, it closely follows 
+#' the ubiquitous GNU standards for command-line interfaces. It departs from 
+#' other command-line interface packages by avoiding complex specifications in 
+#' favor of a lighter more straight-forward interface.     
 #' 
 #' \code{flag} (charater) vector of possible synonyms identifying the values for 
 #' This can be one or more possible flags allowing for synonyms or values.
@@ -27,7 +33,7 @@
 #' \code{opts} is the vector from which options are parsed. By default, this is  
 #' \code{commandArgs()}.             
 #'  
-#' @param flag character vector of the flags that denote the command line opts
+#' @param flag character vector.  The flags that may be associated with the that denote the command line opts
 #' @param default the value should the value not be provided
 #' @param n (integer) number of values to retrieve (default: 1)
 #' @param required (logical) whether the value is required.
@@ -36,15 +42,17 @@
 #' 
 #' @return a value parsed the opts vector associated with the flag.
 #' 
-#' @references \link{http://www.gnu.org/prep/standards/standards.html}
+#' @references http://www.gnu.org/prep/standards/standards.html
 #' 
 #' @seealso \code{\link{commandArgs}}
 #' 
-#' @keywords utilities
 #' @examples
-#' opts <- c( '--foo', 'bar' )
-#' grab_opt( c('--foo') )   # 
-#' grab_opt( c('--foo'), opts=opts )
+#'   opts <- c( '--foo', 'bar' )
+#'   grab_opt( c('--foo') )    
+#'   grab_opt( c('--foo'), opts=opts ) 
+#'   
+#' @keywords utils
+#' @export
 
 grab_opt <- function( 
   flag,
@@ -66,31 +74,38 @@ grab_opt <- function(
   # EXPAND opts
   opts <- expand_opts(opts)
 
-  # THE STRING OF OPTIONS USED FOR OUTPUT
-  flag.str <- Reduce( function(...) paste(..., sep=" | " ), flag )
+  # Create the help string for the 
+  flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
    
-  # STORE help
-  # hlp <- op$help 
-  op$help[ flag.str ] <- description 
+  # STORE flags and desctiption description in help option
+  # Only rewrite it if it is not there
+  if( is.null( op$help[[ flag.str]] ) ) 
+    op$help[ flag.str ] <- ""
+  
+  if( ! is.null( description ) )
+    op$help[ flag.str ] <- description 
+  
   options( optigrab=op )
+  
   
   # IDENTIFY name/alias FLAG(s)
   wh.alias <- c() 
   for ( alias in flag ) {
-    pattern   <- paste( "^", alias, "$", sep="" )
+    pattern   <- alias 
+    # pattern <- paste( "^", alias, "$", sep="" )
     wh.alias  <- union(wh.alias, grep( pattern, opts )) 
   }  
 
   # FLAG OR ALIAS NOT SUPPLIED  
   if( length(wh.alias) == 0 ) {
     
-    if( 
-        ( n == 0 ) && 
-        is.na(default) 
-    ) return(FALSE)  
+    if( ( n == 0 ) && is.na(default) ) return(FALSE)  
     
     if (required && is.na(default) ) 
-      stop( "\n\tOption(s): [", opt.str, "] is required, but was not supplied." )
+      stop( 
+        call. = FALSE 
+        , "\n\tOption(s): [", opt.str, "] is required, but was not supplied."
+      )
 
     return(default)
     
@@ -99,8 +114,10 @@ grab_opt <- function(
   # MULTIPLE MATCHING FLAGS OR ALIAS FOUND
   # allow.multiple (-tk)
   if ( length(wh.alias) > 1 ) 
-    stop( "\n\tMultiple values supplied for options [", opt.str, "]" )
-
+    stop( 
+      call.= FALSE , 
+      "\n\tMultiple values supplied for options [", opt.str, "]" 
+    )
   
   # SINGLE FLAG OR ALIAS FOUND.
     
@@ -113,31 +130,55 @@ grab_opt <- function(
   if( n > 0 ) {
     # TEST FOR AVAILABILITY OF ENOUGH ARGUMENTS
     if( wh.alias+n > length(opts) )
-      stop( 
+      stop(
+        .call = FALSE ,
         "\n\tEnd of arugments reached. [", opt.str, "] requires ", n, 
         " arguments but ", max(0, length(opts) - wh.alias), " is/are available."
       )
 
-    rng <- (wh.alias+1):(wh.alias+n)  
+    # The permissable values are from the value above, taking n values.
+    val_rng <- (wh.alias+1):(wh.alias+n)  
   
     # TEST: enough values available make sure we don't 
     # encounter any other optios
-    if( any( is.flag( opts[rng] ) ) ) {
-      wh <- intersect(which.flag(opts), rng)   
+    if( any( is.flag( opts[val_rng] ) ) ) {
+      wh <- intersect( which.flag(opts), val_rng )   
       flags <- Reduce( paste, opts[wh] ) 
       stop( 
-        "\n\tUnexpected option flag(s): ", flag, "\n\t", 
+        "\n\tUnexpected option flag(s) encountered: ", flag, "\n\t", 
         "[", flag, "] requires ", n, " arguments."
       )
     }  
     
-    vals <- opts[rng] 
+    vals <- opts[val_rng] 
 
   }
   
   return(vals) 
     
 }
+
+
+# grab_opt2 <- function( flag, opts=commandArgs() ) {
+#   
+#   
+#   opts <- expand_opts(opts)
+#   l_opts <- list() 
+#   wh.flags <- which.flags(opts)
+#   
+#   for( i in rev(wh.flags) ) {
+#     l_opts[]
+#     
+#   flag <- NULL
+#   
+#     if( is.flag(opts[i]) ) flag <- opts[i] else
+#       if( is.null(flag) ) next else
+#   
+#     
+#       
+#     
+# }
+#   
 
 
 #  grab_opt:

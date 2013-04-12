@@ -1,3 +1,20 @@
+* behaviors document
+
+* globbing of path
+
+
+* Add these functions
+    grab_character
+    grab_numeric
+    grab_logical
+    grab_integer
+
+* Number of arguments (n) can use model formula to 
+
+* Auto-coerce
+
+* Allow options to work like R function arguments. cf. match-args 
+
 * CONSIDER: flag identifiers /  specification for option name.
     This could be a set of fixed identifiers such as '--' and '--' 
     prefixes OR a function applied to a character vector that indicates
