@@ -14,7 +14,7 @@ flag_test_gnu <- function(x) grepl( '^-(-\\S+|\\S)$', x )
 flag_name_parser_gnu <- function(x) gsub( "^--?", "", x)
 
 #' @rdname gnu-option-style
-gnu_syle = list( 
-  flag_test = flag_test_gnu 
+gnu_style = list( 
+    flag_test = flag_test_gnu 
   , flag_name_parser = flag_name_parser_gnu 
 )

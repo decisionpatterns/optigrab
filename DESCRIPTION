@@ -1,7 +1,7 @@
 Package: optigrab
 Type: Package
 Title: Command-line option parsing desinged for R
-Version: 0.1.0
+Version: 0.2
 Date: 2012-12-03
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
@@ -19,13 +19,3 @@ Suggests:
 License: GPL (>=2)
 URL: http://www.decisionpatterns.com
 LazyLoad: no
-Collate:
-    'as.logical.character.R'
-    'expand_opts.R'
-    'grab_opt.R'
-    'is.flag.R'
-    'optihelp.R'
-    'optigrab-package.R'
-    'gnu_style.R'
-    'str_to_opts.R'
-    'zzz.R'

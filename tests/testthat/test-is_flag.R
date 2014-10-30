@@ -31,3 +31,4 @@ expect_identical( is.flag(opts), c( T, T, F))
 # Flag value value 
 opts <- str_to_opts( "--one 1 2 ")
 expect_identical( is.flag(opts), c( T, F, F))
+
