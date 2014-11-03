@@ -13,8 +13,8 @@
 #' @seealso \code{\link{grab_opt}}
 #' @keywords manip
 #' @examples
-#' expand_opts()
-#' expand_opts( opts=c( "--foo", "bar") ) 
+#' optigrab:::expand_opts()
+#' optigrab:::expand_opts( opts=c( "--foo", "bar") ) 
 #
 expand_opts <- function( opts=commandArgs() ) {
 

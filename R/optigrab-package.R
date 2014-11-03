@@ -39,7 +39,7 @@
 #'@examples
 #'
 #'  opts <- c( "--flag", "value" ) 
-#'  flag <- grab_opts( c("--flag","-f"), opts=opts )  # bar
+#'  flag <- optigrab:::grab_opt( c("--flag","-f"), opts=opts )  # bar
 #'
 NULL
 

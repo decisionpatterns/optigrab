@@ -15,8 +15,8 @@
 #' @seealso \code{\link[base]{commandArgs}}
 #' @examples
 #' opts <- c( "--foo", "bar")
-#' grab_opt( "--foo", help="Specifies Foo" )
-#' optihelp()
+#' optigrab:::grab_opt( "--foo", description="Specifies Foo" )
+#' optigrab:::optihelp()
 #' 
 #' @keywords utils
 

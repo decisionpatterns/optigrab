@@ -23,8 +23,8 @@
 #' @param x vector of options, for example \code{commandArgs()}.
 #' @return logical. indicating which arguments are flags.
 #' @examples
-#' is.flag( c( "--foo", "bar") )
-#' is.flag( c( "--foo", "bar", "-f", "-b", "text" ) )
+#' optigrab:::is.flag( c( "--foo", "bar") )
+#' optigrab:::is.flag( c( "--foo", "bar", "-f", "-b", "text" ) )
  
 is.flag <- function(x) getOption( "optigrab" )$flag_test(x)                  
   
@@ -32,6 +32,6 @@ is.flag <- function(x) getOption( "optigrab" )$flag_test(x)
 #' @rdname is.flag
 #' @return numeric
 #' @examples
-#' which.flag( c( "--foo", "bar") )
-#' which.flag( c( "--foo", "bar", "-f", "-b", "text" ))
-which.flag <-function(x) which( is.flag(x) ) 
+#' optigrab:::which.flag( c( "--foo", "bar") )
+#' optigrab:::which.flag( c( "--foo", "bar", "-f", "-b", "text" ))
+which.flag <-function(x) which( is.flag(x) )

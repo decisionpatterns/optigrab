@@ -1,33 +1,33 @@
 library(testthat)
 
 # No options
-opts <- str_to_opts() 
-is.flag( opts )
+opts <- optigrab:::str_to_opts() 
+optigrab:::is.flag( opts )
 
 # No option - empty string
-opts <- str_to_opts( "" )
-expect_equal( length( is.flag( opts ) ),  0)
+opts <- optigrab:::str_to_opts( "" )
+expect_equal( length( optigrab:::is.flag( opts ) ),  0)
 
 # Value 
-opts <- str_to_opts( "value")
-expect_false( is.flag( opts ) )
+opts <- optigrab:::str_to_opts( "value")
+expect_false( optigrab:::is.flag( opts ) )
 
 # Flag (BOOLEAN )
-opts <- str_to_opts( "--one" ) 
-expect_true( is.flag( opts) )
+opts <- optigrab:::str_to_opts( "--one" ) 
+expect_true( optigrab:::is.flag( opts) )
  
 # Flag, short (BOOLEAN)
-opts <- str_to_opts( "-o" )
-expect_true( is.flag( opts) )
+opts <- optigrab:::str_to_opts( "-o" )
+expect_true( optigrab:::is.flag( opts) )
 
 # Flag value 
-opts <- str_to_opts( "--one 1")
-expect_identical( is.flag(opts), c( T, F))
+opts <- optigrab:::str_to_opts( "--one 1")
+expect_identical( optigrab:::is.flag(opts), c( T, F))
 
 # Flag flag value
-opts <- str_to_opts( "--one -o 1 ")
-expect_identical( is.flag(opts), c( T, T, F))
+opts <- optigrab:::str_to_opts( "--one -o 1 ")
+expect_identical( optigrab:::is.flag(opts), c( T, T, F))
 
 # Flag value value 
-opts <- str_to_opts( "--one 1 2 ")
-expect_identical( is.flag(opts), c( T, F, F))
+opts <- optigrab:::str_to_opts( "--one 1 2 ")
+expect_identical( optigrab:::is.flag(opts), c( T, F, F))

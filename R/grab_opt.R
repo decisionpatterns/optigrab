@@ -48,8 +48,8 @@
 #' 
 #' @examples
 #'   opts <- c( '--foo', 'bar' )
-#'   grab_opt( c('--foo') )    
-#'   grab_opt( c('--foo'), opts=opts ) 
+#'   optigrab:::grab_opt( c('--foo') )    
+#'   optigrab:::grab_opt( c('--foo'), opts=opts ) 
 #'   
 #' @keywords utils
 #' @export
@@ -62,8 +62,7 @@ grab_opt <- function(
   description = NULL,
   opts        = commandArgs()
 ) 
-{
-  
+{  
   # STASH THE ARGUMENTS.
   op <- getOption( 'optigrab' )
   # optigrab$options[[ flag[[1]] ]] <- list( 
@@ -93,18 +92,17 @@ grab_opt <- function(
   for ( alias in flag ) {
     pattern   <- alias 
     # pattern <- paste( "^", alias, "$", sep="" )
-    wh.alias  <- union(wh.alias, grep( pattern, opts )) 
-  }  
+    wh.alias  <- union(wh.alias, which( opts==pattern ))
+  }
 
   # FLAG OR ALIAS NOT SUPPLIED  
   if( length(wh.alias) == 0 ) {
-    
     if( ( n == 0 ) && is.na(default) ) return(FALSE)  
     
     if (required && is.na(default) ) 
       stop( 
         call. = FALSE 
-        , "\n\tOption(s): [", opt.str, "] is required, but was not supplied."
+        , "\n\tOption(s): [", flag.str, "] is required, but was not supplied."
       )
 
     return(default)
@@ -113,16 +111,17 @@ grab_opt <- function(
   
   # MULTIPLE MATCHING FLAGS OR ALIAS FOUND
   # allow.multiple (-tk)
-  if ( length(wh.alias) > 1 ) 
+  if ( length(wh.alias) > 1 ) {
     stop( 
       call.= FALSE , 
-      "\n\tMultiple values supplied for options [", opt.str, "]" 
+      "\n\tMultiple values supplied for options [", flag.str, "]" 
     )
+  }
   
   # SINGLE FLAG OR ALIAS FOUND.
     
   # CHANGE opt.str TO THE PARTICULAR OPTION FOUND    
-  opt.str <- opts[wh.alias]  
+  op.str <- opts[wh.alias]  
     
   if ( n == 0 ) vals <- TRUE 
   
@@ -132,18 +131,18 @@ grab_opt <- function(
     if( wh.alias+n > length(opts) )
       stop(
         .call = FALSE ,
-        "\n\tEnd of arugments reached. [", opt.str, "] requires ", n, 
+        "\n\tEnd of arugments reached. [", op.str, "] requires ", n, 
         " arguments but ", max(0, length(opts) - wh.alias), " is/are available."
       )
 
     # The permissable values are from the value above, taking n values.
-    val_rng <- (wh.alias+1):(wh.alias+n)  
+    val_rng <- (wh.alias+1):(wh.alias+n)
   
     # TEST: enough values available make sure we don't 
     # encounter any other optios
     if( any( is.flag( opts[val_rng] ) ) ) {
       wh <- intersect( which.flag(opts), val_rng )   
-      flags <- Reduce( paste, opts[wh] ) 
+      flags <- Reduce( paste, opts[wh] )
       stop( 
         "\n\tUnexpected option flag(s) encountered: ", flag, "\n\t", 
         "[", flag, "] requires ", n, " arguments."

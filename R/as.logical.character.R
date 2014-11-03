@@ -7,7 +7,7 @@
 #' @param ... additional arguments
 #' 
 #' @examples
-#' as.logical.character( 0:2 )  # FALSE, TRUE, NA  
+#' optigrab:::as.logical.character( 0:2 )  # FALSE, TRUE, NA  
 as.logical.character <- function(x, ...) {
   
   ret <- as.logical( as.character(x) )

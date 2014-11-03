@@ -1,14 +1,13 @@
+library(methods)
 .onLoad <- function(libname, pkgname) {
 
  # DEFINE AUTOHELP ACTIVE BINDING
    # makeActiveBinding( "optihelp" , optihelp, baseenv() )
-   
-   # set optigrab options
    options( optigrab = list( 
-       help = hash() 
+       help = list()
      , option_identifier = c( '--', '-' )
      , flag_test = flag_test_gnu 
-     , flag_name_getter = flag_name_getter_gnu 
+     , flag_name_getter = flag_name_parser_gnu 
      # , greedy=FALSE  # SEE TODO
      # , on_error=optihelp , # WHAT TO DO ON PARSE ERROR
      # allow.multiple=FALSE )

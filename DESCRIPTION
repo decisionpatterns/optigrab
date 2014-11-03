@@ -11,21 +11,10 @@ Description: The optigrab packages provides functions to 'grab' options from
     syntax.
 Depends:
     R (>= 2.13.0),
-    hash,
     utils
 Suggests:
     testthat,
     knitr
-License: GPL (>=2)
+License: GPL (>=2) | file LICENSE
 URL: http://www.decisionpatterns.com
 LazyLoad: no
-Collate:
-    'as.logical.character.R'
-    'expand_opts.R'
-    'grab_opt.R'
-    'is.flag.R'
-    'optihelp.R'
-    'optigrab-package.R'
-    'gnu_style.R'
-    'str_to_opts.R'
-    'zzz.R'
