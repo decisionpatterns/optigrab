@@ -3,7 +3,7 @@
 \name{flag_test_gnu}
 \alias{flag_name_parser_gnu}
 \alias{flag_test_gnu}
-\alias{gnu_syle}
+\alias{gnu_style}
 \title{GNU style command line parsing functions}
 \format{\preformatted{List of 2
  $ flag_test       :function (x)  
@@ -18,7 +18,7 @@ flag_test_gnu(x)
 
 flag_name_parser_gnu(x)
 
-gnu_syle
+gnu_style
 }
 \arguments{
 \item{x}{Character of options}

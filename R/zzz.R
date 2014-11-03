@@ -1,8 +1,9 @@
-library(methods)
 .onLoad <- function(libname, pkgname) {
 
  # DEFINE AUTOHELP ACTIVE BINDING
    # makeActiveBinding( "optihelp" , optihelp, baseenv() )
+   
+   # set optigrab options
    options( optigrab = list( 
        help = list()
      , option_identifier = c( '--', '-' )
