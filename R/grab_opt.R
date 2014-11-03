@@ -63,6 +63,7 @@ grab_opt <- function(
   opts        = commandArgs()
 ) 
 {  
+
   # STASH THE ARGUMENTS.
   op <- getOption( 'optigrab' )
   # optigrab$options[[ flag[[1]] ]] <- list( 
@@ -85,7 +86,6 @@ grab_opt <- function(
     op$help[ flag.str ] <- description 
   
   options( optigrab=op )
-  
   
   # IDENTIFY name/alias FLAG(s)
   wh.alias <- c() 
@@ -122,7 +122,7 @@ grab_opt <- function(
     
   # CHANGE opt.str TO THE PARTICULAR OPTION FOUND    
   op.str <- opts[wh.alias]  
-    
+
   if ( n == 0 ) vals <- TRUE 
   
   # N is deterministic
@@ -140,6 +140,7 @@ grab_opt <- function(
   
     # TEST: enough values available make sure we don't 
     # encounter any other optios
+
     if( any( is.flag( opts[val_rng] ) ) ) {
       wh <- intersect( which.flag(opts), val_rng )   
       flags <- Reduce( paste, opts[wh] )
