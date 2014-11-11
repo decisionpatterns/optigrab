@@ -1,5 +1,4 @@
 library(testthat)
-
 flags <- c( "-f", "--flag", "--long-flag" )
 
 

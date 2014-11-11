@@ -24,7 +24,7 @@ expand_opts <- function( opts=commandArgs() ) {
       opts <- opts[ min( wh.args + 1, length(opts)):length(opts) ] 
 
   # EXPAND/Split  '=' 
-  #  - Options defined with and '=', such as '-a=5' or '--alpha=5'
+  #  - Options defined with an '=', such as '-a=5' or '--alpha=5'
   #    are split into '-a' '5' and '--alpha' '5', respectively.
     wh.eq <- grep( "=", opts )    
     for( i in rev(wh.eq) ) {

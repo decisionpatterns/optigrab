@@ -19,7 +19,7 @@
 #' optigrab:::is.flag( c( "--foo", "bar", "-f", "-b", "text" ) )
  
 is.flag <- function(x) {
-  return(getOption( "optigrab" )$flag_test(x))
+  return(getOption( "optigrab" )$style$flag_test(x))
 }
 
 #' @rdname is.flag

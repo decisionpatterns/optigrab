@@ -139,7 +139,7 @@ grab_opt <- function(
     val_rng <- (wh.alias+1):(wh.alias+n)
   
     # TEST: enough values available make sure we don't 
-    # encounter any other optios
+    # encounter any other options
 
     if( any( is.flag( opts[val_rng] ) ) ) {
       wh <- intersect( which.flag(opts), val_rng )   
@@ -150,7 +150,8 @@ grab_opt <- function(
       )
     }  
     
-    vals <- opts[val_rng] 
+    vals <- opts[val_rng]
+    vals <- sub("^\\\\", "", vals) # if value was escaped, remove escape character
 
   }
   
