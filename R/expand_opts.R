@@ -15,7 +15,7 @@
 #' @examples
 #' optigrab:::expand_opts()
 #' optigrab:::expand_opts( opts=c( "--foo", "bar") ) 
-#
+
 expand_opts <- function( opts=commandArgs() ) {
 
   # strip (first) '--args' value and all valus before/   

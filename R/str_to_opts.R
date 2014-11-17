@@ -7,6 +7,7 @@
 #' 
 #' @param x character. String to split into a command line
 #' @seealso \code{\link[base]{commandArgs}}
+
 str_to_opts <- function( x=character() )
   if( length(x)== 0 ) 
     return( character() ) else

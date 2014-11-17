@@ -6,19 +6,26 @@
 
 #' Provide program usage information and exit.  
 #' 
-#' Prints program usage information and exits. Usage information comes from 
-#' the \code{help} arguments to \code{grab_opt}. Calls to 
-#' \code{grab_opt} following the \code{optihelp} call will not be considered, so
-#' it is best to specify make all \code{grab_opt} calls before \code{optihelp}.
+#' Prints program usage information and exits. (?) Usage information comes from 
+#' the \code{help} arguments to \code{grab_opt}.
+#'  
 #' 
 #' @param opts character.  Vector from which to parse options (default: \code{commandArgs()} )
+#' 
+#' Usage information from \code{grab_opt} calls made after \code{optihelp()} is 
+#' used will will not be shown.  It is considered best practice to handle all 
+#' option parsing in a block at the beginning of the application.  \code{optihelp}
+#' would be best placed at the end of that block 
+#' 
 #' @seealso \code{\link[base]{commandArgs}}
 #' @examples
-#' opts <- c( "--foo", "bar")
-#' optigrab:::grab_opt( "--foo", description="Specifies Foo" )
-#' optigrab:::optihelp()
+#'   opts <- c( "--foo", "bar")
+#'   optigrab:::grab_opt( "--foo", description="Specifies Foo" )
+#'   optigrab:::optihelp()
+#' 
 #' 
 #' @keywords utils
+#' @export
 
 optihelp <- function( opts=commandArgs() ) { 
   

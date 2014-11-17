@@ -1,13 +1,18 @@
 * behaviors document
 
-* globbing of path
+* globbing of path: should be done after 
 
+* Add these convenience functions that attempt to coerce
+  an option after parsing it as from the command line
+    opt_grab_character same as opt_grab
+    opt_grab_numeric
+    opt_grab_logical
+    opt_grab_integer
 
-* Add these functions
-    grab_character
-    grab_numeric
-    grab_logical
-    grab_integer
+With magrittr, this is less important since 
+  "--f" %>% opt_grab %>% as.numeric 
+does the same.
+
 
 * Number of arguments (n) can use model formula to 
 
@@ -36,14 +41,16 @@
     It would be 
 
 
-* CONSIDERING: renaming 'expand_opts' -> 'split_opts' 
+* CONSIDERING: renaming 'expand_opts' -> 'split_opts'  
 
 
 * Help semantics: 
-  optihelp()
-  AUTOHELP()
-  AUTOHELP
-  _AUTOHELP_ : semantics
+  (/) opt_help
+  (x) optihelp()
+  (x) AUTOHELP()
+  (x) AUTOHELP
+  (x) _AUTOHELP_ : semantics
+
 
   # makeActiveBinding( "option.starter" , f, baseenv(baseenv()) ) 
   
@@ -73,7 +80,6 @@ DO NOT, INTIALLY SUPPORT BUNDLING
   n = greedy
 
 If greedy is used ... we should warn about args.
-
 
 * Read from config file:
   * Prompt?
