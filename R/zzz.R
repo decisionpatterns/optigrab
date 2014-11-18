@@ -1,7 +1,7 @@
 .onLoad <- function(libname, pkgname) {
 
  # DEFINE AUTOHELP ACTIVE BINDING
-   # makeActiveBinding( "optihelp" , optihelp, baseenv() )
+   # makeActiveBinding( "opt_help" , opt_help, baseenv() )
    
    # set optigrab options
    options( optigrab = list( 
@@ -11,7 +11,7 @@
      #, flag_test = flag_test_gnu 
      #, flag_name_getter = flag_name_parser_gnu 
      # , greedy=FALSE  # SEE TODO
-     # , on_error=optihelp , # WHAT TO DO ON PARSE ERROR
+     # , on_error=opt_help , # WHAT TO DO ON PARSE ERROR
      # allow.multiple=FALSE )
      )
    )

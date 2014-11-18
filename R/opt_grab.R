@@ -4,7 +4,7 @@
 #' Returns value(s) from the command-line associated with the desired option.
 #' 
 #' @details 
-#' grab_opts parses the command line vector extracting value(s) that are identified
+#' opt_grab parses the command line vector extracting value(s) that are identified
 #' by one or more \code{flag}s.  
 #'  
 #' command line"flags.   It is useful with code executed using \code{Rscript}, 
@@ -28,7 +28,7 @@
 #' 
 #' \code{help} is a short message about the option. It is concatenated with the 
 #' \code{flag} option and stored in the 'optigrab' option.  This is used with 
-#' \code{\link{optihelp}}.  
+#' \code{\link{opt_help}}.  
 #' 
 #' \code{opts} is the vector from which options are parsed. By default, this is  
 #' \code{commandArgs()}.             
@@ -37,7 +37,7 @@
 #' @param default the value should the value not be provided
 #' @param n (integer) number of values to retrieve (default: 1)
 #' @param required (logical) whether the value is required.
-#' @param description (character) message to be printed with \code{optihelp}
+#' @param description (character) message to be printed with \code{opt_help}
 #' @param opts (character) vector to parse for options
 #' 
 #' @return a value parsed the opts vector associated with the flag.
@@ -48,13 +48,13 @@
 #' 
 #' @examples
 #'   opts <- c( '--foo', 'bar' )
-#'   optigrab:::grab_opt( c('--foo') )    
-#'   optigrab:::grab_opt( c('--foo'), opts=opts ) 
+#'   optigrab:::opt_grab( c('--foo') )    
+#'   optigrab:::opt_grab( c('--foo'), opts=opts ) 
 #'   
 #' @keywords utils
 #' @export
 
-grab_opt <- function( 
+opt_grab <- function( 
   flag,
   default     = NA,
   n           = 1,
@@ -72,7 +72,7 @@ grab_opt <- function(
   # options( optigrab=optigrab ) 
   
   # EXPAND opts
-  opts <- expand_opts(opts)
+  opts <- opt_expand(opts)
 
   # Create the help string for the 
   flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
@@ -163,7 +163,7 @@ grab_opt <- function(
 # grab_opt2 <- function( flag, opts=commandArgs() ) {
 #   
 #   
-#   opts <- expand_opts(opts)
+#   opts <- opt_expand(opts)
 #   l_opts <- list() 
 #   wh.flags <- which.flags(opts)
 #   
@@ -182,7 +182,7 @@ grab_opt <- function(
 #   
 
 
-#  grab_opt:
+#  opt_grab:
 #   
 #    Workhorse for the optigrab packages. Parses 'opts' and returns a
 #    vector of values. 
@@ -191,7 +191,7 @@ grab_opt <- function(
 #    - default   the value should it not be provided. 
 #    - n         (integer) Number of values to be read following the flag. 
 #    - required  (logical) Whether or not the option is required.
-#    - help      (character) Message to be printed with optihelp 
+#    - help      (character) Message to be printed with opt_help 
 #    - opts      (character) The vector to parse for options.
 
 # Do we parse the line looking for the option or do we 

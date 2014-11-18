@@ -5,7 +5,7 @@
 \alias{optigrab-package}
 \title{Command-line parsing desinged for R emphasizing a concise and clean format.}
 \description{
-The optigrab packages providesa function \code{grab_opt} to retrieve
+The optigrab packages providesa function \code{opt_grab} to retrieve
 options/arguments from the command line.  It is useful for running R in
 batch mode with \code{R CMD BATCH ...}) or \code{Rscript}.
 
@@ -15,7 +15,7 @@ two advantages:  It is designed for R in mind and it tries to avoids lengthy,
 complex and messy specifications that clutter up the head of programs.  The
 emphasis is on a terse and comprehendible syntax that works with R. In most
 use cases, the command to retrieve a option is simple and consise:
-\code{ f <- grab_opt{ "--flag" } }
+\code{ f <- opt_grab{ "--flag" } }
 \emph{optigrab} allows more powerful options such as coercion, auto --help,
 etc. but the most common and simplest use cases do not require the syntax
 and complexity of the most complex ones.
@@ -31,7 +31,7 @@ and complexity of the most complex ones.
 }
 \examples{
 opts <- c( "--flag", "value" )
- flag <- optigrab:::grab_opt( c("--flag","-f"), opts=opts )  # bar
+ flag <- optigrab:::opt_grab( c("--flag","-f"), opts=opts )  # bar
 }
 \author{
 Christopher Brown Maintainer: Christopher Brown

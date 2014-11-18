@@ -4,19 +4,19 @@
 #' @details This is an internal function and should generally not be called 
 #' directly. 
 #' 
-#' \code{expand_opts} does two things: 
+#' \code{opt_expand} does two things: 
 #' \itemize{
 #'   \item{"1."}{ removes values preceding and including --args }
 #'   \item{"2."}{ splits and value containing an equal (=) sign }
 #' }
 #' 
-#' @seealso \code{\link{grab_opt}}
+#' @seealso \code{\link{opt_grab}}
 #' @keywords manip
 #' @examples
-#' optigrab:::expand_opts()
-#' optigrab:::expand_opts( opts=c( "--foo", "bar") ) 
+#' optigrab:::opt_expand()
+#' optigrab:::opt_expand( opts=c( "--foo", "bar") ) 
 
-expand_opts <- function( opts=commandArgs() ) {
+opt_expand <- function( opts=commandArgs() ) {
 
   # strip (first) '--args' value and all valus before/   
     wh.args <- grep( "--args", opts )[1] 
