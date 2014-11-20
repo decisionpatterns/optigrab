@@ -6,27 +6,29 @@
 opt_expand(opts = commandArgs())
 }
 \arguments{
-\item{opts}{character vector of arguments. (Default: commandArgs())}
-}
-\description{
-Expand argument vector to split names from values
-}
-\details{
-This is an internal function and should generally not be called
+\item{opts}{character vector of arguments. (Default: commandArgs())
+
+This is an internal, non-exported function and should generally not be called
 directly.
 
 \code{opt_expand} does two things:
 \itemize{
   \item{"1."}{ removes values preceding and including --args }
   \item{"2."}{ splits and value containing an equal (=) sign }
+}}
 }
+\description{
+Internal, non-exported function for splitting arguments into names and values
+}
+\note{
+non-exported
 }
 \examples{
 optigrab:::opt_expand()
-optigrab:::opt_expand( opts=c( "--foo", "bar") )
+  optigrab:::opt_expand( opts=c( "--foo", "bar") )
 }
 \seealso{
-\code{\link{opt_grab}}
+\code{\link{opt_grab}} \cr
+  \code{\link{base}{commandArgs}}
 }
-\keyword{manip}
 

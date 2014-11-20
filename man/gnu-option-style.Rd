@@ -7,11 +7,11 @@
 \title{GNU style command line parsing functions}
 \format{\preformatted{List of 2
  $ flag_test       :function (x)  
-  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 10 18 10 57 18 57 10 10
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x528aa08> 
+  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 11 18 11 57 18 57 11 11
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x567a6a8> 
  $ flag_name_parser:function (x)  
-  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 14 25 14 56 25 56 14 14
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x528aa08> 
+  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 16 25 16 56 25 56 16 16
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x567a6a8> 
 }}
 \usage{
 flag_test_gnu(x)

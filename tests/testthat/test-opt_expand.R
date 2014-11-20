@@ -1,4 +1,5 @@
 library(testthat)
+library(optigrab)
 
 # Simple tests 
 

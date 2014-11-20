@@ -1,7 +1,10 @@
 #' Expand argument vector to split names from values
 #' 
+#' Internal, non-exported function for splitting arguments into names and values
+#' 
 #' @param opts character vector of arguments. (Default: commandArgs())
-#' @details This is an internal function and should generally not be called 
+#' 
+#' This is an internal, non-exported function and should generally not be called 
 #' directly. 
 #' 
 #' \code{opt_expand} does two things: 
@@ -10,11 +13,15 @@
 #'   \item{"2."}{ splits and value containing an equal (=) sign }
 #' }
 #' 
-#' @seealso \code{\link{opt_grab}}
-#' @keywords manip
+#' @seealso 
+#'   \code{\link{opt_grab}} \cr
+#'   \code{\link{base}{commandArgs}}
+#' 
 #' @examples
-#' optigrab:::opt_expand()
-#' optigrab:::opt_expand( opts=c( "--foo", "bar") ) 
+#'   optigrab:::opt_expand()
+#'   optigrab:::opt_expand( opts=c( "--foo", "bar") ) 
+#'   
+#' @note non-exported 
 
 opt_expand <- function( opts=commandArgs() ) {
 
@@ -45,3 +52,4 @@ opt_expand <- function( opts=commandArgs() ) {
   return(opts) 
   
 }
+
