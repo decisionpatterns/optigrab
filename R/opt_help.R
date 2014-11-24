@@ -29,17 +29,31 @@
 
 opt_help <- function( opts=commandArgs() ) { 
   
-  opts <- opt_expand(opts)
-  
-  if( any( grepl( "--help|-?", opts ) ) ) {
+  opts <- opt_expand(opts, include.file=TRUE)
+  if(! any( grepl( "--help$|-\\?$|-h$", opts ) ) ) {
+    return(FALSE)
+  }
     
-    opts <- getOption( "optigrab" )$options 
-    nms  <- sort( names(opts) )
-    for( nm in nms ) cat( nm, "\n" )  
-  
-    # Construct help message 
+  script.name <- opt_grab("--script_path", opts=opts)
+  if (! is.na(script.name)) {
+    script.name <- basename(script.name)
+  }
+  subcommand <- opt_grab("--subcommand", opts=opts)
+  if (is.na(subcommand)) {
+    subcommand <- NULL
   }
   
+  opts <- getOption( "optigrab" )$help
+
+  # Construct help message
+  cat(paste("Help for", script.name, subcommand, sep=" "), sep="\n")
+
+  for (nm in names(opts)) {
+    cat(paste(nm, ":", opts[[nm]], sep=" "), sep="\n")
+  }
+  return(TRUE)  
 }
+
+
 
 

@@ -1,11 +1,8 @@
 #' Expand argument vector to split names from values
-#' 
-#' Internal, non-exported function for splitting arguments into names and values
-#' 
-#' @param opts character vector of arguments. (Default: commandArgs())
-#' 
-#' This is an internal, non-exported function and should generally not be called 
+#' This is an internal function and should generally not be called 
 #' directly. 
+#' @param opts character vector of arguments. (Default: commandArgs())
+#' @param include.file logical; if TRUE, include --file argument. (Default: FALSE)
 #' 
 #' \code{opt_expand} does two things: 
 #' \itemize{
@@ -23,12 +20,23 @@
 #'   
 #' @note non-exported 
 
-opt_expand <- function( opts=commandArgs() ) {
+opt_expand <- function( opts=commandArgs(), include.file=FALSE ) {
 
+  if (include.file) {    
+    filearg <- grep("--file", opts, value=TRUE)
+    if (length(filearg) > 0) {
+      filearg <- "[unknown script]"
+    }
+  }
+  
   # strip (first) '--args' value and all valus before/   
     wh.args <- grep( "--args", opts )[1] 
     if( ! is.na(wh.args) )
       opts <- opts[ min( wh.args + 1, length(opts)):length(opts) ] 
+  
+  if (include.file){
+    opts <- c(filearg, opts) 
+  }
 
   # EXPAND/Split  '=' 
   #  - Options defined with an '=', such as '-a=5' or '--alpha=5'
@@ -39,7 +47,7 @@ opt_expand <- function( opts=commandArgs() ) {
       opts[[i]] <- name.val[1] 
       opts <- append( opts, name.val[[2]], i ) 
     }
-
+  
   # OPTION BUNDLING   
   # Expand dash-single-letter arguments.
   #  - splice in everything after -x as the value.
@@ -52,4 +60,3 @@ opt_expand <- function( opts=commandArgs() ) {
   return(opts) 
   
 }
-

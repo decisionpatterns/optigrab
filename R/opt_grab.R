@@ -63,7 +63,12 @@ opt_grab <- function(
   opts        = commandArgs()
 ) 
 {  
-
+  
+  internal <- FALSE
+  if (flag ==  "--script_path") {
+    internal <- TRUE
+    flag <- "--file"
+  }
   # STASH THE ARGUMENTS.
   op <- getOption( 'optigrab' )
   # optigrab$options[[ flag[[1]] ]] <- list( 
@@ -72,19 +77,34 @@ opt_grab <- function(
   # options( optigrab=optigrab ) 
   
   # EXPAND opts
-  opts <- opt_expand(opts)
+  opts <- opt_expand(opts=opts)
+  
+  if (flag == "--subcommand") {
+    if (length(opts) == 0) {
+      return(NA)
+    }
+    subcommand <- opts[[1]]
+    if (is.flag(subcommand)) {
+      return(NA)
+    }
+    return(subcommand)
+  }
+
 
   # Create the help string for the 
   flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
    
   # STORE flags and desctiption description in help option
   # Only rewrite it if it is not there
-  if( is.null( op$help[[ flag.str]] ) ) 
-    op$help[ flag.str ] <- ""
+  if( is.null( op$help[[ flag.str]] ) ) {
+    if (! internal) {
+      op$help[ flag.str ] <- ""
+    }
+  }
   
-  if( ! is.null( description ) )
-    op$help[ flag.str ] <- description 
-  
+  if( ! is.null( description ) ) {
+    op$help[ flag.str ] <- description
+  }
   options( optigrab=op )
   
   # IDENTIFY name/alias FLAG(s)
@@ -104,9 +124,7 @@ opt_grab <- function(
         call. = FALSE 
         , "\n\tOption(s): [", flag.str, "] is required, but was not supplied."
       )
-
-    return(default)
-    
+    return(default)    
   }
   
   # MULTIPLE MATCHING FLAGS OR ALIAS FOUND
