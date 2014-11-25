@@ -48,8 +48,8 @@
 #' 
 #' @examples
 #'   opts <- c( '--foo', 'bar' )
-#'   optigrab:::opt_grab( c('--foo') )    
-#'   optigrab:::opt_grab( c('--foo'), opts=opts ) 
+#'   optigrab::opt_grab( c('--foo') )    
+#'   optigrab::opt_grab( c('--foo'), opts=opts ) 
 #'   
 #' @keywords utils
 #' @export
@@ -63,12 +63,6 @@ opt_grab <- function(
   opts        = commandArgs()
 ) 
 {  
-  
-  internal <- FALSE
-  if (flag ==  "--script_path") {
-    internal <- TRUE
-    flag <- "--file"
-  }
   # STASH THE ARGUMENTS.
   op <- getOption( 'optigrab' )
   # optigrab$options[[ flag[[1]] ]] <- list( 
@@ -78,18 +72,6 @@ opt_grab <- function(
   
   # EXPAND opts
   opts <- opt_expand(opts=opts)
-  
-  if (flag == "--subcommand") {
-    if (length(opts) == 0) {
-      return(NA)
-    }
-    subcommand <- opts[[1]]
-    if (is.flag(subcommand)) {
-      return(NA)
-    }
-    return(subcommand)
-  }
-
 
   # Create the help string for the 
   flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
@@ -97,9 +79,7 @@ opt_grab <- function(
   # STORE flags and desctiption description in help option
   # Only rewrite it if it is not there
   if( is.null( op$help[[ flag.str]] ) ) {
-    if (! internal) {
       op$help[ flag.str ] <- ""
-    }
   }
   
   if( ! is.null( description ) ) {

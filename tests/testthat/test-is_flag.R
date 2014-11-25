@@ -1,4 +1,5 @@
 library(testthat)
+library(optigrab)
 
 # No options
 opts <- optigrab:::str_to_opts() 
