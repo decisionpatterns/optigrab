@@ -1,4 +1,9 @@
 library(testthat)
+library(optigrab)
+
+
+context( "flags")
+
 flags <- c( "-f", "--flag", "--long-flag" )
 
 
@@ -30,12 +35,12 @@ for( str in opt_strings ) {
 }
 
 # Flag (BOOLEAN) #
-cat("Testing Boolean Flag\n")
+context("boolean flags")
 opt_strings <- c( '-f', '--flag', '--long-flag' )
 opts <- optigrab:::str_to_opts( opt_strings )
 
 for ( str in opt_strings  ) {
-  cat( "...", str, "\n")
+  # cat( "...", str, "\n")
   expect_error( optigrab::opt_grab( "-f", opts=opts ) )
   expect_true( optigrab::opt_grab( flags, n=0, opts=opts ) )
 }

@@ -1,6 +1,9 @@
 library(testthat)
 library(optigrab)
 
+
+context('opt_expand')
+
 # Simple tests 
 
 # No Options 
