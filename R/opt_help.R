@@ -31,13 +31,14 @@ opt_help <- function( opts=commandArgs() ) {
   
   
   script.path <- opt_get_path(opts=opts)
+  script.name <- NULL
   
   opts <- opt_expand(opts)
   if(! any( grepl( "--help$|-\\?$|-h$", opts ) ) ) {
     return(FALSE)
   }
 
-  if (! is.na(script.name)) {
+  if (! is.na(script.path)) {
     script.name <- basename(script.path)
   }
   
