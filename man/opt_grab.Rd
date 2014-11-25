@@ -57,8 +57,8 @@ found or if there is not the correct number of value(s) are not found. If
 }
 \examples{
 opts <- c( '--foo', 'bar' )
-  optigrab:::opt_grab( c('--foo') )
-  optigrab:::opt_grab( c('--foo'), opts=opts )
+  optigrab::opt_grab( c('--foo') )
+  optigrab::opt_grab( c('--foo'), opts=opts )
 }
 \references{
 http://www.gnu.org/prep/standards/standards.html

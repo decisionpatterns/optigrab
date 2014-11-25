@@ -1,4 +1,5 @@
 library(testthat)
+library(optigrab)
 
 # No options
 context( 'is.flag' )

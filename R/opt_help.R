@@ -27,18 +27,21 @@
 #' @keywords utils
 #' @export
 
-opt_help <- function( opts=commandArgs() ) { 
+opt_help <- function( opts=commandArgs() ) {
   
-  opts <- opt_expand(opts, include.file=TRUE)
+  
+  script.path <- opt_get_path(opts=opts)
+  
+  opts <- opt_expand(opts)
   if(! any( grepl( "--help$|-\\?$|-h$", opts ) ) ) {
     return(FALSE)
   }
-    
-  script.name <- opt_grab("--script_path", opts=opts)
+
   if (! is.na(script.name)) {
-    script.name <- basename(script.name)
+    script.name <- basename(script.path)
   }
-  subcommand <- opt_grab("--subcommand", opts=opts)
+  
+  subcommand <- opt_get_subcommand(opts=opts)
   if (is.na(subcommand)) {
     subcommand <- NULL
   }

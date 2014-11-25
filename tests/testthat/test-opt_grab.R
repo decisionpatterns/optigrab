@@ -6,7 +6,6 @@ context( "flags")
 
 flags <- c( "-f", "--flag", "--long-flag" )
 
-
 # No options # 
 #  Opt Stings that contain neither values or flags
 
