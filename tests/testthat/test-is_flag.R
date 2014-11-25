@@ -1,6 +1,8 @@
 library(testthat)
 
 # No options
+context( 'is.flag' )
+
 opts <- optigrab:::str_to_opts() 
 optigrab:::is.flag( opts )
 
