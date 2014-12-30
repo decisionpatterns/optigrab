@@ -6,7 +6,10 @@
 #' deprecated in the near future.
 #' 
 #' @param x character. String to split into a command line
+#' 
 #' @seealso \code{\link[base]{commandArgs}}
+#' 
+#' @note not-exported
 
 str_to_opts <- function( x=character() )
   if( length(x)== 0 ) 

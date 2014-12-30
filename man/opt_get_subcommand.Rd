@@ -17,11 +17,8 @@ character; the subcommand
 Return the subcommand of the Rscript, generally the first argument following
 \code{--args}.
 }
-\note{
-non-exported
-}
 \examples{
-optigrab:::opt_get_subcommand()
+opt_get_subcommand()
 }
 \seealso{
 \code{\link{opt_grab}} \cr

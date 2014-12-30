@@ -16,6 +16,9 @@ Split a string based on white to more easily get
 This is an internal function used predominantly for testing. It might be
 deprecated in the near future.
 }
+\note{
+not-exported
+}
 \seealso{
 \code{\link[base]{commandArgs}}
 }

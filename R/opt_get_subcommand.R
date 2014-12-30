@@ -13,13 +13,13 @@
 #'   \code{\link{base}{commandArgs}}
 #' 
 #' @examples
-#'   optigrab:::opt_get_subcommand()
+#'   opt_get_subcommand()
 #'   
-#' @note non-exported
+#' @export
 
 opt_get_subcommand <- function( opts=commandArgs() ) {
   
-  opts <- opt_get_args( opts=commandArgs() )
+  opts <- opt_get_args( opts=opts )
   
   if ( length(opts) == 0 ) 
     return(NA) else 

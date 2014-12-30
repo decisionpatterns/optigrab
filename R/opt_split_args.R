@@ -20,6 +20,7 @@ opt_split_args <- function( opts=commandArgs()) {
   # EXPAND/Split  '=' 
   #  - Options defined with an '=', such as '-a=5' or '--alpha=5'
   #    are split into '-a' '5' and '--alpha' '5', respectively.
+  
     wh.eq <- grep( "=", opts )    
     for( i in rev(wh.eq) ) {
       name.val <- strsplit( opts[[i]], "=" )[[1]]     
@@ -27,4 +28,5 @@ opt_split_args <- function( opts=commandArgs()) {
       opts <- append( opts, name.val[[2]], i ) 
     }
     return(opts)  
+    
 }

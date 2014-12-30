@@ -2,5 +2,6 @@
 
 export(opt_get_args)
 export(opt_get_path)
+export(opt_get_subcommand)
 export(opt_grab)
 export(opt_help)

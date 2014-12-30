@@ -1,7 +1,7 @@
 Package: optigrab
 Type: Package
 Title: Command-line option parsing designed especially for R
-Version: 0.3
+Version: 0.4
 Date: 2014-12-29
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
