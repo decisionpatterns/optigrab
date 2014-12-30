@@ -158,28 +158,6 @@ opt_grab <- function(
 }
 
 
-# grab_opt2 <- function( flag, opts=commandArgs() ) {
-#   
-#   
-#   opts <- opt_expand(opts)
-#   l_opts <- list() 
-#   wh.flags <- which.flags(opts)
-#   
-#   for( i in rev(wh.flags) ) {
-#     l_opts[]
-#     
-#   flag <- NULL
-#   
-#     if( is.flag(opts[i]) ) flag <- opts[i] else
-#       if( is.null(flag) ) next else
-#   
-#     
-#       
-#     
-# }
-#   
-
-
 #  opt_grab:
 #   
 #    Workhorse for the optigrab packages. Parses 'opts' and returns a

@@ -1,6 +1,13 @@
-#' Grab the path to the Rscript.
-#' @param opts character; Vector from which to parse options (default: \code{commandArgs()} )
-#' @return character; path to Rscript
+#' Get path current running script
+#' 
+#' @param opts character; cector from which to parse options 
+#'   (default: \code{commandArgs()} )
+#'   
+#' @param full.name boolean; expand to full path(?)
+#'   
+#'   
+#'   
+#' @return character; path to Rscript or \code{NA} if there isn't one. 
 #' 
 #' @seealso 
 #'   \code{\link{opt_grab}} \cr
@@ -9,13 +16,19 @@
 #' @examples
 #'   optigrab:::opt_get_path()
 #'   
-#' @note non-exported
-opt_get_path <- function(opts=commandArgs()) {
+#' @export
+
+opt_get_path <- function( opts=commandArgs(), full.name = FALSE ) {
+  
   opts <- opt_split_args(opts)
-  wh.args <- grep( "--file", opts )[1]
-  if (is.na(wh.args) || (wh.args == length(opts))) {
-    return(NA)
-  }
-  name.val <- opts[wh.args+1]
-  return(normalizePath(name.val))
+  
+  wh.args <- grep( "--file", opts )[1]  # i.e. first occurence of --file
+  
+  if ( is.na(wh.args) || (wh.args == length(opts)) ) return(NA)
+
+  path <- opts[ wh.args + 1 ]
+  if( full.name ) 
+    return( normalizePath( path, mustWork = FALSE ) ) else
+    return( path )
+  
 }
