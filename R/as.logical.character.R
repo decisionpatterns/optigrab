@@ -8,6 +8,7 @@
 #' 
 #' @examples
 #' optigrab:::as.logical.character( 0:2 )  # FALSE, TRUE, NA  
+
 as.logical.character <- function(x, ...) {
   
   ret <- as.logical( as.character(x) )
