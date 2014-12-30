@@ -20,3 +20,10 @@ context( "opt_get_subcommand" )
   subcmd <- opt_get_subcommand( flags )
 
   expect_equal( subcmd, "sub1" )
+
+# NOT IN FIRST POSITION OBFUSCATED BY PARAMETER THAT TAKES NO ARGUMENTS 
+  flags <-  str_to_opts( "Rscript --slave --no-restore --file=my-file --args --verbose sub1" )
+  subcmd <- opt_get_subcommand( flags )
+
+  expect_equal( subcmd, "sub1" )
+
