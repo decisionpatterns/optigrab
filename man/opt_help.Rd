@@ -7,11 +7,12 @@
 opt_help(opts = commandArgs())
 }
 \arguments{
-\item{opts}{character.  Vector from which to parse options (default: \code{commandArgs()} )
+\item{opts}{character; vector from which to parse options
+       (default: \code{commandArgs()} )
 
 Usage information from \code{opt_grab} calls made after \code{optihelp()} is
 used will will not be shown.  It is considered best practice to handle all
-option parsing in a block at the beginning of the application.  \code{optihelp}
+option parsing in a block at the beginning of the application. \code{optihelp}
 would be best placed at the end of that block}
 }
 \description{
@@ -22,11 +23,10 @@ it is best to specify make all \code{opt_grab} calls before \code{opt_help}.
 }
 \examples{
 opts <- c( "--foo", "bar")
-optigrab:::opt_grab( "--foo", description="Specifies Foo" )
-optigrab:::opt_help()
+  optigrab:::opt_grab( "--foo", description="Specifies Foo" )
+  optigrab:::opt_help()
 }
 \seealso{
 \code{\link[base]{commandArgs}}
 }
-\keyword{utils}
 

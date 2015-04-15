@@ -2,7 +2,7 @@ library(testthat)
 library(optigrab)
 
 
-context( "flags")
+context( "opt_grab")
 
 flags <- c( "-f", "--flag", "--long-flag" )
 

@@ -3,45 +3,62 @@
 #' @description 
 #' The optigrab packages providesa function \code{opt_grab} to retrieve 
 #' options/arguments from the command line.  It is useful for running R in 
-#' batch mode with \code{R CMD BATCH ...}) or \code{Rscript}.  
+#' batch mode with \code{R CMD BATCH ...} or \code{Rscript}.  
+#' 
+#' GNU-, Java- and Microsoft-style command line options are supported. GNU-style
+#' is the default.
+#' 
+#' 
+#' @section Advantages:
 #' 
 #' \emph{optigrab} is similar to the other command-line parsing packages 
-#' (\emph{optparse}, \emph{argparse} and \emph{getopt}).  \emph{optigrab} has 
-#' two advantages:  It is designed for R in mind and it tries to avoids lengthy,
-#' complex and messy specifications that clutter up the head of programs.  The
-#' emphasis is on a terse and comprehendible syntax that works with R. In most 
-#' use cases, the command to retrieve a option is simple and consise: 
-#' \code{ f <- opt_grab{ "--flag" } }
-#' \emph{optigrab} allows more powerful options such as coercion, auto --help, 
-#' etc. but the most common and simplest use cases do not require the syntax 
-#' and complexity of the most complex ones.
+#' ('optparse', 'argparse', 'getopt' and maybe others.  \emph{optigrab} has 
+#' two advantages: First, it is designed for R in mind. The other packages are
+#' designed after functionality found in other languages. This ignores several 
+#' aspects of the R language such as R's inherent vectorization. Second, 
+#' \emph{optgrab} eschews complex and messy specifications that often clutter 
+#' the head of programs. The emphasis is on a terse and comprehendible syntax. 
+#' In most cases, the command to retrieve a option is simple and concise: \cr
 #' 
-#'\tabular{ll}{ 
-#'  Package: \tab optigrab\cr 
-#'  Type: \tab Package\cr 
-#'  Version: \tab 0.1.0\cr 
-#'  Date: \tab 2012-12-02\cr 
-#'  License: \tab GPLv2\cr 
-#'  LazyLoad: \tab no\cr
-#'}
+#' \tabular{c}{
+#'   \code{ f <- opt_get("flag") } \cr
+#' }
+#' 
+#' or, if you are using a package that supports pipes such a \emph{magrittr}: \cr
+#' 
+#' \tabular{c}{
+#'   \code{ f <- "flag" \%>\% opt_get }
+#' }
+#'    
+#' In many applications, assigning to an intermediate variable is not necessary. 
+#' Call \code{opt_get('flag')} can be used whereever needed. 
+#'  
+#' \emph{optigrab} allows more powerful options such as coercion, auto 
+#' \code{--help}, etc. but the most common and simplest use cases do not 
+#' require a specific specification but more complex case allow for it. 
+#' 
+#' @seealso 
+#'   \code{\link{opt_get}} \cr
+#'   \code{\link[base]{commandArgs}} \cr
+#' 
+#' @references 
+#'   The Jerk. Dir. Carl Reiner. Perf Steve Martin, Bernadette Peters, 
+#'   Caitlin Adams. Universal Pictures, 1979. \cr
+#' 
+#'   \url{http://www.gnu.org/prep/standards/standards.html}
+#' 
+#' @examples
+#' 
+#' \dontrun{ 
+#'   opt_get( c("foo","f"))
+#' }
+#' 
+#' opts <- c( "--flag", "bar" ) 
+#' flag <- opt_get( c("foo","f"), opts=opts )  # bar
 #'
-#'@name optigrab-package
-#'@aliases optigrab-package optigrab
-#'@docType package
-#'@author Christopher Brown Maintainer: Christopher Brown
-#'<chris.brown@@decisionpatterns.com>
-#'@seealso \code{\link[base]{commandArgs}}
-#'@references The Jerk. Dir. Carl Reiner. Perf Steve Martin, Bernadette Peters,
-#'Caitlin Adams. Universal Pictures, 1979.
-#'
-#'http://www.gnu.org/prep/standards/standards.html
-#'@keywords package
-#'@examples
-#'
-#'  opts <- c( "--flag", "value" ) 
-#'  flag <- optigrab:::opt_grab( c("--flag","-f"), opts=opts )  # bar
-#'
+#' @name optigrab
+#' @docType package
+#' @aliases optigrab-package 
+#' @keywords package
+
 NULL
-
-
-

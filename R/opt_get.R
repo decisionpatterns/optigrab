@@ -3,44 +3,49 @@
 #' @description 
 #' Returns value(s) from the command-line associated with the desired option.
 #'
-#' @param flag character vector.  The flags that may be associated with the that denote the command line opts
-#' @param default the value should the value not be provided
-#' @param n (integer) number of values to retrieve (default: 1)
-#' @param required (logical) whether the value is required.
+#' @param flag character; vector of possible synonyms for the "flag" that 
+#'        identifies the option.  
+#' @param style list; list of functions that define the parsing style 
+#' @param ... additional arguments passed to \code{opt_grab}
+#' 
+#' @param default any; the value(s) provided if the flag is not found 
+#'        (default: \code{NA} )
+#' @param n integer; number of values to retrieve. See Details. 
+#'        (default: \code{1})
+#' @param required logical; whether the value is required. If not found or an 
+#'        incorrect, number of values are found, an error is thrown. 
+#'        (default: \code{FALSE}) 
 #' @param description (character) message to be printed with \code{opt_help}
-#' @param opts (character) vector to parse for options
- 
+#' @param opts character; vector to parse for options 
+#'        (default: \code{commandArgs()})
+#'        
 #' @details 
-#' \code{opt_grab} or \code{opt_get} parses the command line vector extracting 
-#' value(s) that are identified by one or more \code{flag}s.  
-#'  
-#' command line"flags.   It is useful with code executed using \code{Rscript}, 
+#' 
+#' \code{opt_get} parses the command-line vector extracting 
+#' value(s) that are identified by one or more \code{flag}s. 
+#' \code{opt_grab} is the workhorse that does the actual parsing. It is 
+#' currently exported, but this is likely to change.
+#'   
+#' Both are useful with code executed using \code{Rscript}, 
 #' a \code{#!} on linux or \code{R CMD BATCH}. By default, it closely follows 
 #' the ubiquitous GNU standards for command-line interfaces. It departs from 
 #' other command-line interface packages by avoiding complex specifications in 
 #' favor of a lighter more straight-forward interface.     
 #' 
-#' \code{flag} (charater) vector of possible synonyms identifying the values for 
-#' This can be one or more possible flags allowing for synonyms or values.
-#'  
-#' \code{default} provides value(s) for the option if no value is found.
+#' \code{flag} is used to identify the command line flag. It can include all 
+#' synonyms for the flags. 
 #' 
 #' \code{n} the number of value(s) to retrieve from the command line.  If 
 #' \code{n=0}, then a logical value is returned indicating whether the flag 
 #' exists 
 #' 
 #' \code{required} indicates if a value is required. If the the flag is not 
-#' found or if there is not the correct number of value(s) are not found. If 
-#' \code{default} is given, then no missing value error will occur.  
-#' 
-#' \code{help} is a short message about the option. It is concatenated with the 
-#' \code{flag} option and stored in the 'optigrab' option.  This is used with 
-#' \code{\link{opt_help}}.  
-#' 
+#' found and there is no \code{default} given or if there is not the correct 
+#' number of value(s) an error is raised.  
+#'  
 #' \code{opts} is the vector from which options are parsed. By default, this is  
 #' \code{commandArgs()}.             
 #'  
-#' 
 #' @return a value parsed the opts vector associated with the flag.
 #' 
 #' @references http://www.gnu.org/prep/standards/standards.html
@@ -49,10 +54,23 @@
 #' 
 #' @examples
 #'   opts <- c( '--foo', 'bar' )
-#'   optigrab::opt_grab( c('--foo') )    
-#'   optigrab::opt_grab( c('--foo'), opts=opts ) 
+#'  
+#'   opt_get('foo')
+#'   opt_get( c('foo'), opts=opts )    
+#'   opt_grab( c('--foo'), opts=opts ) 
 #'   
-#' @keywords utils
+#'   opt_get_ms( c('foo'), opts=c('/foo', 'bar' ) )
+#'   opt_get_java( c('foo'), opts=c('-foo', 'bar' ) )
+#'   
+#' @export 
+
+opt_get <- function( flag, style = getOption('optigrab')$style, ... ) { 
+  flag <- style$name_to_flag(flag)
+  opt_grab( flag, ...)
+}
+
+
+#' @rdname opt_get
 #' @export
 
 opt_grab <- function( 
@@ -80,7 +98,7 @@ opt_grab <- function(
    
   # STORE flags and desctiption description in help option
   # Only rewrite it if it is not there
-  if( is.null( op$help[[ flag.str]] ) ) {
+  if( is.null( op$help[[flag.str]] ) ) {
       op$help[ flag.str ] <- ""
   }
   
@@ -160,30 +178,15 @@ opt_grab <- function(
 }
 
 
-#' @aliases opt_get
-#' @rdname opt_grab 
-#' @export 
+#' @rdname opt_get
+#' @export
+opt_get_gnu <- function(flag, ... ) opt_get( flag, style=gnu_style, ... )
 
-opt_get <- opt_grab
+#' @rdname opt_get
+#' @export
+opt_get_ms <- function( flag, ... ) opt_get( flag, style=ms_style, ... )
 
-#  opt_grab:
-#   
-#    Workhorse for the optigrab packages. Parses 'opts' and returns a
-#    vector of values. 
-#
-#    - flag      character vector of the flags that denote this option 
-#    - default   the value should it not be provided. 
-#    - n         (integer) Number of values to be read following the flag. 
-#    - required  (logical) Whether or not the option is required.
-#    - help      (character) Message to be printed with opt_help 
-#    - opts      (character) The vector to parse for options.
+#' @rdname opt_get
+#' @export
+opt_get_java <- function( flag, ... ) opt_get( flag, style=java_style, ... )
 
-# Do we parse the line looking for the option or do we 
-#  1. Store the call into the options for optigrab for help message.
-#  2. Test for naming conflict of similar options.  Error if exists.
-#  3. Scan command opts for occurence of name --name | -name | --n | --n
-#  4. Allow n to accept a model formula that will greedily take upto that
-#     many arguments.  It will be stopped by another flag or by the end
-#     of the opts array.
-# 5.  Allow for -v -v -v  meaning v=3  (Not very useful.)
-# 6.  

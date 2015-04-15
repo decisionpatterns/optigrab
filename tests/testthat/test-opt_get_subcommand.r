@@ -4,7 +4,6 @@ library(magrittr)
 
 context( "opt_get_command" )
 
-
 # TYPICAL 
   flags <- 
     "Rscript --slave --no-restore --file=my-file --args sub1" %>%
