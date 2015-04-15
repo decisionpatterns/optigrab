@@ -42,15 +42,15 @@ opt_help <- function( opts=commandArgs() ) {
     script.name <- basename(script.path)
   }
   
-  subcommand <- opt_get_subcommand(opts=opts)
-  if (is.na(subcommand)) {
-    subcommand <- NULL
+  command <- opt_get_command(opts=opts)
+  if (is.na(command)) {
+    command <- NULL
   }
   
   opts <- getOption( "optigrab" )$help
 
   # Construct help message
-  cat(paste("Help for", script.name, subcommand, sep=" "), sep="\n")
+  cat(paste("Help for", script.name, command, sep=" "), sep="\n")
 
   for (nm in names(opts)) {
     cat(paste(nm, ":", opts[[nm]], sep=" "), sep="\n")
