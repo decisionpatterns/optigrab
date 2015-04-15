@@ -3,7 +3,8 @@
 #' Return the subcommand of the Rscript, generally the first argument following
 #' #' \code{--args}.
 #' 
-#' @note: this assumes that any flags occurring before the subcommand has 
+#' @note 
+#' this assumes that any flags occurring before the subcommand has 
 #' exactly 1.  value. A command such as "> myscript --verbose subcmd" will be 
 #' misparsed; the code will assume that "subcmd" is the value of the 
 #' flag "--verbose"

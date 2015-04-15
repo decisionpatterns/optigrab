@@ -1,17 +1,47 @@
 #' Split a string bases on whitespace 
 #' 
-#' Split a string based on white to more easily get 
+#' Split a string based on whitespace ignore single- and double quoted entries
+#' 
+#' @param x character; string to parse as if it is a command line 
 #' 
 #' This is an internal function used predominantly for testing. It might be 
 #' deprecated in the near future.
 #' 
-#' @param x character. String to split into a command line
+#' @return 
+#'   A character array that could be similar to that  provided by 
+#'   \code{commandArgs}. 
+#'   
+#' @seealso 
+#'   \code{\link[base]{commandArgs}}
 #' 
-#' @seealso \code{\link[base]{commandArgs}}
-#' 
-#' @note not-exported
+#' @examples
+#'   str <- 'cmd -t "Say Anything" --character \'Lloyd Dobler\''
+#'   
+#'   str_to_opts(str)
+#'   
+#'   split_ws_nonquote(str)
+#'   
+#' @note not-exported, by design
 
 str_to_opts <- function( x=character() )
-  if( length(x)== 0 ) 
-    return( character() ) else
-      return( strsplit( x, "\\s+" )[[1]] )
+  if( length(x) == 0 ) 
+    character(0) else
+    split_ws_nonquote(x)
+
+
+
+#' @import stringi 
+#' @importFrom magrittr %>%
+
+split_ws_nonquote <- function(x) { 
+  splits <- 
+    "'[^']*'|\"[^\"]*\"|[^\\s]+" %>%
+    stringi::stri_extract_all_regex( x, . ) 
+  
+  if( is.na(splits) ) return(x)
+  
+  splits %>%
+    extract2(1) %>%
+    stringi::stri_replace_all_regex( ., "^[\"']|[\"']", "" )
+    
+}

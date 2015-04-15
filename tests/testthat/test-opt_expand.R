@@ -1,17 +1,17 @@
 library(testthat)
 library(optigrab)
-
+library(magrittr)
 
 context('opt_expand')
 
 # Simple tests 
 
 # No Options 
-opts <- optigrab:::str_to_opts( "" )
+opts <- ""  %>% optigrab:::str_to_opts
 
-t <- optigrab:::opt_expand( opts )
-expect_is( t, "character" )
-expect_equal( length(t), 0 )
+t <- opts  %>% optigrab:::opt_expand
+t  %>% expect_is("character")
+t  %>% length  %>% expect_equal(1)
 
 
 # Value
