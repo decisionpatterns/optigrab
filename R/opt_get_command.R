@@ -1,10 +1,10 @@
-#' Subcommand to the Rscript.
+#' Command to the Rscript.
 #' 
-#' Return the subcommand of the Rscript, generally the first argument following
+#' Return the command of the Rscript, generally the first argument following
 #' #' \code{--args}.
 #' 
 #' @note 
-#' this assumes that any flags occurring before the subcommand has 
+#' this assumes that any flags occurring before the command has 
 #' exactly 1.  value. A command such as "> myscript --verbose subcmd" will be 
 #' misparsed; the code will assume that "subcmd" is the value of the 
 #' flag "--verbose"
@@ -12,18 +12,18 @@
 #' @param opts character; Vector from which to parse options 
 #'   (default: \code{commandArgs()} )
 #' 
-#' @return character of length 1; the subcommand
+#' @return character of length 1; the command
 #' 
 #' @seealso 
 #'   \code{\link{opt_grab}} \cr
 #'   \code{\link{base}{commandArgs}}
 #' 
 #' @examples
-#'   opt_get_subcommand()
+#'   opt_get_command()
 #'   
 #' @export
 
-opt_get_subcommand <- function( opts=commandArgs() ) {
+opt_get_command <- function( opts=commandArgs() ) {
   
   opts <- opt_get_args( opts=opts )
   
@@ -34,7 +34,7 @@ opt_get_subcommand <- function( opts=commandArgs() ) {
   for (opt in opts) {
     
     if (is.flag(opt)) {
-      found_flag <- TRUE # subcommand is not a flag
+      found_flag <- TRUE # command is not a flag
       next      
     }
     
@@ -45,8 +45,8 @@ opt_get_subcommand <- function( opts=commandArgs() ) {
       next
     }
     
-    return (opt) # the first opt that is neither a flag nor a value for a flag is the subcommand
+    return (opt) # the first opt that is neither a flag nor a value for a flag is the command
   }
   
-  return(NA) # no subcommand
+  return(NA) # no command
 }

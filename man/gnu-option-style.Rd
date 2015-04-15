@@ -9,10 +9,10 @@
 \format{\preformatted{List of 2
  $ flag_test       :function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 11 20 11 59 20 59 11 11
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x566bc98> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x569ba20> 
  $ flag_name_parser:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 17 27 17 58 27 58 17 17
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x566bc98> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x569ba20> 
 }}
 \usage{
 flag_test_gnu(x)
