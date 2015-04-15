@@ -11,8 +11,8 @@
 #' @param opts (character) vector to parse for options
  
 #' @details 
-#' opt_grab parses the command line vector extracting value(s) that are 
-#' identified by one or more \code{flag}s.  
+#' \code{opt_grab} or \code{opt_get} parses the command line vector extracting 
+#' value(s) that are identified by one or more \code{flag}s.  
 #'  
 #' command line"flags.   It is useful with code executed using \code{Rscript}, 
 #' a \code{#!} on linux or \code{R CMD BATCH}. By default, it closely follows 
@@ -159,6 +159,12 @@ opt_grab <- function(
     
 }
 
+
+#' @aliases opt_get
+#' @rdname opt_grab 
+#' @export 
+
+opt_get <- opt_grab
 
 #  opt_grab:
 #   

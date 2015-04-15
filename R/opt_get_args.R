@@ -5,18 +5,23 @@
 #' @param opts character; vector of arguments, (Default: \code{commandArgs()})
 #' 
 #' Returns the user provided arguments, i.e. those following (the first) 
-#' \code{--args} flag.
+#' \code{--args} flag. This is identical to what is done by 
+#' \code{commandArgs( trailingOnly = TRUE )} does. This is included an used 
+#' since it supports testing/modifying the \code{commandArgs} array.
 #'  
 #' @return 
-#'   character; the \code{commandArgs()} vector stripping values preceding and 
+#'   character; vector stripping elements preceding and 
 #'   including (the first) \code{--args} flag.
 #' 
 #' @seealso 
+#'   \code{\link[base]{commandArgs}} \cr
 #'   \code{\link{opt_grab}} \cr
 #'   \code{\link[base]{commandArgs}}
 #' 
 #' @examples
 #'   opt_get_args()
+#'   opt_get_args( opts=c( "-a", "-b", "--args", "-c", "-d" ) )  # "-c" "-d"
+#'   opt_get_args( opts=c( "-a", "-b", "--args", "-c", "--args", "-d" ) )  # "-c" "-d"
 #'   opt_get_args( opts=c( "--foo", "bar") ) 
 #'   
 #' @export 
