@@ -7,13 +7,13 @@
 \format{\preformatted{List of 3
  $ flag_test   :function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 3 17 3 49 17 49 3 3
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x65e4e90> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5a907c8> 
  $ flag_to_name:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 5 20 5 49 20 49 5 5
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x65e4e90> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5a907c8> 
  $ name_to_flag:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 7 20 7 49 20 49 7 7
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x65e4e90> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5a907c8> 
 }}
 \usage{
 ms_style
@@ -29,7 +29,8 @@ Functions for enabling Microsoft-style command-line options.
   Microsoft-style options can be supported by seetting
 }
 \examples{
-options( optigrab )
+opt_style(ms_style)
+  opt_get( "foo", opts=c("/foo", "bar") )
 }
 \seealso{
 Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and

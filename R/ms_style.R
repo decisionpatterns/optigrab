@@ -19,8 +19,8 @@ ms_name_to_flag <- function(x)  paste0( "/" , x )
 #'   Microsoft-style options can be supported by seetting 
 #'   
 #' @examples 
-#'   
-#'   options( optigrab )
+#'   opt_style(ms_style)
+#'   opt_get( "foo", opts=c("/foo", "bar") )  
 #'      
 #' @seealso 
 #'   Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and 

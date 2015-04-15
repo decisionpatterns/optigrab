@@ -53,8 +53,8 @@
 #'   opt_get( c("foo","f"))
 #' }
 #' 
-#' opts <- c( "--flag", "bar" ) 
-#' flag <- opt_get( c("foo","f"), opts=opts )  # bar
+#'   opts <- c( "--flag", "bar" ) 
+#'   flag <- opt_get( c("foo","f"), opts=opts )  # bar
 #'
 #' @name optigrab
 #' @docType package

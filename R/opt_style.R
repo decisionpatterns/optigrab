@@ -49,17 +49,17 @@ opt_style <- function(style) {
   if( missing(style) ) return( getOption('optigrab')$style )
   
   if( ! is.list(style) ) stop("'style' is not a list." )
-  if( ! exists('flag_test', li ) || ! is.function(style$flag_test) )
+  if( ! exists('flag_test', style ) || ! is.function(style$flag_test) )
     stop( "'flag_test' not properly defined.")
-  if( ! exists('flag_to_name', li ) || ! is.function(style$flag_test) )
+  if( ! exists('flag_to_name', style ) || ! is.function(style$flag_test) )
     stop( "'flag_to_name' not properly defined.")
-  if( ! exists('name_to_flag', li ) || ! is.function(style$flag_test) )
+  if( ! exists('name_to_flag', style ) || ! is.function(style$flag_test) )
     stop( "'name_to_flag' not properly defined.")
   
   opts <- getOption('optigrab')
   opts$style = style 
 
   
-  options(optigrab==opts)
+  options(optigrab=opts)
 
 }

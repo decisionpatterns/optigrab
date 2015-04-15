@@ -47,8 +47,8 @@ require a specific specification but more complex case allow for it.
   opt_get( c("foo","f"))
 }
 
-opts <- c( "--flag", "bar" )
-flag <- opt_get( c("foo","f"), opts=opts )  # bar
+  opts <- c( "--flag", "bar" )
+  flag <- opt_get( c("foo","f"), opts=opts )  # bar
 }
 \references{
 The Jerk. Dir. Carl Reiner. Perf Steve Martin, Bernadette Peters,

@@ -23,11 +23,11 @@ Split a string based on whitespace ignore single- and double quoted entries
 not-exported, by design
 }
 \examples{
-str <- 'cmd -t "Say Anything" --character \\'Lloyd Dobler\\''
-
-  str_to_opts(str)
-
-  split_ws_nonquote(str)
+\dontrun{
+    str <- 'cmd -t "Say Anything" --character \\'Lloyd Dobler\\''
+    str_to_opts(str)
+    split_ws_nonquote(str)
+  }
 }
 \seealso{
 \code{\link[base]{commandArgs}}

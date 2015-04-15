@@ -15,11 +15,12 @@
 #'   \code{\link[base]{commandArgs}}
 #' 
 #' @examples
-#'   str <- 'cmd -t "Say Anything" --character \'Lloyd Dobler\''
-#'   
-#'   str_to_opts(str)
-#'   
-#'   split_ws_nonquote(str)
+#' 
+#'   \dontrun{ 
+#'     str <- 'cmd -t "Say Anything" --character \'Lloyd Dobler\''
+#'     str_to_opts(str)
+#'     split_ws_nonquote(str)
+#'   }
 #'   
 #' @note not-exported, by design
 
