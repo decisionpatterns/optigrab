@@ -2,24 +2,26 @@
 % Please edit documentation in R/opt_help.R
 \name{opt_help}
 \alias{opt_help}
-\title{Provide program usage information and exit.}
+\title{Automatic usage/help information}
 \usage{
-opt_help(opts = commandArgs())
+opt_help(flags = c("help", "?"), opts = commandArgs())
 }
 \arguments{
 \item{opts}{character; vector from which to parse options
        (default: \code{commandArgs()} )
 
-Usage information from \code{opt_grab} calls made after \code{optihelp()} is
-used will will not be shown.  It is considered best practice to handle all
+Usage information is generated from \code{opt_get} calls made prior to
+\code{opt_help}. \code{opt_help} shused will will not be shown.  It is considered best practice to handle all
 option parsing in a block at the beginning of the application. \code{optihelp}
 would be best placed at the end of that block}
 }
+\value{
+logical; returns \code{TRUE} if command-line options contain a help flag,
+  \code{FALSE} otherwise. Mainly \code{opt_help} is used for side-effects of
+  printing usage/help information,
+}
 \description{
-Prints program usage information and exits. Usage information comes from
-the \code{help} arguments to \code{opt_grab}. Calls to
-\code{opt_grab} following the \code{opt_help} call will not be considered, so
-it is best to specify make all \code{opt_grab} calls before \code{opt_help}.
+Prints program usage information and, if used non-interactively, exits.
 }
 \examples{
 opts <- c( "--foo", "bar")

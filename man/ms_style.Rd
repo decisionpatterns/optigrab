@@ -7,13 +7,13 @@
 \format{\preformatted{List of 3
  $ flag_test   :function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 3 17 3 49 17 49 3 3
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5a907c8> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5925f48> 
  $ flag_to_name:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 5 20 5 49 20 49 5 5
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5a907c8> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5925f48> 
  $ name_to_flag:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 7 20 7 49 20 49 7 7
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5a907c8> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x5925f48> 
 }}
 \usage{
 ms_style
