@@ -1,5 +1,6 @@
 library(testthat)
 library(optigrab)
+library(magrittr)
 
 
 context( "opt_grab")
@@ -35,13 +36,13 @@ for( str in opt_strings ) {
 
 # Flag (BOOLEAN) #
 context("boolean flags")
-opt_strings <- c( '-f', '--flag', '--long-flag' )
-opts <- optigrab:::str_to_opts( opt_strings )
+opt_string <- c( '-f --flag --long-flag' )
+opts <- optigrab:::str_to_opts(opt_string)
 
-for ( str in opt_strings  ) {
+for ( opt in opts  ) {
   # cat( "...", str, "\n")
-  expect_error( optigrab::opt_grab( "-f", opts=opts ) )
-  expect_true( optigrab::opt_grab( flags, n=0, opts=opts ) )
+  # expect_error( optigrab::opt_grab( "-f", opts=opts ) )
+  expect_true( optigrab::opt_grab( opt, n=0, opts=opts ) )
 }
 
 # Flag Value 

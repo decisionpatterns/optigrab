@@ -39,7 +39,7 @@ split_ws_nonquote <- function(x) {
     "'[^']*'|\"[^\"]*\"|[^\\s]+" %>%
     stringi::stri_extract_all_regex( x, . ) 
   
-  if( is.na(splits) ) return(x)
+  if( ! length(splits[[1]]) > 1 ) return(x)
   
   splits %>%
     extract2(1) %>%
