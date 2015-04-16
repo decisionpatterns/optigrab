@@ -64,8 +64,8 @@
 #'   
 #' @export 
 
-opt_get <- function( flag, style = getOption('optigrab')$style, ... ) { 
-  flag <- style$name_to_flag(flag)
+opt_get <- function( name, style = getOption('optigrab')$style, ... ) { 
+  flag <- style$name_to_flag(name)
   opt_grab( flag, ...)
 }
 
@@ -180,13 +180,13 @@ opt_grab <- function(
 
 #' @rdname opt_get
 #' @export
-opt_get_gnu <- function(flag, ... ) opt_get( flag, style=gnu_style, ... )
+opt_get_gnu <- function(flag, ...) opt_get( flag, style=gnu_style, ... )
 
 #' @rdname opt_get
 #' @export
-opt_get_ms <- function( flag, ... ) opt_get( flag, style=ms_style, ... )
+opt_get_ms <- function(flag, ...) opt_get( flag, style=ms_style, ... )
 
 #' @rdname opt_get
 #' @export
-opt_get_java <- function( flag, ... ) opt_get( flag, style=java_style, ... )
+opt_get_java <- function(flag, ...) opt_get( flag, style=java_style, ... )
 

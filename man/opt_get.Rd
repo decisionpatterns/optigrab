@@ -8,7 +8,7 @@
 \alias{opt_grab}
 \title{Get option's values from the command-line}
 \usage{
-opt_get(flag, style = getOption("optigrab")$style, ...)
+opt_get(name, style = getOption("optigrab")$style, ...)
 
 opt_grab(flag, default = NA, n = 1, required = FALSE,
   description = NULL, opts = commandArgs())
@@ -20,12 +20,12 @@ opt_get_ms(flag, ...)
 opt_get_java(flag, ...)
 }
 \arguments{
-\item{flag}{character; vector of possible synonyms for the "flag" that
-identifies the option.}
-
 \item{style}{list; list of functions that define the parsing style}
 
 \item{...}{additional arguments passed to \code{opt_grab}}
+
+\item{flag}{character; vector of possible synonyms for the "flag" that
+identifies the option.}
 
 \item{default}{any; the value(s) provided if the flag is not found
 (default: \code{NA} )}

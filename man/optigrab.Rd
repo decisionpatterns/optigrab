@@ -42,6 +42,26 @@ Call \code{opt_get('flag')} can be used whereever needed.
 \code{--help}, etc. but the most common and simplest use cases do not
 require a specific specification but more complex case allow for it.
 }
+
+\section{Conventions}{
+
+
+\itemize{
+
+\item \strong{name} \code{flag} The name for an option or variable
+
+\item \strong{flag} \code{--flag} How the variable name is represented on the
+ command line
+
+\item \strong{opts} \code{c('--foo', 'bar')} character vector representing
+how options look according to \code{commandArgs}.
+
+\item \strong{opts_string} \code{'--foo bar'} string (one-character character
+vector) representing the option as they appear on the command-line
+
+\item \strong{command} \code{}
+}
+}
 \examples{
 \dontrun{
   opt_get( c("foo","f"))

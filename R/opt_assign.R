@@ -3,13 +3,15 @@
 #' opt_get + sssign 
 #' 
 #' @param x a variable name, given as a character string. No coercion is done, and the first element of a character vector of length greater than one will be used, with a warning.
-#' @param value a value to be assigned to x.
+# @param value a value to be assigned to x.
 #' @param pos	where to do the assignment. By default, assigns into the current environment. See ‘Details’ for other possibilities.
 # @param envir	the environment to use. See ‘Details’.
 #' @param inherits should the enclosing frames of the environment be inspected?
-#' @param immediate	an ignored compatibility feature.
+# @param immediate	an ignored compatibility feature.
+#' @param flag character; name of option 
 #' @param ... arguments passed to \code{opt_get}
 #' 
+#' If 
 #' 
 #' @seealso 
 #'   \code{\link{opt_get}} \cr
@@ -24,7 +26,8 @@ opt_assign <- function( x, pos=1, inherits=FALSE, flag=x, ... ) {
  
   value <- opt_get( flag=flag, ...)
   invisible( 
-    assign( x, value, pos=pos, inherits = FALSE ) 
+    if( ! is.na(value) )
+      assign( x, value, pos=pos, inherits = FALSE ) 
   )
   
 }
