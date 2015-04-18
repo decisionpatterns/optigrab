@@ -4,9 +4,11 @@
 \alias{opt_help}
 \title{Automatic usage/help information}
 \usage{
-opt_help(flags = c("help", "?"), opts = commandArgs())
+opt_help(name = c("help", "?"), opts = commandArgs())
 }
 \arguments{
+\item{name}{character; vector of names/aliases to use}
+
 \item{opts}{character; vector from which to parse options
        (default: \code{commandArgs()} )
 

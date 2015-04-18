@@ -2,28 +2,42 @@
 % Please edit documentation in R/opt_assign.R
 \name{opt_assign}
 \alias{opt_assign}
+\alias{opt_assign_all}
 \title{Get option and assign to variables}
 \usage{
-opt_assign(x, pos = 1, inherits = FALSE, flag = x, ...)
+opt_assign(x, pos = 1, inherits = FALSE, name = x, ...,
+  assign.na = FALSE)
+
+opt_assign_all(x, ..., assign.na = FALSE)
 }
 \arguments{
-\item{x}{a variable name, given as a character string. No coercion is done, and the first element of a character vector of length greater than one will be used, with a warning.}
+\item{x}{character or list; variable names or alias. If no coercion is done,
+and the first element of a character vector of length greater than
+one will be used, with a warning.}
 
 \item{pos}{where to do the assignment. By default, assigns into the current environment. See ‘Details’ for other possibilities.}
 
 \item{inherits}{should the enclosing frames of the environment be inspected?}
 
-\item{flag}{character; name of option}
+\item{name}{character; name of option}
 
 \item{...}{arguments passed to \code{opt_get}
 
-If}
+\code{opt_assign} parses an option using \code{opt_get} and then assigns it
+according to the}
 }
 \description{
-opt_get + sssign
+opt_get and sssign
 }
 \examples{
 opt_assign( "foo", opts=c("--foo","bar") )
+  opt_assign( c("foo","f"), opts=c("--foo","baz") )
+
+  e <- new.env()
+  c('foo','f') \%>\% opt_assign(e, opts=c('-f','bar') )
+  e$foo
+
+  opt_assing_all( c('a','b'), opts = "-a 1 -b 2"  \%>\% str_to_opts )
 }
 \seealso{
 \code{\link{opt_get}} \cr

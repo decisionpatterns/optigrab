@@ -3,6 +3,8 @@
 #' @description 
 #' Returns value(s) from the command-line associated with the desired option.
 #'
+#' @param name character; vector of possible synonymes for the "flag" that
+#'        identifies the option.
 #' @param flag character; vector of possible synonyms for the "flag" that 
 #'        identifies the option.  
 #' @param style list; list of functions that define the parsing style 

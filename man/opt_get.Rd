@@ -20,6 +20,9 @@ opt_get_ms(flag, ...)
 opt_get_java(flag, ...)
 }
 \arguments{
+\item{name}{character; vector of possible synonymes for the "flag" that
+identifies the option.}
+
 \item{style}{list; list of functions that define the parsing style}
 
 \item{...}{additional arguments passed to \code{opt_grab}}

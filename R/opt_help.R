@@ -8,6 +8,7 @@
 #' 
 #' Prints program usage information and, if used non-interactively, exits. 
 #' 
+#' @param name character; vector of names/aliases to use 
 #' @param opts character; vector from which to parse options 
 #'        (default: \code{commandArgs()} )
 #' 
@@ -31,7 +32,7 @@
 #' 
 #' @export
 
-opt_help <- function( flags=c('help','?'), opts=commandArgs() ) {
+opt_help <- function( name=c('help','?'), opts=commandArgs() ) {
   
   patterns <- getOption('optigrab')$style$name_to_flag(flags)
   
