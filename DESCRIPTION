@@ -7,7 +7,7 @@ Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Description: Parses options from the command-line using a simple, clean syntax. 
     It requires little or no specification and supports an extansible system for 
-    command-line syntaxes.  GNU, Java and Microsoft syntaxes are presently 
+    command-line syntaxes. GNU, Java and Microsoft syntaxes are presently 
     supported. 
 Depends:
     R (>= 3.0.0)
