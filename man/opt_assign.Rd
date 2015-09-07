@@ -21,10 +21,12 @@ one will be used, with a warning.}
 
 \item{name}{character; name of option}
 
-\item{...}{arguments passed to \code{opt_get}
+\item{...}{arguments passed to \code{opt_get}}
+
+\item{assign.na}{logical; whether \code{NA} can be assigned. DEFAULT \code{FALSE}
 
 \code{opt_assign} parses an option using \code{opt_get} and then assigns it
-according to the}
+according to ...}
 }
 \description{
 opt_get and sssign

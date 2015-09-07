@@ -12,9 +12,10 @@
 # @param immediate	an ignored compatibility feature.
 #' @param name character; name of option 
 #' @param ... arguments passed to \code{opt_get}
+#' @param assign.na logical; whether \code{NA} can be assigned. DEFAULT \code{FALSE}
 #' 
 #' \code{opt_assign} parses an option using \code{opt_get} and then assigns it
-#' according to the 
+#' according to ... 
 #' 
 #' @seealso 
 #'   \code{\link{opt_get}} \cr
