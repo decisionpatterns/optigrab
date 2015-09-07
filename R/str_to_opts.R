@@ -42,7 +42,7 @@ split_ws_nonquote <- function(x) {
   if( ! length(splits[[1]]) > 1 ) return(x)
   
   splits %>%
-    extract2(1) %>%
+    magrittr::extract2(1) %>%
     stringi::stri_replace_all_regex( ., "^[\"']|[\"']", "" )
     
 }

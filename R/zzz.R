@@ -6,13 +6,7 @@
    # set optigrab options
    options( optigrab = list( 
        help = list()
-     # , option_identifier = c( '--', '-' )
      , style = gnu_style
-     #, flag_test = gnu_flag_test 
-     #, flag_name_getter = flag_name_parser_gnu 
-     # , greedy=FALSE  # SEE TODO
-     # , on_error=opt_help , # WHAT TO DO ON PARSE ERROR
-     # allow.multiple=FALSE )
      )
    )
 

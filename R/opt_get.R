@@ -25,14 +25,16 @@
 #' 
 #' \code{opt_get} parses the command-line vector extracting 
 #' value(s) that are identified by one or more \code{flag}s. 
+#' 
 #' \code{opt_grab} is the workhorse that does the actual parsing. It is 
-#' currently exported, but this is likely to change.
+#' currently exported, but this may change in future version to be an internal 
+#' function.
 #'   
 #' Both are useful with code executed using \code{Rscript}, 
-#' a \code{#!} on linux or \code{R CMD BATCH}. By default, it closely follows 
-#' the ubiquitous GNU standards for command-line interfaces. It departs from 
-#' other command-line interface packages by avoiding complex specifications in 
-#' favor of a lighter more straight-forward interface.     
+#' a \code{#!} on linux systems or \code{R CMD BATCH}. By default, it closely 
+#' follows the ubiquitous GNU standards for command-line interfaces. It departs 
+#' from other command-line interface packages by avoiding complex specifications 
+#' in favor of a lighter more straight-forward interface.     
 #' 
 #' \code{flag} is used to identify the command line flag. It can include all 
 #' synonyms for the flags. 

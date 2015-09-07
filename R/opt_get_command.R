@@ -1,17 +1,18 @@
 #' Command to the Rscript.
 #' 
-#' Return the command of the Rscript, generally the first argument following
-#' #' \code{--args}.
-#' 
-#' @note 
-#' this assumes that any flags occurring before the command has 
-#' exactly 1.  value. A command such as "> myscript --verbose subcmd" will be 
-#' misparsed; the code will assume that "subcmd" is the value of the 
-#' flag "--verbose"
+#' Return the command for the application. The command is the 
+#'   * first argument not accounted for by the flags specification or,
+#'   * last non-flag commandline argument. 
 #' 
 #' @param opts character; Vector from which to parse options 
 #'   (default: \code{commandArgs()} )
-#' 
+#'
+#' @note 
+#' \code{opt_get_command} assumes any flags occurring before the command has 
+#' exactly 1 value. A command such as "> myscript --verbose command" will be 
+#' misparsed; the code will assume that "command" is the value of the 
+#' flag "--verbose"
+#'  
 #' @return character of length 1; the command
 #' 
 #' @seealso 
@@ -42,7 +43,7 @@ opt_get_command <- function( opts=commandArgs() ) {
       found_flag <- FALSE # if the last opt was a flag, assume that this is its value
                           # This does the wrong thing if the flag has no values (boolean)
                           # or if the flag has more than one value
-      next
+      # next
     }
     
     return (opt) # the first opt that is neither a flag nor a value for a flag is the command

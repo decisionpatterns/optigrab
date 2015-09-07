@@ -36,33 +36,33 @@ expect_identical( t, "-f" )
 
 # Value Value 
 t <- optigrab:::opt_expand( optigrab:::str_to_opts( "value1 value2" ) )
-expect_equal( length(t), 2 )
+t %>% length %>% expect_equal(2) # expect_equal( length(t), 2 )
 expect_identical( t, c( 'value1', 'value2' ) )
 
 
 # Flag Value
 t <- optigrab:::opt_expand( optigrab:::str_to_opts( "--flag value" ) ) 
-expect_that( t, is_a( "character") )
+expect_is( t, "character" )
 expect_equal( length(t), 2 )
-expect_that( t[[1]], equals( "--flag" ) )
-expect_that( t[[2]], equals("value") )
+expect_equal( t[[1]], "--flag" )
+expect_equal( t[[2]], "value" )
 
 # Short-flag Value
 t <- optigrab:::opt_expand( optigrab:::str_to_opts( "-f value" ) ) 
-expect_that( t, is_a( "character") )
+expect_is( t, "character" )
 expect_equal( length(t), 2 )
-expect_that( t[[1]], equals( "-f" ) )
-expect_that( t[[2]], equals("value") )
+expect_equal( t[[1]], "-f" )
+expect_equal( t[[2]], "value" )
 
 
 
 
 # Flag=Value
 t <- optigrab:::opt_expand( optigrab:::str_to_opts( "--flag=value" ) ) 
-expect_that( t, is_a( "character") )
+expect_is( t, "character" )
 expect_equal( length(t), 2 )
-expect_that( t[[1]], equals( "--flag" ) )
-expect_that( t[[2]], equals("value") )
+expect_equal( t[[1]], "--flag" )
+expect_equal( t[[2]], "value" )
 
 
 
@@ -70,10 +70,10 @@ expect_that( t[[2]], equals("value") )
 
 # Flag Flag 
 t <- optigrab:::opt_expand( optigrab:::str_to_opts( "--flag1 --flag2" ) ) 
-expect_that( t, is_a( "character") )
+expect_is( t, "character" )
 expect_equal( length(t), 2 )
-expect_that( t[[1]], equals( "--flag1" ) )
-expect_that( t[[2]], equals("--flag2") )
+expect_equal( t[[1]], "--flag1" ) 
+expect_equal( t[[2]], "--flag2" )
 
 # Flag Flag Value 
 
@@ -98,6 +98,5 @@ expanded <- optigrab:::opt_expand( opts=opts )
 
 
 expect_that( is.character(expanded), is_true() )
-expect_that( length(expanded), equals(10) )
-expect_that( expanded, is_identical_to( compare ) ) 
-
+expect_equal( length(expanded), 10 )
+expect_identical( expanded, compare ) 

@@ -2,8 +2,8 @@
 
 *optigrab* simplifies the creation of command-line interfaces. It 
 favors a easy-to-use, straight-forward syntax that covers 99% of use 
-cases in favor the flexibility and complexity of other command-line parsing 
-solutions without sacrificing features when needed. 
+cases over more (syntactically) complex command-line parsing solutions without 
+sacrificing features when needed. 
 
 
 # INSTALLATION #
@@ -26,17 +26,17 @@ Getting a command-line option, is easy:
     
 Or, for the truly lazy.
 
-    opt_assign('foo')
+    opt_assign('foo')  
 
     name  <- opt_get( 'name' )
-    dates <- as.Date( opt_get( 'dates', n=2 ) )    # SAME
-    yesNo <- opt_get( c( '--yes', 'y' ), n=0 )     # LOGICAL  
+    dates <- as.Date( opt_get( 'dates', n=2 ) )  # SAME
+    yesNo <- opt_get( c( 'yes', 'y' ), n=0 )     # LOGICAL  
 
 
 # DESIGN PHILOSOPHY # 
 
-* Simple, consise, expressive syntax
-* Support common cases emphasized over complex/edge cases
+* Simple, consise, expressive syntax, especially in a _pipe-line_ world
+* Support common cases over complex/edge cases
 * Non-destructive to commandArgs array
 * Feature complete
 
@@ -52,32 +52,42 @@ Or, for the truly lazy.
 ## LIMITATIONS ##
 
 These are things that are not currently supported, but will be coming soon, if 
-there are requests 
+there are requests: 
 
-* option bundling
-* auto coercions : this is less important with pipe-lines e.g. magrittr 
+* option bundling, e.g. -xvzf ==>  -x -v -z -f
+* auto coercions: 
+  this is less important with pipe-lines e.g. magrittr, that makes this  
 
+  opt_get('count') %>% as.integer
+  
 
 
 # BACKGROUND # 
 
-To start, clearing up some nomenclature will be beneficial. Command-line
-options are known as both 'options' and 'arguments'. For this document,
-the term 'option(s)' are used. 'Arguments' refers to function or method
-arguments used within the R language. This distinction makes it clear
-the difference between those values provided on the command-line 
-("options") and those provided to functions and methods ("arguments").
+To start, clearing up some nomenclature will be beneficial. 
+
+## Options vs Arguments ##
+
+Command-line options are known as both 'options' and 'arguments'. For this 
+document, the term 'option(s)' are preferred. 'Arguments' refers to function or 
+method arguments used within the R language. This distinction makes it clear the
+difference between those values provided on the command-line ("options") and 
+those provided to functions and methods ("arguments").
 
 
-## Existing Alternatives
+## Alternatives ##
 
 There are already at least three command-line option ("CLOs") processing 
 solutions for R:
 
-* *commandArgs()* from the base package returns the command line arguments from when the R program was invoked. It can be used as a rudimentary method for option retrieval but lacks the features of a full-featured command-line parsing package 
+* *commandArgs()* from the base package returns the command line arguments from
+when the R program was invoked. It can be used as a rudimentary method for 
+option retrieval but lacks the features of a full-featured command-line parsing 
+package 
 
 * The *optparse* package follows closely Python's optparse semantics 
-and syntax. It provides a while getopt emulates C-like behaviors. Both of these are designed for languages signigicantly different from R. 
+and syntax. It provides a while getopt emulates C-like behaviors. Both of these
+are designed for languages signigicantly different from R. 
 
 * The *getopt* package ....
 
@@ -86,20 +96,30 @@ and syntax. It provides a while getopt emulates C-like behaviors. Both of these 
 
 ## Problems with Existing Alternatives
 
-Handling CL options in R is tricky.  Variables are not single
-scalar values, but are vectors that can assume many values. It is not
+Handling CL options in R is tricky.  R variables are not single
+scalar values, but are vectors that can assume many values. It is not 
 unreasonable to assume that command-line options should accommodate 
 vectors by default.
 
-It is common in programming to assign one variable at a time.  
-Both *getopt, optparse and argparse require the user to write a specification that is almost which parses command-line and assigns all values at once. For a complex set of 
-options, the specification quickly becomes complex and hard to read. Values are assigned to a list and then subsequently referenced and validated as needed. This means that the logic for parsing the command-line and using those value, 
-e.g. to build objects is often times distant in the program, making debugging hard.  
+Common programming practice is to assign one variable at a time each assignment
+on its ownline.  Packages 'getopt', 'optparse' and 'argparse; require the user 
+to write a specification that is parses command-line and assigns values 
+all-at-once. For a application that support many options, the specification 
+quickly becomes complex and hard to read/follow/debug. These packages assign 
+values to a list and then subsequently referenced and validated as needed. 
+This means that the logic for parsing the command-line and using those value, 
+e.g. to build objects is often times distant in the program, making debugging doubly 
+hard.  
 
-There are good reasons for the specification of option all-at-once. 
-With all specification in one place, you can easily provide an 
-automatic help file. The define-all-at-once syntax at a time works, but 
-generally results in dense and ugly syntax. A much better approach 
+There are good reasons for the specification of option all-at-once. With all 
+specification in one place: 
+* an automatic help file can be provided
+
+The all-at-once specification does not gracefully handle application whose 
+arguments are indeterminant or not known at execution time. This may be typical 
+of 
+
+The define-all-at-once syntax at a time works; a better approach 
 is to have the abillity to specify each option at a time.  
 
 The optigrab package provides a solution to both of these problems. 
@@ -116,8 +136,9 @@ readable syntax.
 There are a number of idioms for specifying program inputs. A fairly
 typically call will look something like:
 
-  > prog --name=val arg1 arg2
-
+  > prog --name=val opt1 opt2 target 
+  > prog [flag[(=| )value [value] [value...] ]...  [command] [arg1 [arg2 [argn]]] 
+  
 Generically, the GNU-style command-line syntax style that looks like this:
 
   prog [[-n [val1]]|[--name [val1 val2 ...]]] command [arg1 ...]
@@ -130,16 +151,15 @@ The various components:
     valN    : one or more values 
     --name  : long-form option 
     command : the (sub)command to the program, e.g. programs like git
-    argN    : Unamed arguments
+    argN    : Unamed arguments often targets
 
 Though options and arguments both appear on the command line, they
 are different.  Options are denoted with flags and have names that are
 assigned values. Arguments, on the other hand, are unnamed. This
 difference is analogous to named and positional arguments in a function 
-call.  Unnamed arguments are simpler.  They are useful for great when there the supplied values mean 
-the same thing Options are better for
-complex situations.  Arguments are 
-A good CLO processing package provides access to both options and 
+call. Unnamed arguments are simpler.  They are useful for great when there the 
+supplied values mean the same thing Options are better for complex situations.  
+Arguments are A good CLO processing package provides access to both options and 
 unnamed arguments.
 
 If each option is assumed to take a scalar value, the example is 
@@ -170,7 +190,6 @@ command-line. They:
  * have 0 or more values 
  * have a default value
  * DEPRECATED: may be coerced into various types or classes
-
 
 ## Arguments ##
 
