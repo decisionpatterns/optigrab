@@ -24,7 +24,7 @@ Get path current running script
 optigrab:::opt_get_path()
 }
 \references{
-\usl{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
+\url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 }
 \seealso{
 \code{\link{opt_grab}} \cr

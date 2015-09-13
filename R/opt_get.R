@@ -5,19 +5,21 @@
 #'
 #' @param name character; vector of possible synonymes for the "flag" that
 #'        identifies the option.
-#' @param flag character; vector of possible synonyms for the "flag" that 
-#'        identifies the option.  
-#' @param style list; list of functions that define the parsing style 
-#' @param ... additional arguments passed to \code{opt_grab}
-#' 
 #' @param default any; the value(s) provided if the flag is not found 
 #'        (default: \code{NA} )
 #' @param n integer; number of values to retrieve. See Details. 
 #'        (default: \code{1})
+#' @param ... additional arguments passed to \code{opt_grab}
+#' @param style list; list of functions that define the parsing style 
+#'        
+#' @param flag character; vector of possible synonyms for the "flag" that 
+#'        identifies the option.  
 #' @param required logical; whether the value is required. If not found or an 
 #'        incorrect, number of values are found, an error is thrown. 
 #'        (default: \code{FALSE}) 
+#'  
 #' @param description (character) message to be printed with \code{opt_help}
+#' 
 #' @param opts character; vector to parse for options 
 #'        (default: \code{commandArgs()})
 #'        
@@ -66,11 +68,54 @@
 #'   opt_get_ms( c('foo'), opts=c('/foo', 'bar' ) )
 #'   opt_get_java( c('foo'), opts=c('-foo', 'bar' ) )
 #'   
+#'   
+#'   # Using pipes:
+#'   \dontrun{
+#'     c('foo', 'f') %>% opt_get('bar')
+#'   }
+#'   
 #' @export 
 
-opt_get <- function( name, style = getOption('optigrab')$style, ... ) { 
+opt_get <- function( 
+    name
+  , default
+  , n
+  , ...
+  , style = getOption('optigrab')$style ) { 
+  
   flag <- style$name_to_flag(name)
-  opt_grab( flag, ...)
+  
+  # n: number of values to return number of values 
+  if( missing(n) ) 
+    if( ! missing(default) ) { 
+      if( is.logical(default) ) n = 0 else n=length(default) 
+    } else { 
+      n = 1  
+    }
+
+#   if( missing(n))  
+#   if( ! is.missing(default) && is.logical(default) )
+#     opt_grab(flag=flag, n=0, ... )
+  
+  # Call opt_grab
+  ret <- opt_grab( flag=flag, n=n, ...)
+
+  # Apply Defaults  
+  
+  
+  if( is.na(ret) && ! missing(default) ) return(default)
+
+  # Apply applying defaults, including trying to coerce to the defailts
+  # class
+  if( ! missing(default) ) { 
+    if( is.na(ret) ) 
+      return(default) else
+      try({ ret <- as( ret, class(default)) })
+  }  
+    
+
+  return(ret)
+  
 }
 
 
@@ -79,20 +124,15 @@ opt_get <- function( name, style = getOption('optigrab')$style, ... ) {
 
 opt_grab <- function( 
   flag,
-  default     = NA,
   n           = 1,
   required    = FALSE, 
   description = NULL,
   opts        = commandArgs()
-) 
-{  
+) {  
   
   # STASH THE ARGUMENTS.
   op <- getOption( 'optigrab' )
-  # optigrab$options[[ flag[[1]] ]] <- list( 
-  #  flag=flag, default=default, n=n, required=required, help=help, opts=opts 
-  # )
-  # options( optigrab=optigrab ) 
+
   
   # EXPAND opts
   opts <- opt_expand(opts=opts)
@@ -115,20 +155,21 @@ opt_grab <- function(
   wh.alias <- c() 
   for ( alias in flag ) {
     pattern   <- alias 
-    # pattern <- paste( "^", alias, "$", sep="" )
     wh.alias  <- union(wh.alias, which( opts==pattern ))
   }
 
   # FLAG OR ALIAS NOT SUPPLIED  
   if( length(wh.alias) == 0 ) {
-    if( ( n == 0 ) && is.na(default) ) return(FALSE)  
+    if( n == 0 ) return(FALSE)  
     
-    if (required && is.na(default) ) 
+    # The parameter is required and n!=0.
+    if (required) 
       stop( 
         call. = FALSE 
         , "\n\tOption(s): [", flag.str, "] is required, but was not supplied."
       )
-    return(default)    
+    
+    return(NA)    
   }
   
   # MULTIPLE MATCHING FLAGS OR ALIAS FOUND

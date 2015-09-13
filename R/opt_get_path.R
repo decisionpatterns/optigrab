@@ -10,7 +10,7 @@
 #' @return character; path to Rscript or \code{NA} if there isn't one. 
 #' 
 #' @references
-#'   \usl{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
+#'   \url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 #' 
 #' @seealso 
 #'   \code{\link{opt_grab}} \cr

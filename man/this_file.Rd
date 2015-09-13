@@ -35,7 +35,7 @@ or the orignal, top-level file.
 this_file()
 }
 \references{
-\usl{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
+\url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 }
 \seealso{
 \code{\link{opt_grab}} \cr

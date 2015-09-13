@@ -8,10 +8,10 @@
 \alias{opt_grab}
 \title{Get option's values from the command-line}
 \usage{
-opt_get(name, style = getOption("optigrab")$style, ...)
+opt_get(name, default, n, ..., style = getOption("optigrab")$style)
 
-opt_grab(flag, default = NA, n = 1, required = FALSE,
-  description = NULL, opts = commandArgs())
+opt_grab(flag, n = 1, required = FALSE, description = NULL,
+  opts = commandArgs())
 
 opt_get_gnu(flag, ...)
 
@@ -23,22 +23,22 @@ opt_get_java(flag, ...)
 \item{name}{character; vector of possible synonymes for the "flag" that
 identifies the option.}
 
-\item{style}{list; list of functions that define the parsing style}
-
-\item{...}{additional arguments passed to \code{opt_grab}}
-
-\item{flag}{character; vector of possible synonyms for the "flag" that
-identifies the option.}
-
 \item{default}{any; the value(s) provided if the flag is not found
 (default: \code{NA} )}
 
 \item{n}{integer; number of values to retrieve. See Details.
 (default: \code{1})}
 
+\item{...}{additional arguments passed to \code{opt_grab}}
+
+\item{style}{list; list of functions that define the parsing style}
+
+\item{flag}{character; vector of possible synonyms for the "flag" that
+identifies the option.}
+
 \item{required}{logical; whether the value is required. If not found or an
-incorrect, number of values are found, an error is thrown.
-(default: \code{FALSE})}
+       incorrect, number of values are found, an error is thrown.
+       (default: \code{FALSE})}
 
 \item{description}{(character) message to be printed with \code{opt_help}}
 
@@ -88,6 +88,12 @@ opts <- c( '--foo', 'bar' )
 
   opt_get_ms( c('foo'), opts=c('/foo', 'bar' ) )
   opt_get_java( c('foo'), opts=c('-foo', 'bar' ) )
+
+
+  # Using pipes:
+  \dontrun{
+    c('foo', 'f') \%>\% opt_get('bar')
+  }
 }
 \references{
 http://www.gnu.org/prep/standards/standards.html

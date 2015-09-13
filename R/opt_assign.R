@@ -1,18 +1,17 @@
 #' Get option and assign to variables
 #' 
-#' opt_get and sssign 
+#' opt_get and assign 
 #' 
 #' @param x character or list; variable names or alias. If no coercion is done, 
 #'        and the first element of a character vector of length greater than 
 #'        one will be used, with a warning.
-# @param value a value to be assigned to x.
-#' @param pos	where to do the assignment. By default, assigns into the current environment. See ‘Details’ for other possibilities.
-# @param envir	the environment to use. See ‘Details’.
+#' @param pos	where to do the assignment. By default, assigns into the current 
+#'        environment. See ‘Details’ for other possibilities.
 #' @param inherits should the enclosing frames of the environment be inspected?
-# @param immediate	an ignored compatibility feature.
 #' @param name character; name of option 
 #' @param ... arguments passed to \code{opt_get}
-#' @param assign.na logical; whether \code{NA} can be assigned. DEFAULT \code{FALSE}
+#' @param assign.na logical; whether \code{NA} can be assigned. 
+#'        (Default: \code{FALSE})
 #' 
 #' \code{opt_assign} parses an option using \code{opt_get} and then assigns it
 #' according to ... 
@@ -30,6 +29,7 @@
 #'   e$foo
 #'   
 #'   opt_assing_all( c('a','b'), opts = "-a 1 -b 2"  %>% str_to_opts )
+#'   
 #' @export 
 
 opt_assign <- function( x, pos=1, inherits=FALSE, name=x, ..., assign.na=FALSE ) {

@@ -21,7 +21,7 @@
 #' 
 #' 
 #' @references
-#'   \usl{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
+#'   \url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 #'
 #' @return one-element character vector with the path to the current file; 
 #' returns \code{NA} is in an interactive session not in a file.

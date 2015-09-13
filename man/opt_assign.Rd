@@ -15,7 +15,8 @@ opt_assign_all(x, ..., assign.na = FALSE)
 and the first element of a character vector of length greater than
 one will be used, with a warning.}
 
-\item{pos}{where to do the assignment. By default, assigns into the current environment. See ‘Details’ for other possibilities.}
+\item{pos}{where to do the assignment. By default, assigns into the current
+environment. See ‘Details’ for other possibilities.}
 
 \item{inherits}{should the enclosing frames of the environment be inspected?}
 
@@ -23,13 +24,14 @@ one will be used, with a warning.}
 
 \item{...}{arguments passed to \code{opt_get}}
 
-\item{assign.na}{logical; whether \code{NA} can be assigned. DEFAULT \code{FALSE}
+\item{assign.na}{logical; whether \code{NA} can be assigned.
+       (Default: \code{FALSE})
 
 \code{opt_assign} parses an option using \code{opt_get} and then assigns it
 according to ...}
 }
 \description{
-opt_get and sssign
+opt_get and assign
 }
 \examples{
 opt_assign( "foo", opts=c("--foo","bar") )

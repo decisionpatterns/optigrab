@@ -80,9 +80,9 @@ expect_error( optigrab::opt_grab("-a", opts=opts) )
 
 # TEST: MISSING VALUES
 optigrab::opt_grab("--missing", opts=opts)               %>% expect_equal(NA)
-optigrab::opt_grab("--missing", default=NULL, opts=opts) %>% expect_equal(NULL) 
-optigrab::opt_grab("--missing", default=NA, opts=opts)   %>% expect_equal(NA) 
-optigrab::opt_grab("--missing", default=0, opts=opts)    %>% expect_equal(0) 
+# optigrab::opt_grab("--missing", default=NULL, opts=opts) %>% expect_equal(NULL) 
+# optigrab::opt_grab("--missing", default=NA, opts=opts)   %>% expect_equal(NA) 
+# optigrab::opt_grab("--missing", default=0, opts=opts)    %>% expect_equal(0) 
 
 
 # TEST: logical
