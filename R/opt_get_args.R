@@ -1,6 +1,6 @@
 #' Return arguments to Rscript
 #' 
-#' Arguments to Rscript are those up to the \code{--args} argument. 
+#' Arguments to a script are those following the \code{--args} argument. 
 #' 
 #' @param opts character; vector of arguments, (Default: \code{commandArgs()})
 #' 
