@@ -4,7 +4,7 @@
 #' 
 #' @param opts character; vector of arguments. (Default: \code{commandArgs()})
 #' 
-#' @param current logical; if \code{TRUE} returns the most current sourced 
+#' @param local logical; if \code{TRUE} returns the most currently sourced 
 #'    script as opposed to the orignal/first source script. 
 #'    (Default: \code{TRUE}) 
 #'    
@@ -16,7 +16,7 @@
 #' the file was invoked from \strong{Rscript} or in an interactive session. 
 #' Further it \code{source} 
 #' 
-#' Argument \code{current} controls whether it is the current file (\code{TRUE}) 
+#' Argument \code{local} controls whether it is the current file (\code{TRUE}) 
 #' or the orignal, top-level file.
 #' 
 #' 
@@ -37,13 +37,14 @@
 
 this_file <- function( 
     opts      = commandArgs()
-  , current   = TRUE
+  , local     = TRUE
   , full.path = TRUE 
 ) { 
-
+  # browser()
   current_script <- 
-    if(current)
-      tail( unlist(lapply(sys.frames(), function(env) env$ofile)), 1 ) else
+    if(local)
+      sys.frame(1)$ofile
+      # tail( unlist(lapply(sys.frames(), function(env) env$ofile)), 1 ) else
       NULL
   
   if( is.null(current_script) ) {   # No source, RScript?
@@ -55,7 +56,7 @@ this_file <- function(
     path <- opts[ wh.args + 1 ]
     
     if( full.path ) 
-      return( normalizePath( path, , winslash=.Platform$file.sep, mustWork = TRUE  ) ) else
+      return( normalizePath( path, winslash=.Platform$file.sep, mustWork = TRUE  ) ) else
       return( path )
       match <- grep( "--file", opts )
    

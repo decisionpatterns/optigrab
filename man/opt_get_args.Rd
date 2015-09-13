@@ -19,7 +19,7 @@ character; vector stripping elements preceding and
   including (the first) \code{--args} flag.
 }
 \description{
-Arguments to Rscript are those up to the \code{--args} argument.
+Arguments to a script are those following the \code{--args} argument.
 }
 \examples{
 opt_get_args()

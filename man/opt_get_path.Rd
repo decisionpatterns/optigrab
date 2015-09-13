@@ -10,7 +10,9 @@ opt_get_path(opts = commandArgs(), full.name = FALSE)
 \item{opts}{character; cector from which to parse options
   (default: \code{commandArgs()} )}
 
-\item{full.name}{boolean; expand to full path(?)}
+\item{full.name}{boolean; expand to full path(?)
+
+\strong{ This function is deprecated, use \code{this_file} instead.}}
 }
 \value{
 character; path to Rscript or \code{NA} if there isn't one.
@@ -20,6 +22,9 @@ Get path current running script
 }
 \examples{
 optigrab:::opt_get_path()
+}
+\references{
+\usl{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 }
 \seealso{
 \code{\link{opt_grab}} \cr

@@ -1,7 +1,10 @@
-#' Expand argument vector to split names from values
+#' Split command arguments
+#' 
+#' Splits command argument vector to name, value pairs. 
 #' This is an internal function and should generally not be called 
 #' directly. 
-#' @param opts character vector of arguments. (Default: commandArgs())
+#' 
+#' @param opts character; vector of arguments. (Default: commandArgs())
 #' 
 #' \code{opt_split_args} splits and value containing an equal (=) sign
 #' 

@@ -2,19 +2,17 @@
 % Please edit documentation in R/opt_split_args.R
 \name{opt_split_args}
 \alias{opt_split_args}
-\title{Expand argument vector to split names from values
-This is an internal function and should generally not be called
-directly.}
+\title{Split command arguments}
 \usage{
 opt_split_args(opts = commandArgs())
 }
 \arguments{
-\item{opts}{character vector of arguments. (Default: commandArgs())
+\item{opts}{character; vector of arguments. (Default: commandArgs())
 
 \code{opt_split_args} splits and value containing an equal (=) sign}
 }
 \description{
-Expand argument vector to split names from values
+Splits command argument vector to name, value pairs.
 This is an internal function and should generally not be called
 directly.
 }

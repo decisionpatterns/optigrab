@@ -4,7 +4,9 @@
 #'   (default: \code{commandArgs()} )
 #'   
 #' @param full.name boolean; expand to full path(?)
-#'   
+#'  
+#' \strong{ This function is deprecated, use \code{this_file} instead.}   
+#'     
 #' @return character; path to Rscript or \code{NA} if there isn't one. 
 #' 
 #' @references
@@ -21,8 +23,8 @@
 
 opt_get_path <- function( opts=commandArgs(), full.name = FALSE ) {
   
-  message( "'opt_get_path' is deprecated. Use 'this_file' instead.")
-  
+  warning( "'opt_get_path' is deprecated. Use 'this_file' instead.")
+  return( this_file( opts, full.path = full.name) )
   opts <- opt_split_args(opts)
   
   wh.args <- grep( "--file", opts )[1]  # i.e. first occurence of --file
