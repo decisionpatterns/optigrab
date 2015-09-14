@@ -1,5 +1,3 @@
-library(testthat)
-library(optigrab)
 library(magrittr)
 
 context( "opt_get_command" )
@@ -24,7 +22,7 @@ context( "opt_get_command" )
 # NOT IN FIRST POSITION
   flags  <- optigrab:::str_to_opts( "Rscript --slave --no-restore --file=my-file --args --date now cmd1" )
   date   <- opt_get( name="date", n=1, opts=flags )  
-  cmd <- opt_get_command( flags )
+  cmd    <- opt_get_command( flags )
   
   expect_equal( cmd, "cmd1" )
 

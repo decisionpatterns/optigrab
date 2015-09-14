@@ -8,10 +8,10 @@
 \alias{opt_grab}
 \title{Get option's values from the command-line}
 \usage{
-opt_get(name, default, n, ..., style = getOption("optigrab")$style)
+opt_get(name, default, n, required = FALSE, description = NULL,
+  opts = commandArgs(), style = getOption("optigrab")$style)
 
-opt_grab(flag, n = 1, required = FALSE, description = NULL,
-  opts = commandArgs())
+opt_grab(flag, n = 1, opts = commandArgs())
 
 opt_get_gnu(flag, ...)
 
@@ -27,14 +27,7 @@ identifies the option.}
 (default: \code{NA} )}
 
 \item{n}{integer; number of values to retrieve. See Details.
-(default: \code{1})}
-
-\item{...}{additional arguments passed to \code{opt_grab}}
-
-\item{style}{list; list of functions that define the parsing style}
-
-\item{flag}{character; vector of possible synonyms for the "flag" that
-identifies the option.}
+       (default: determined by default, see \strong{Details} below.)}
 
 \item{required}{logical; whether the value is required. If not found or an
        incorrect, number of values are found, an error is thrown.
@@ -44,26 +37,70 @@ identifies the option.}
 
 \item{opts}{character; vector to parse for options
        (default: \code{commandArgs()})}
+
+\item{style}{list; list of functions that define the parsing style}
+
+\item{flag}{character; vector of possible synonyms for the "flag" that
+identifies the option. These should be given as they would exactly
+appear on the command line.}
+
+\item{...}{additional arguments passed to \code{opt_grab}}
 }
 \value{
-a value parsed the opts vector associated with the flag.
+\code{opt_grab} always returns a character; it is either the value for the
+flags or \code{NA_character} if if they cannot be parsed.
+
+\code{opt_get} returns a value the command-line value as specified by
+the arguments or produces an error if the value could not be
+determined and \code{required==TRUE}.
 }
 \description{
 Returns value(s) from the command-line associated with the desired option.
 }
 \details{
-\code{opt_get} parses the command-line vector extracting
-value(s) that are identified by one or more \code{flag}s.
+These functions support parsing of command arguments work when using
+\code{Rscript}, a \code{\#\!} on linux systems or \code{R CMD BATCH}. By
+default, they closely follows the ubiquitous GNU standards for command-line
+interfaces.
+\code{opt_grab} is the workhorse that does the actual parsing. It returns
+the options values or \code{NA} if it cannot discern
+them.  It is currently exported, but this may change in future version
+to be an internal function. Its interface is not guarantted.  The user
+should use \code{opt_get} instead.
 
-\code{opt_grab} is the workhorse that does the actual parsing. It is
-currently exported, but this may change in future version to be an internal
-function.
+\code{opt_get} supports default values, automated guessing for \code{n} and
+(attempts a) coercion of the return values to the correct class.
+}
+\section{Selecting \code{n}}{
 
-Both are useful with code executed using \code{Rscript},
-a \code{#!} on linux systems or \code{R CMD BATCH}. By default, it closely
-follows the ubiquitous GNU standards for command-line interfaces. It departs
-from other command-line interface packages by avoiding complex specifications
-in favor of a lighter more straight-forward interface.
+
+Except in rare-caces, the user should not have to specify \code{n}. This is
+determined from the value of \code{default}.
+
+If \code{default} is a logical value, i.e. \code{TRUE} or \code{FALSE},
+\code{n} is assumed to take no arguments. Presents of the flag on the command
+line will return \code{TRUE}, absense of the flag returns false.
+
+If \code{default} is another type than logical, \code{n} is selected as
+\code{length(default)}.
+
+If \code{default} is missing, \code{n} is 1.
+}
+
+\section{automatic coercision}{
+
+
+Command-line arguments are character vectors.  If \code{default} is supplied
+then the \code{opt_get} attempts to coerce the values it returns to
+\code{class(default)}.  The user might wish to supply the correct methods to
+handle the conversions.
+}
+
+\section{side-effects}{
+
+
+\code{opt_grab} has the additional side-effect of keeping track of the
+arguments. This is useful for keeping track of
 
 \code{flag} is used to identify the command line flag. It can include all
 synonyms for the flags.

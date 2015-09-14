@@ -11,15 +11,23 @@ opt_get_command(opts = commandArgs())
   (default: \code{commandArgs()} )}
 }
 \value{
-character of length 1; the command
+character of length 1; the command found from the command-line.
+\code{NA} if a command cannot be identified.
 }
 \description{
 Return the command for the application. The command is the
-  * first argument not accounted for by the flags specification or,
-  * last non-flag commandline argument.
+  * first argument not accounted for by the flags specification
 }
-\note{
-\code{opt_get_command} assumes any flags occurring before the command has
+\details{
+\code{opt_get_command} look for the first unaccounted for options (after
+\code{--args}). The number of options needed by each flags is determined by
+and saved by calls to \code{\link{opt_get}}. See the details to see how
+\code{n} is automatically determined.  When not explicitly defined the number
+of options needed by each flag is 1.  Becasue of this, it customary to call
+\code{opt_get_command} after all \code{opt_get} commands.  For most simple
+applications, it likely doesn't matter.
+
+assumes any flags occurring before the command has
 exactly 1 value. A command such as "> myscript --verbose command" will be
 misparsed; the code will assume that "command" is the value of the
 flag "--verbose"
@@ -28,7 +36,7 @@ flag "--verbose"
 opt_get_command()
 }
 \seealso{
-\code{\link{opt_grab}} \cr
+\code{\link{opt_get}} \cr
   \code{\link{base}{commandArgs}}
 }
 

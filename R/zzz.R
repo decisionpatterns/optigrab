@@ -7,6 +7,7 @@
    options( optigrab = list( 
        help = list()
      , style = gnu_style
+     , options = list() 
      )
    )
 
