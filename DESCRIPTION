@@ -1,7 +1,7 @@
 Package: optigrab
 Type: Package
 Title: Command-Line Parsing for an R World
-Version: 0.6.0.99
+Version: 0.7.0
 Date: 2015-10-08
 Author: Christopher Brown
 URL: https://github.com/decisionpatterns/optigrab

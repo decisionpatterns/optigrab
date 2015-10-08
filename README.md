@@ -2,9 +2,9 @@
 
 [![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html) 
 
-[![CRAN](http://www.r-pkg.org/badges/version/drat)](http://cran.rstudio.com/package=optigrab) 
+[![CRAN](http://www.r-pkg.org/badges/version/optigrab)](http://cran.rstudio.com/package=optigrab) 
 
-[![Downloads](http://cranlogs.r-pkg.org/badges/drat?color=brightgreen)](http://www.r-pkg.org/pkg/optigrab)
+[![Downloads](http://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](http://www.r-pkg.org/pkg/optigrab)
 
 
 > Command-line parsing for an R world emphasizing convention over configuration

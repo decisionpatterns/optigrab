@@ -12,3 +12,5 @@ benchmark
 ^cran-comments\.md$
 ^NEWS\.md$
 ^revdep$
+
+README.md

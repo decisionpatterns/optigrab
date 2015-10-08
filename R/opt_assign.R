@@ -6,7 +6,7 @@
 #'        and the first element of a character vector of length greater than 
 #'        one will be used, with a warning.
 #' @param pos	where to do the assignment. By default, assigns into the current 
-#'        environment. See ‘Details’ for other possibilities.
+#'        environment. See 'Details' for other possibilities.
 #' @param inherits should the enclosing frames of the environment be inspected?
 #' @param name character; name of option 
 #' @param ... arguments passed to \code{opt_get}
@@ -28,7 +28,6 @@
 #'   e <- new.env() 
 #'   c('foo','f') %>% opt_assign(e, opts=c('-f','bar') )
 #'   e$foo
-#'   
 #'   
 #'   opt_assing_all( c('a','b'), opts = "-a 1 -b 2"  %>% str_to_opts )
 #'   } 

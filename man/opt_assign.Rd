@@ -16,7 +16,7 @@ and the first element of a character vector of length greater than
 one will be used, with a warning.}
 
 \item{pos}{where to do the assignment. By default, assigns into the current
-environment. See ‘Details’ for other possibilities.}
+environment. See 'Details' for other possibilities.}
 
 \item{inherits}{should the enclosing frames of the environment be inspected?}
 
@@ -41,7 +41,6 @@ opt_assign( "foo", opts=c("--foo","bar") )
   e <- new.env()
   c('foo','f') \%>\% opt_assign(e, opts=c('-f','bar') )
   e$foo
-
 
   opt_assing_all( c('a','b'), opts = "-a 1 -b 2"  \%>\% str_to_opts )
   }
