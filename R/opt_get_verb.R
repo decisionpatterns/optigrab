@@ -1,39 +1,44 @@
-#' Command to the Rscript.
+#' Get verb from the command line
 #' 
-#' Return the command for the application. The command is the 
-#'   * first argument not accounted for by the flags specification 
+#' Return the verb for the application. The verb is the first argument that is 
+#' not part of an option. 
 #' 
 #' @param opts character; Vector from which to parse options 
-#'   (default: \code{commandArgs()} )
+#'        (default: \code{commandArgs()} )
 #'
 #' @details
 #' 
-#' \code{opt_get_command} look for the first unaccounted for options (after 
+#' Some applications such as \emph{git} support commend verbs, e.g. \code{push},
+#' \code{fetch}, etc. These can be retrieved by \code{opt_get_verb}.
+#' 
+#' \code{opt_get_verb} look for the first unaccounted for options (after 
 #' \code{--args}). The number of options needed by each flags is determined by 
 #' and saved by calls to \code{\link{opt_get}}. See the details to see how 
 #' \code{n} is automatically determined.  When not explicitly defined the number
-#' of options needed by each flag is 1.  Becasue of this, it customary to call 
-#' \code{opt_get_command} after all \code{opt_get} commands.  For most simple 
-#' applications, it likely doesn't matter.
+#' of options needed by each flag is 1.  Becasue of this, it convention to call 
+#' \code{opt_get_verb} after all \code{opt_get} calls.  For most simple 
+#' applications, it likely doesn't matter.  
 #' 
-#' assumes any flags occurring before the command has 
-#' exactly 1 value. A command such as "> myscript --verbose command" will be 
-#' misparsed; the code will assume that "command" is the value of the 
+#' @section Assumptions:
+#' 
+#' \code{opt_get_verb} assumes any flags occurring before the verb have 
+#' exactly 1 value. A command line such as "> myscript --verbose verb" will be 
+#' misparsed; the code will assume that "verb" is the value of the 
 #' flag "--verbose"
 #'  
-#' @return character of length 1; the command found from the command-line. 
-#' \code{NA} if a command cannot be identified.
+#' @return character of length 1; the verb found from the command-line. 
+#' \code{NA} if a verb cannot be identified.
 #' 
 #' @seealso 
 #'   \code{\link{opt_get}} \cr
 #'   \code{\link{base}{commandArgs}}
 #' 
 #' @examples
-#'   opt_get_command()
+#'   opt_get_verb()
 #'   
 #' @export
 
-opt_get_command <- function( opts=commandArgs() ) {
+opt_get_verb <- function( opts=commandArgs() ) {
   
   # browser()
   opts <- opt_get_args(opts=opts)
@@ -85,6 +90,6 @@ opt_get_command <- function( opts=commandArgs() ) {
       n <- n -1         # give-up on option
   }  
   
-  return(NA_character_) # no command found
+  return(NA_character_) # no verb found
   
 }

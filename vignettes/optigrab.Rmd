@@ -1,8 +1,13 @@
-## optigrab  
-
-[![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html) 
-
-[![CRAN](http://www.r-pkg.org/badges/version/drat)](http://cran.rstudio.com/package=drat) [![Downloads](http://cranlogs.r-pkg.org/badges/drat?color=brightgreen)](http://www.r-pkg.org/pkg/drat)
+---
+title: "optigrab"
+author: "Christopher Brown"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 > Command-line parsing for an R world emphasizing convention over configuration
 

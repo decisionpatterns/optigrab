@@ -4,7 +4,7 @@
 \name{optigrab}
 \alias{optigrab}
 \alias{optigrab-package}
-\title{Command-line parsing desinged for R emphasizing a concise and clean format.}
+\title{Optigrab}
 \description{
 The optigrab packages providesa function \code{opt_grab} to retrieve
 options/arguments from the command line.  It is useful for running R in
@@ -12,55 +12,8 @@ batch mode with \code{R CMD BATCH ...} or \code{Rscript}.
 
 GNU-, Java- and Microsoft-style command line options are supported. GNU-style
 is the default.
-}
-\section{Advantages}{
 
-
-\emph{optigrab} is similar to the other command-line parsing packages
-('optparse', 'argparse', 'getopt' and maybe others.  \emph{optigrab} has
-two advantages: First, it is designed for R in mind. The other packages are
-designed after functionality found in other languages. This ignores several
-aspects of the R language such as R's inherent vectorization. Second,
-\emph{optgrab} eschews complex and messy specifications that often clutter
-the head of programs. The emphasis is on a terse and comprehendible syntax.
-In most cases, the command to retrieve a option is simple and concise: \cr
-
-\tabular{c}{
-  \code{ f <- opt_get("flag") } \cr
-}
-
-or, if you are using a package that supports pipes such a \emph{magrittr}: \cr
-
-\tabular{c}{
-  \code{ f <- "flag" \%>\% opt_get }
-}
-
-In many applications, assigning to an intermediate variable is not necessary.
-Call \code{opt_get('flag')} can be used whereever needed.
-
-\emph{optigrab} allows more powerful options such as coercion, auto
-\code{--help}, etc. but the most common and simplest use cases do not
-require a specific specification but more complex case allow for it.
-}
-
-\section{Conventions}{
-
-
-\itemize{
-
-\item \strong{name} \code{flag} The name for an option or variable
-
-\item \strong{flag} \code{--flag} How the variable name is represented on the
- command line
-
-\item \strong{opts} \code{c('--foo', 'bar')} character vector representing
-how options look according to \code{commandArgs}.
-
-\item \strong{opts_string} \code{'--foo bar'} string (one-character character
-vector) representing the option as they appear on the command-line
-
-\item \strong{command} \code{}
-}
+See the \emph{optigrab} vignettes or the github README file for details.
 }
 \examples{
 \dontrun{
@@ -74,7 +27,9 @@ vector) representing the option as they appear on the command-line
 The Jerk. Dir. Carl Reiner. Perf Steve Martin, Bernadette Peters,
   Caitlin Adams. Universal Pictures, 1979. \cr
 
-  \url{http://www.gnu.org/prep/standards/standards.html}
+  \url{http://www.gnu.org/prep/standards/standards.html} \cr
+
+  \url( https://github.com/gsscoder/commandline) \cr
 }
 \seealso{
 \code{\link{opt_get}} \cr

@@ -7,13 +7,13 @@
 \format{\preformatted{List of 3
  $ flag_test   :function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 3 19 3 51 19 51 3 3
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x9f0f570> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x59b10b0> 
  $ flag_to_name:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 5 22 5 51 22 51 5 5
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x9f0f570> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x59b10b0> 
  $ name_to_flag:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 7 22 7 51 22 51 7 7
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x9f0f570> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x59b10b0> 
 }}
 \usage{
 java_style
