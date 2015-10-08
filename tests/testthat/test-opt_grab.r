@@ -78,6 +78,7 @@ optigrab::opt_grab("-b", opts=opts)                  %>% equals("1")
 optigrab::opt_grab("--end-date", opts=opts)          %>% equals('2011-05-20') 
 expect_error( optigrab::opt_grab("-a", opts=opts) )
 
+
 # TEST: MISSING VALUES
 optigrab::opt_grab("--missing", opts=opts)               %>% expect_equal(NA)
 # optigrab::opt_grab("--missing", default=NULL, opts=opts) %>% expect_equal(NULL) 
