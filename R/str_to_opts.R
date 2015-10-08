@@ -1,3 +1,5 @@
+utils::globalVariables('.')
+
 #' Split a string bases on whitespace 
 #' 
 #' Split a string based on whitespace ignore single- and double quoted entries

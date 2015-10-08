@@ -24,12 +24,14 @@
 #'   opt_assign( "foo", opts=c("--foo","bar") )
 #'   opt_assign( c("foo","f"), opts=c("--foo","baz") )
 #'   
+#'   \dontrun{
 #'   e <- new.env() 
 #'   c('foo','f') %>% opt_assign(e, opts=c('-f','bar') )
 #'   e$foo
 #'   
-#'   opt_assing_all( c('a','b'), opts = "-a 1 -b 2"  %>% str_to_opts )
 #'   
+#'   opt_assing_all( c('a','b'), opts = "-a 1 -b 2"  %>% str_to_opts )
+#'   } 
 #' @export 
 
 opt_assign <- function( x, pos=1, inherits=FALSE, name=x, ..., assign.na=FALSE ) {

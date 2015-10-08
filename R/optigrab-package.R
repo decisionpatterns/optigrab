@@ -21,7 +21,7 @@
 #' 
 #'   \url{http://www.gnu.org/prep/standards/standards.html} \cr
 #' 
-#'   \url( https://github.com/gsscoder/commandline) \cr
+#'   \url{ https://github.com/gsscoder/commandline} \cr
 #'   
 #' @examples
 #' 

@@ -29,7 +29,7 @@ The Jerk. Dir. Carl Reiner. Perf Steve Martin, Bernadette Peters,
 
   \url{http://www.gnu.org/prep/standards/standards.html} \cr
 
-  \url( https://github.com/gsscoder/commandline) \cr
+  \url{ https://github.com/gsscoder/commandline} \cr
 }
 \seealso{
 \code{\link{opt_get}} \cr

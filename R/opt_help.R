@@ -27,14 +27,14 @@
 #'   
 #' @examples
 #'   opts <- c( "--foo", "bar")
-#'   optigrab:::opt_grab( "--foo", description="Specifies Foo" )
+#'   optigrab:::opt_grab( "--foo")
 #'   optigrab:::opt_help()
 #' 
 #' @export
 
 opt_help <- function( name=c('help','?'), opts=commandArgs() ) {
   
-  patterns <- getOption('optigrab')$style$name_to_flag(flags)
+  patterns <- getOption('optigrab')$style$name_to_flag(name)
   
   script.path <- opt_get_path(opts=opts)
   script.name <- NULL
@@ -50,7 +50,7 @@ opt_help <- function( name=c('help','?'), opts=commandArgs() ) {
   if( ! is.na(script.path) ) script.name <- basename(script.path)
 
   
-  command <- opt_get_command(opts=opts)
+  command <- opt_get_verb(opts=opts)
   if( is.na(command) ) command <- NULL
 
 

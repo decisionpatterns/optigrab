@@ -27,7 +27,7 @@ Prints program usage information and, if used non-interactively, exits.
 }
 \examples{
 opts <- c( "--foo", "bar")
-  optigrab:::opt_grab( "--foo", description="Specifies Foo" )
+  optigrab:::opt_grab( "--foo")
   optigrab:::opt_help()
 }
 \seealso{

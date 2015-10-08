@@ -125,7 +125,8 @@ opt_get <- function(
 ) { 
   
   flag <- style$name_to_flag(name)
-  
+  # Create the help string for the 
+  flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
   
   # Automatically determine n 
   if( missing(n) ) 
@@ -152,7 +153,7 @@ opt_get <- function(
   if( is.na(ret) && missing(default) && required == TRUE )
     stop( 
           call. = FALSE 
-        , "\n\tOption(s): [", flag.str, "] is required, but was not supplied."
+        , "\n\tOption(s): [", flag, "] is required, but was not supplied."
     )
   
   
@@ -161,8 +162,7 @@ opt_get <- function(
   op <- getOption('optigrab')
   # op$options[[]]
   
-  # Create the help string for the 
-  flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
+
   
   for( f in flag ) 
     op$options[[f]] <- list( 
@@ -205,6 +205,8 @@ opt_grab <- function(
   opts        = commandArgs()
 ) {  
 
+   flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
+  
   # EXPAND opts
   opts <- opt_expand(opts=opts)
   
@@ -229,6 +231,8 @@ opt_grab <- function(
     
     
 #   }
+  
+ 
   
   # MULTIPLE MATCHING FLAGS OR ALIAS FOUND
   # allow.multiple (-tk)

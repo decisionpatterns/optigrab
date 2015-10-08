@@ -6,3 +6,9 @@
 ^\.Rproj\.user$
 # *.Rproj
 archive/
+
+benchmark
+^\.travis\.yml$
+^cran-comments\.md$
+^NEWS\.md$
+^revdep$
