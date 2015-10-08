@@ -113,6 +113,7 @@
 #'   }
 #'   
 #' @export 
+#' @importFrom  methods as
 
 opt_get <- function( 
     name

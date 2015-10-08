@@ -36,14 +36,6 @@ opt_get and assign
 \examples{
 opt_assign( "foo", opts=c("--foo","bar") )
   opt_assign( c("foo","f"), opts=c("--foo","baz") )
-
-  \dontrun{
-  e <- new.env()
-  c('foo','f') \%>\% opt_assign(e, opts=c('-f','bar') )
-  e$foo
-
-  opt_assing_all( c('a','b'), opts = "-a 1 -b 2"  \%>\% str_to_opts )
-  }
 }
 \seealso{
 \code{\link{opt_get}} \cr
