@@ -36,7 +36,7 @@ opt_help <- function( name=c('help','?'), opts=commandArgs() ) {
   
   patterns <- getOption('optigrab')$style$name_to_flag(name)
   
-  script.path <- opt_get_path(opts=opts)
+  script.path <- this_file(opts=opts)
   script.name <- NULL
   
   opts <- opt_expand(opts)

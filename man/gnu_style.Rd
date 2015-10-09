@@ -7,13 +7,13 @@
 \format{\preformatted{List of 3
  $ flag_test   :function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 4 3 4 79 3 79 4 4
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x998c0e0> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0xa0808f0> 
  $ flag_to_name:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 6 21 6 52 21 52 6 6
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x998c0e0> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0xa0808f0> 
  $ name_to_flag:function (x)  
   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 8 21 15 1 21 1 8 15
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x998c0e0> 
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0xa0808f0> 
 }}
 \usage{
 gnu_style

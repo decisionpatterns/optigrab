@@ -1,8 +1,6 @@
 library(magrittr)
 
-
 context("opt_grab")
-message("opt_grab")
 
 flags <- c( "-f", "--flag", "--long-flag" )
 

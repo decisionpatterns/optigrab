@@ -1,8 +1,6 @@
 library(magrittr)
 
-
 context( "opt_get")
-message("OPT_GET" )
 
 flags <- c( "f", "flag", "long-flag" )
 

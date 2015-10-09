@@ -13,8 +13,10 @@ opt_fill(x, opts = commandArgs(), style = getOption("optigrab")$style)
 command line using \code{\link{opt_get}}.}
 }
 \value{
-An invisible copy of \code{x}, with values filled from the command-line.  If \code{x} is
-a reference structure, this is done in place.
+(A copy of) \code{x}, with values filled from the command-line.  If
+  \code{x} is a reference structure, this is done by reference.
+
+  The result is returned invisibly.
 }
 \description{
 Fill a recursive structure with command-line arguments
@@ -24,9 +26,6 @@ proto <- list( foo="a", bar=1 )
 
   opt_fill( proto, opts=c( '--foo', 'list-fill' ))
   opt_fill( proto, opts=c( '--foo', 'list-fill', '--bar', '-9' ))
-
-  proto <- new.env()
-  proto$foo = "a"
 
   proto <- as.environment(proto)
   opt_fill( proto, opts=c( '--foo', 'env-fill', '--bar', '555' ))

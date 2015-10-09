@@ -1,11 +1,6 @@
-# library(testthat)
-# library(optigrab)
 library(magrittr)
 
-# No options
 context( 'is.flag' )
-message('ISFLAG')
-
 
 # No option - empty string
 opts <- optigrab:::str_to_opts('')
