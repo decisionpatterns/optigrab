@@ -12,9 +12,10 @@ context( "opt_get_verb" )
   
 # MULTIPLE --file
   flags <- 
-    "Rscript --slave --no-restore --file=my-file --args cmd1 --date now"  %>%
-    optigrab:::str_to_opts
-  
+    optigrab:::str_to_opts( 
+      "Rscript --slave --no-restore --file=my-file --args cmd1 --date now" 
+    ) 
+
   flags %>% opt_get_verb %>% expect_equal("cmd1")
 
 

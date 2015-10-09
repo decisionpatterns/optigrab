@@ -1,15 +1,16 @@
-library(testthat)
-library(optigrab)
+# library(testthat)
+# library(optigrab)
 library(magrittr)
 
 # No options
 context( 'is.flag' )
+message('ISFLAG')
 
 
 # No option - empty string
-opts <- ""  %>% optigrab:::str_to_opts
+opts <- optigrab:::str_to_opts('')
 
-opts  %>% optigrab:::is.flag  %>%  expect_false
+optigrab:::is.flag(opts)  %>%  expect_false
 
 # Value 
 opts <- optigrab:::str_to_opts( "value")

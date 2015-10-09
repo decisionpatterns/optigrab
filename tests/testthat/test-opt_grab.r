@@ -1,9 +1,8 @@
-library(testthat)
-library(optigrab)
 library(magrittr)
 
 
-context( "opt_grab")
+context("opt_grab")
+message("opt_grab")
 
 flags <- c( "-f", "--flag", "--long-flag" )
 
@@ -11,12 +10,12 @@ flags <- c( "-f", "--flag", "--long-flag" )
 #  Opt Stings that contain neither values or flags
 
 for( f in flags ) {
-  t <- optigrab::opt_grab( f, opts=optigrab:::str_to_opts() )
+  t <- opt_grab( f, opts=optigrab:::str_to_opts() )
   expect_identical( t, NA )
 }
 
 for( f in flags ) {
-  t <- optigrab::opt_grab( f, opts=optigrab:::str_to_opts("") )
+  t <- opt_grab( f, opts=optigrab:::str_to_opts("") )
   expect_identical( t, NA )
 }
 
@@ -29,7 +28,7 @@ opts = optigrab:::str_to_opts(opt_strings)
 
 for( str in opt_strings ) {
   for ( f in flags ) {
-    t <- optigrab::opt_grab( f, opts=opts )
+    t <- opt_grab( f, opts=opts )
     expect_identical( t, NA )
   } 
 }
@@ -41,14 +40,14 @@ opts <- optigrab:::str_to_opts(opt_string)
 
 for ( opt in opts  ) {
   # cat( "...", str, "\n")
-  # expect_error( optigrab::opt_grab( "-f", opts=opts ) )
-  expect_true( optigrab::opt_grab( opt, n=0, opts=opts ) )
+  # expect_error( opt_grab( "-f", opts=opts ) )
+  expect_true( opt_grab( opt, n=0, opts=opts ) )
 }
 
 # Flag Value 
 
 for( str in opt_strings ) {
-  t <- optigrab::opt_grab( flags, opts=optigrab:::str_to_opts( "-f value") )
+  t <- opt_grab( flags, opts=optigrab:::str_to_opts( "-f value") )
   expect_equal( t, "value" )
 }
 
@@ -70,29 +69,29 @@ opts <- optigrab:::str_to_opts( opts )
 # [13] "-a"                                      
 
 # TEST: Simple
-optigrab::opt_grab("--args", n=0, opts=opts)         %>% expect_true
+opt_grab("--args", n=0, opts=opts)         %>% expect_true
 # opt_grab("--args", n=1, opts=opts) # FAIL
-optigrab::opt_grab("--name", opts=opts)              %>% expect_equal('fred') 
-optigrab::opt_grab("--date", opts=opts)              %>% expect_equal('2011-05-17') 
-optigrab::opt_grab("-b", opts=opts)                  %>% equals("1") 
-optigrab::opt_grab("--end-date", opts=opts)          %>% equals('2011-05-20') 
-expect_error( optigrab::opt_grab("-a", opts=opts) )
+opt_grab("--name", opts=opts)              %>% expect_equal('fred') 
+opt_grab("--date", opts=opts)              %>% expect_equal('2011-05-17') 
+opt_grab("-b", opts=opts)                  %>% equals("1") 
+opt_grab("--end-date", opts=opts)          %>% equals('2011-05-20') 
+expect_error( opt_grab("-a", opts=opts) )
 
 
 # TEST: MISSING VALUES
-optigrab::opt_grab("--missing", opts=opts)               %>% expect_equal(NA)
-# optigrab::opt_grab("--missing", default=NULL, opts=opts) %>% expect_equal(NULL) 
-# optigrab::opt_grab("--missing", default=NA, opts=opts)   %>% expect_equal(NA) 
-# optigrab::opt_grab("--missing", default=0, opts=opts)    %>% expect_equal(0) 
+opt_grab("--missing", opts=opts)               %>% expect_equal(NA)
+# opt_grab("--missing", default=NULL, opts=opts) %>% expect_equal(NULL) 
+# opt_grab("--missing", default=NA, opts=opts)   %>% expect_equal(NA) 
+# opt_grab("--missing", default=0, opts=opts)    %>% expect_equal(0) 
 
 
 # TEST: logical
 
-expect_error( optigrab::opt_grab( "-a", opts=opts ) )      # Error: No argument supplied. 
-optigrab::opt_grab( "-a", n=0, opts=opts )            %>% expect_true() 
-expect_error( optigrab::opt_grab( "-a", n=1, opts=opts ) )
+expect_error( opt_grab( "-a", opts=opts ) )      # Error: No argument supplied. 
+opt_grab( "-a", n=0, opts=opts )            %>% expect_true() 
+expect_error( opt_grab( "-a", n=1, opts=opts ) )
 
-optigrab::opt_grab( "-b", opts=opts )             %>% equals("1")         
-optigrab::opt_grab( "-b", n=0, opts=opts )        %>% expect_true
+opt_grab( "-b", opts=opts )             %>% equals("1")         
+opt_grab( "-b", n=0, opts=opts )        %>% expect_true
 # opt_grab( "-b", n=1, opts=opts, coerce=as.logical.character )  %>% expect_true #FAIL.
-optigrab::opt_grab( "-b", n=1, opts=opts )        %>% equals("1" ) 
+opt_grab( "-b", n=1, opts=opts )        %>% equals("1" ) 
