@@ -33,6 +33,8 @@ From CRAN:
 
 ## USAGE ## 
 
+
+### Getting Single Values ###
 Getting a command-line option, is easy:
 
     opt_get('foo')         # -OR-
@@ -48,15 +50,25 @@ Other examples:
     dates <- as.Date( opt_get( 'dates', n=2 ) )  # SAME
     yesNo <- opt_get( c( 'yes', 'y' ), n=0 )     # LOGICAL  
 
-Generate auto-help:
+### Get Multiple Values ###
+
+Use `opt_fill` to fill a recursive structure such as a list or environment. 
+
+    l <- list( foo=1, bar=2 )
+    opt_fill(l)
+
+`optigrab` uses the recursive structure as a template trying to supply arguments to `opt_get`: `name`, `default` and `n`.  `opt_get` will attempt to coerce the option to the same type as the object in the structure. 
+
+
+### Generate auto-help ###
 
     opt_help()
 
-Get verb command:
+### Get verb command ###
 
     opt_get_verb()
 
-Set option style
+### Set option style ###
 
     opt_style(ms_style)
     opt_style(java_style)

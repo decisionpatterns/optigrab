@@ -3,11 +3,11 @@
 * globbing of path: should be done after 
 
 
-## `opt_get_these`
+## `opt_fill` (COMPLETE)
 
 * for recursive objects find options with the names
 
-    opt_get_these(x)
+    opt_fill(x)
 
 returns x (or ref to x) that is populated with options that are grabbed from the
 command line.
