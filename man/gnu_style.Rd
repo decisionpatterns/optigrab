@@ -6,14 +6,14 @@
 \title{GNU-style command line options}
 \format{\preformatted{List of 3
  $ flag_test   :function (x)  
-  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 2 18 2 57 18 57 2 2
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x737f9e0> 
+  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 4 3 4 79 3 79 4 4
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x998c0e0> 
  $ flag_to_name:function (x)  
-  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 4 21 4 52 21 52 4 4
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x737f9e0> 
+  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 6 21 6 52 21 52 6 6
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x998c0e0> 
  $ name_to_flag:function (x)  
-  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 6 21 13 1 21 1 6 13
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x737f9e0> 
+  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 8 21 15 1 21 1 8 15
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x998c0e0> 
 }}
 \usage{
 gnu_style
@@ -26,6 +26,9 @@ Functions for enabling GNU-style command-line options. GNU-style options
   are characterized by a single dash (\code{-}) before single character
   option flags and a double dash (\code{--}) before multiple character
   option flags.
+
+  By convention, gnu style options flags must begin with a letter; if numbers
+  were allowed option flags would be ambiguous with negative option values.
 }
 \references{
 \url{http://www.gnu.org/prep/standards/standards.html}

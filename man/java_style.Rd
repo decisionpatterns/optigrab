@@ -6,14 +6,14 @@
 \title{Java-style command line options}
 \format{\preformatted{List of 3
  $ flag_test   :function (x)  
-  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 3 19 3 51 19 51 3 3
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x733e1a8> 
+  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 4 19 4 71 19 71 4 4
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x9a4e180> 
  $ flag_to_name:function (x)  
-  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 5 22 5 51 22 51 5 5
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x733e1a8> 
+  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 6 22 6 51 22 51 6 6
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x9a4e180> 
  $ name_to_flag:function (x)  
-  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 7 22 7 51 22 51 7 7
-  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x733e1a8> 
+  ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 8 22 8 51 22 51 8 8
+  .. .. ..- attr(*, "srcfile")=Classes 'srcfilecopy', 'srcfile' <environment: 0x9a4e180> 
 }}
 \usage{
 java_style
@@ -24,6 +24,9 @@ Functions for enabling Java-style commpand-line option behavior.
 \details{
 Functions for enabling Java-style command-line options. Java-style options
   are characterized by a single dash (\code{-}) before the option name.
+
+  By conventions, Java-style options cannot must begin with a upper or lower
+  case letter.
 }
 \seealso{
 Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and
