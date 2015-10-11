@@ -1,16 +1,14 @@
 ## optigrab  
 
-[![License](http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html) 
-
+[![License](http://img.shields.io/badge/license-GPL%20%28=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html) 
 [![CRAN](http://www.r-pkg.org/badges/version/optigrab)](http://cran.rstudio.com/package=optigrab) 
-
 [![Downloads](http://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](http://www.r-pkg.org/pkg/optigrab)
 
 
 > Command-line parsing for an R world emphasizing convention over configuration
 
 
-## ABSTRACT ## 
+## ABSTRACT
 
 *optigrab* simplifies the creation of command-line interfaces. It 
 favors a easy-to-use, straight-forward conventions that covers 99% of use 
@@ -18,7 +16,7 @@ cases over more complex configuration command-line parsing solutions without
 sacrificing features when needed. 
 
 
-## INSTALLATION ##
+## INSTALLATION
 
 From Git Hub:
 
@@ -29,7 +27,7 @@ From CRAN:
     install.packages('optigrab')
 
 
-## USAGE ## 
+## USAGE
 
 Getting a command-line option, is easy:
 
@@ -61,14 +59,14 @@ Set option style
     opt_style(gnu+style)  # The default
 
 
-## ADVANTAGES ## 
+## ADVANTAGES 
 
 1. *optigrab* is designed for R in mind. Other packages are derive from package written for other languages. This ignores several aspects of the R language such as R's inherent vectorization. 
 
 2. It eschews complex and messy configurations that often clutter the head of programs. *optigrab* favors conventions over configurations (cf. (CoC)[https://en.wikipedia.org/wiki/Convention_over_configuration]). This design choice allows for a simple, terse and comprehendible syntax.  
 
 
-## DESIGN PHILOSOPHY ## 
+## DESIGN PHILOSOPHY 
 
 * Simple, consise, expressive syntax, especially in a _pipe-line_ world
 * Conventions over Configuration: (CoC)[https://en.wikipedia.org/wiki/Convention_over_configuration])
@@ -78,7 +76,7 @@ Set option style
 
 
 
-## FEATURES ##
+## FEATURES
 
 * Simple syntax
 * Support vectorized nature of R language:  `--dates 2014-01-01 2015-12-31`
@@ -88,7 +86,7 @@ Set option style
 * GNU-, Java- and Microsoft-style command line options
 
 
-### LIMITATIONS and FEATURES UNDER DEVELOPMENT ###
+### LIMITATIONS and FEATURES UNDER DEVELOPMENT
 
 These are things that are not currently supported, but will be coming soon, if 
 requests are made: 
@@ -102,12 +100,12 @@ requests are made:
 
 
 
-## BACKGROUND ## 
+## BACKGROUND 
 
 To start, clearing up some nomenclature will be beneficial. 
 
 
-### Options vs Arguments ###
+### Options vs Arguments
 
 Command-line options are often referred to as both 'options' and 'arguments'. For this document, the term 'option(s)' are preferred. 'Arguments' refers to function or method arguments used within the R language or other information on the command line that does not have an option flag.. This distinction makes it clear the difference between those values provided on the command-line ("options") and those provided to functions and methods ("arguments").
 
@@ -131,7 +129,7 @@ are designed for languages signigicantly different from R.
 - The *getopt* package invites users to use `optparse` and `argparse`; enough said.
 
 
-### Differentiation from Alternatives ####
+### Differentiation from Alternatives
  
 Handling CL options in R is tricky.  R variables are not single
 scalar values, but are vectors that can assume many values. It is not 
@@ -159,7 +157,7 @@ readable syntax.
 
 
 
-## COMMAND LINE ##   
+## COMMAND LINE   
 
 There are a number of idioms for specifying program inputs. A fairly
 typically call will look something like:
@@ -192,7 +190,7 @@ The problem becomes difficult in *R* when we consider that the variables are vec
 A good deal of the time, it doesn't matter. Most often only one value is needed. One solution often deployed.  is to always specify the number of values needed by the options.
 
 
-### Options ###
+### Options
 
 An option is one or more values provided to the program from the command-line. They: 
  * can be optional or required
@@ -201,14 +199,14 @@ An option is one or more values provided to the program from the command-line. T
  * may be coerced into various types or classes
 
 
-### (Unbound) Arguments ###
+### (Unbound) Arguments
 
 In addition to options, the command line may also contain unbound argument such as one or more file paths.  The distinction of between options and arguments is not always clear. Both occur on the command-line and both supply values to the program.  The main differnce is that options provide a name and a value and can always appear in any order.  This is nice since it requires the user to remember the name of arguments rather than there order.  This is cognitively much simpler and is analogous to the difference between calling a function with named arguments rather than positional ones.
 
 Arguments, on the other hand, follow two patterns. They are either all the same type, such as a list of filenames or they are dependent upon the ordering such as x,y,z coordinates. Many programs use both arguments and options.  In this situation, it is good practice to have all options preceed all arguments. Some programs allow arguments and options can be interspersed. When interspersed, it becomes cumbersome to seperate options from arguments. In fact, it can be impossible to distinguish the if the number of values supplied for each option is unknown. Thus, it is important to always specify the number of values required by the option.
                                          
 
-### Flags ### 
+### Flags 
 
 * Option names are specified with flags. Flags should begin with 
   "--" or "-" followed by one or more alpha-characters. Generally,
@@ -230,7 +228,7 @@ Arguments, on the other hand, follow two patterns. They are either all the same 
 
 
 
-### Values ###
+### Values
 
 * Are always initially interpretted as character values. Later, 
   they may be coerced into different types.
@@ -269,7 +267,7 @@ Arguments, on the other hand, follow two patterns. They are either all the same 
   or the end of the argument array is reached. 
 
 
-### logical values ###
+### logical values
 
 Logical values present an interesting challenge to command-line
 processing.  They are the only type that can accept 0
@@ -278,13 +276,13 @@ If the flag is present, then the value is set to TRUE
 otherwise it is set to FALSE or it's default 
 
 
-### default values ###
+### default values
 
 The use of default values is an a nice addition to command-line
 processing.
 
 
-### coercion ###
+### coercion
 
 Other command-line parsing programs require specification of the options type. 
 This is needlessly verbose for three reasons:
@@ -300,7 +298,7 @@ may be subsequently coerced into any valid type or class through
 a coercion function.  
 
 
-# PROCESSING # 
+# PROCESSING 
 
 At present, most command line processing libraries require full specification for all options. This requires a often very complicated specifications at the program's beginning.  Most programs, however, have very simple option processing requirements. It is, therefore, desirable that options be able to be processed with a very simply and clean syntax -- one that better fits into the flow of the program. An example would allow the retrival of one option on every line.  For example, to get a name and date, you might do the following:
  
@@ -312,7 +310,7 @@ In the first line, all we need to do is specify the option flag. This is because
 Since the processing of options is serialized, the processing of all options should be done prior to grabing options. If this is done, we can use the `opt_get` functions to specify do the apriori specifications to handle the  
                        
 
-# BATCH -vs- INTERACTIVE MODE #
+# BATCH -vs- INTERACTIVE MODE
 
 Command-line option processing should mostly focus on batch processing since this is the most common usage scenario. Still, processing should work in Interactive mode for development. In fact, in this use case, it is important that the parsing be able to handle an array of options different from the actual arguments used to start the session. 
 
