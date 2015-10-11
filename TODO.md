@@ -2,22 +2,19 @@
 
 * globbing of path: should be done after 
 
+* variable name to option name mapping, e.g. --start-date -> start_date
 
-## `opt_fill` (COMPLETE)
+* short options for `opt_fill` 
+  * `match.args` ?
 
-* for recursive objects find options with the names
+## Rename `opt_get` ##
 
-    opt_fill(x)
+Is `opt_get` really `opt_read`.  It seems that the verb `get` is for retrieving symbols internal to R; `read` is for getting data from outside of R.
 
-returns x (or ref to x) that is populated with options that are grabbed from the
-command line.
-    
-
-* what about short options? 
-  * `match.args`
+* change 'opt_get' -> 'opt_read' 
 
 
-## Confusion with `options`, `getOption`
+## Confusion with `options`, `getOption`##
 
 First, the syntax for a global singleton for options is horribly (cf. the `options` package).  
 
@@ -29,25 +26,23 @@ First, the syntax for a global singleton for options is horribly (cf. the `optio
  
 * Consider 'greedy' option, i.e. take all values until the next option flag. This can be set at the option levels as in:
 
-    grab_opt( ..., n=GREEDY ) 
+    opt_read( ..., n=GREEDY ) 
 
 `GREEDY` could be an exported constant such as: `1 ~ Inf`    
 
 
 ## Coercision 
 
-* Auto-coerce
+* Auto-coerce:
+  this is done currently to match the class of `default` opt_grab does not
+  accept a default argument
 
-* Add these convenience functions that attempt to coerce
-  an option after parsing it as from the command line
-    opt_grab_character same as opt_grab
-    opt_grab_numeric
-    opt_grab_logical
-    opt_grab_integer
+  With magrittr, this is less important since 
 
-With magrittr, this is less important since 
-  "--f" %>% opt_grab %>% as.numeric 
-does the same.
+    "--f" %>% opt_grab %>% as.numeric  
+  
+  works well
+
 
 
 ## Match Args (?)
@@ -64,14 +59,10 @@ This is probably bad practice
 
 
 
-## Autohalt
+## `opt_strict` ##
 
-Stop execution if unknown flag is encountered: `opt_halt` ?
-
-
-## Rename `opt_get`
-
-Is `opt_get` really `opt_read`.  It seems that the verb `get` is for retrieving symbols internal to R; `read` is for getting data from outside of R.
+`opt_strict` stops execution if unknown flag is encountered. Like opt_help,
+it must be used after all option processing.
 
 
 ## Help 
@@ -146,8 +137,17 @@ If greedy is used ... we should warn about args.
 * Make this compatible with RApache/Rook (why)
 
 
-== Completed ==
+## Completed ##
 
 X  Drop the 'coerce' argument from 'grabOpt' since it is no different from
   wrapping the call in an as.* function.  
 
+## `opt_fill` (COMPLETE)
+
+* for recursive objects find options with the names
+
+    opt_fill(x)
+
+returns x (or ref to x) that is populated with options that are grabbed from the
+command line.
+    
