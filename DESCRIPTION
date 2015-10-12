@@ -3,10 +3,10 @@ Type: Package
 Title: Command-Line Parsing for an R World
 Version: 0.8.0
 Date: 2015-10-08
-Author: Christopher Brown
+Author: Christopher Brown, Daryl McCullough
+Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 URL: https://github.com/decisionpatterns/optigrab
 BugReports: https://github.com/decisionpatterns/optigrab/issues
-Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Description: Parse options from the command-line using a simple, clean syntax. 
     It requires little or no specification and supports short and long options,
     GNU-, Java- or Microsoft- style syntaxes, verb commands and more. 
