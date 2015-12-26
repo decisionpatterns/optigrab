@@ -4,41 +4,44 @@ author: "Decision Patterns"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Command Line Technical Specifications}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-This document is intend for developers who wish to know about the details about command-line parsing. End-users are unlikely to gain much value from it. 
-
-## Parsing
-
-Parsing command-line arguments is a bit more tricky than it may appear. Parsing involves severals steps. 
-opt.
-* Retrieving commandArgs()
-* Pre
-* command-line: script [verb] [args] [path]
-* opt_string: [command] [args] [path]
-* (command) arguments: flags and values (character) 
-* R variables: names and values (strings)  
+This document provides a language-agnostic specification about how application are invoked from an interactive terminal or a text-based/non-gui/batch system. It is intend for developers who wish to understand details and considerations about command-line parsing. It is unlikely to be of much value to end-users looking to add command-line parsing to their own applications.  For the implementation in *optigrab*, please see the accompanying *Using Optigrab* document. 
 
 
 ## Anatomy of the command-line:
 
-A command-line application commonly have this structure: 
+An innvocattion of command-line application commonly has this structure: 
 
-    [interpreter] script  [verb(s)] [options] [targets]
-                         <--------- arguments --------->
-    <---------------- command-line -------------------->                     
+    [env] [interpreter] script  [verb] [options] [targets]
+                               <-------- arguments ------->
+    <------------------- command-line -------------------->
+    
+(Components in [bracket] are optional.)    
+
+The sections below, detail and discuss the considerations for parsing each of the components.  
+    
+    
+### Environment Variable
+
+See (Wikipedia: Environment Variable)[https://en.wikipedia.org/wiki/Environment_variable]
+
+Things to note about environment variables: 
+- inherited by child processed
+- implemented by the OS
+                
                          
-
 ### Intepreter
 
-The *interpreter* is what executes the *script*. There are numerous ways the interpreter may appear: `Rscript`, `R CMD BATCH`, r (little-r). On *nix systems the *interpreter* is optional and may be specified in the script through the #! (SHEBANG) syntax.
+The *interpreter* is the application that executes the *script*. The interpreter may be specified on the command line or There are numerous ways the interpreter may appear: `Rscript`, `R CMD BATCH`, r (little-r). On *nix systems the *interpreter* is optional and may be specified in the script through the #! (SHEBANG) syntax.
 
-### Scriot
 
-The *script* is the program file/code to be run. 
+### Script
+
+The *script* is the (path to the) program file/code to be run. 
 
 
 ### Arguments
@@ -47,9 +50,9 @@ Collectively, [arguments](#Arguments) refers to the [verb}(#Verb), [options](#Op
 
 ####  Verb
 
-A *verb* is a single optional command. (Not all applications use verbs; *git* is one popular application that does). The verb is the first value after the script and before any options. See [Verb](#Verb). It is returned verbatim by `opt_verb`.
+A *verb* is a single optional command. (Not all applications use verbs; *git* is one popular application that does). The verb is the first value after the script and before any options. 
 
-The constraint that the verb is the first argument before any options is not universally followed. Some application allow placement of the verb anywhere so long as it is not bound to an option. This introduces ambiguity with applications that allow the binding of multiple values to a name. This is inherently true of R since R atomistic object are vectors and not scalars.
+The constraint that the verb is the first argument before any options is not universally followed. Some application allow placement of the verb anywhere so long as it is cannot be interpretted as part of an option. This introduces ambiguity with applications that allow the binding of multiple values to a name. This is inherently true of R since R atomistic object are vectors and not scalars.
 
 Typically application allow only one verb. It might be easy to define verbs as all values that occur between the name of the script and the first flag (if any). If there are more than one verbs in the arguments array, the first is taken as the verb and a warning is issued
 
@@ -103,6 +106,19 @@ Targets can be ambiguous since *option* can have an indefinite number of values.
 In this example, it is unclear whether `my-file-1` and `my-file-2` should be associated with `--bar` or or targets or a combination.  
 
 
+## Parsing
+
+Parsing command-line arguments is a bit more tricky than it may appear. Parsing involves severals steps:
+
+1. Retrieve commandArgs()
+2. Pre-process command-line according to the style
+3. Parsing command-line: script [verb] [options] [targets]
+** Identify script (this_file) 
+** Identify verb (if exists)  
+** Parsing options (according to specifications)
+*** Differentiate flags from values
+*** Define variabels / assign names and values
+** Disambuigate target(s) from options
 
 
 ## opt_fill Filling recursive structures
@@ -146,9 +162,9 @@ clobber   & ! create : only clobber values
                        USE CASE: None 
 
 
+## References
+
+(Wikipedia: Environment Variable)[https://en.wikipedia.org/wiki/Environment_variable]
+
+
 ## Appendix
-
-
-
-
-   

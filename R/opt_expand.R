@@ -1,7 +1,11 @@
-#' Expand argument vector to split names from values
-#' This is an internal function and should generally not be called 
-#' directly. 
+#' Expand opts to full vector
+#' 
+#' Expand option vector to split names from values. This is an internal function 
+#' and should generally not be called directly. 
+#' 
 #' @param opts character vector of arguments. (Default: commandArgs())
+#' 
+#' @details 
 #' 
 #' \code{opt_expand} does two things: 
 #' \itemize{
@@ -20,10 +24,12 @@
 #' @note non-exported 
 
 opt_expand <- function( opts=commandArgs() ) {
+  
   opts <- opt_get_args(opts=opts)
   opts <- opt_split_args(opts=opts)
   
-  # OPTION BUNDLING   
+  # OPTION BUNDLING:
+  # Based on style ... style$unbundle 
   # Expand dash-single-letter arguments.
   #  - splice in everything after -x as the value.
   #  wh.sd <- grep( "^-[^-]", opts ) 

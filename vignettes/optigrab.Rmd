@@ -4,7 +4,7 @@ author: "Christopher Brown"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Using optigrab}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,11 +14,10 @@ vignette: >
 
 ## ABSTRACT ## 
 
-*optigrab* simplifies the creation of command-line interfaces. It 
-favors a easy-to-use, straight-forward conventions that covers 99% of use 
-cases over more complex configuration command-line parsing solutions without 
-sacrificing features when needed. 
+*optigrab* simplifies the creation of command-line interfaces. It favors a easy-to-use, straight-forward conventions that covers 99% of use cases over more complex command-line parsing solutions. Mostly, you can just:
 
+    opt_get('foo')         # -OR-
+    foo <- opt_get('foo')  # -OR-
 
 ## INSTALLATION ##
 
@@ -49,6 +48,7 @@ Other examples:
     name  <- opt_get( 'name' )
     dates <- as.Date( opt_get( 'dates', n=2 ) )  # SAME
     yesNo <- opt_get( c( 'yes', 'y' ), n=0 )     # LOGICAL  
+
 
 ### Get Multiple Values ###
 

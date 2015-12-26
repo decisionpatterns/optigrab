@@ -2,9 +2,7 @@
 % Please edit documentation in R/opt_expand.R
 \name{opt_expand}
 \alias{opt_expand}
-\title{Expand argument vector to split names from values
-This is an internal function and should generally not be called
-directly.}
+\title{Expand option vector to split names from values}
 \usage{
 opt_expand(opts = commandArgs())
 }
@@ -18,7 +16,6 @@ opt_expand(opts = commandArgs())
 }}
 }
 \description{
-Expand argument vector to split names from values
 This is an internal function and should generally not be called
 directly.
 }

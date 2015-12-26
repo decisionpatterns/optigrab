@@ -4,17 +4,21 @@
 \alias{opt_fill}
 \title{opt_fill}
 \usage{
-opt_fill(x, opts = commandArgs(), style = getOption("optigrab")$style)
+opt_fill(x, clobber = TRUE, create = FALSE, opts = commandArgs(),
+  style = getOption("optigrab")$style)
 }
 \arguments{
-\item{x}{recursive object to use as a template
+\item{x}{recursive object to use as a template}
 
+\item{clobber}{logical; if \code{TRUE}, existing values of \code{x} will
+       be clobbered by
 \code{opt_get_these} fills a recursive structure with values from the
 command line using \code{\link{opt_get}}.}
 }
 \value{
 (A copy of) \code{x}, with values filled from the command-line.  If
-  \code{x} is a reference structure, this is done by reference.
+  \code{x} is a reference structure, this is done by reference, returning
+  the object invisibly.
 
   The result is returned invisibly.
 }
