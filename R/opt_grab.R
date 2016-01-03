@@ -11,7 +11,7 @@ opt_grab <- function(
    flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
   
   # EXPAND opts
-  opts <- opt_expand(opts=opts)
+  opts <- opt_expand(opts)
   
     
   # IDENTIFY name/alias FLAG(s)

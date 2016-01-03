@@ -8,12 +8,12 @@ flags <- c( "-f", "--flag", "--long-flag" )
 #  Opt Stings that contain neither values or flags
 
 for( f in flags ) {
-  t <- opt_grab( f, opts=optigrab:::str_to_opts() )
+  t <- opt_grab( f, opts=optigrab:::str_to_cl() )
   expect_identical( t, NA )
 }
 
 for( f in flags ) {
-  t <- opt_grab( f, opts=optigrab:::str_to_opts("") )
+  t <- opt_grab( f, opts=optigrab:::str_to_cl("") )
   expect_identical( t, NA )
 }
 
@@ -22,7 +22,7 @@ for( f in flags ) {
 #  Opt Strings that do not contain any flags
 #  These should not produce any values since there are no flags.
 opt_strings <- c( 'v', 'value', 'val1 val2', 'val1 val2 val3' )
-opts = optigrab:::str_to_opts(opt_strings)
+opts = optigrab:::str_to_cl(opt_strings)
 
 for( str in opt_strings ) {
   for ( f in flags ) {
@@ -34,7 +34,7 @@ for( str in opt_strings ) {
 # Flag (BOOLEAN) #
 context("boolean flags")
 opt_string <- c( '-f --flag --long-flag' )
-opts <- optigrab:::str_to_opts(opt_string)
+opts <- optigrab:::str_to_cl(opt_string)
 
 for ( opt in opts  ) {
   # cat( "...", str, "\n")
@@ -45,7 +45,7 @@ for ( opt in opts  ) {
 # Flag Value 
 
 for( str in opt_strings ) {
-  t <- opt_grab( flags, opts=optigrab:::str_to_opts( "-f value") )
+  t <- opt_grab( flags, opts=optigrab:::str_to_cl( "-f value") )
   expect_equal( t, "value" )
 }
 
@@ -56,7 +56,7 @@ opts <- '/opt/r/R-2.13.0-default/lib/R/bin/exec/R --slave --no-restore
          --file=./test.r --args --args --name fred --date 2011-05-17 -b=1 
          --end-date=2011-05-20 -a'
 
-opts <- optigrab:::str_to_opts( opts )
+opts <- optigrab:::str_to_cl( opts )
 
 # [1] "/opt/r/R-2.13.0-default/lib/R/bin/exec/R" "--slave"                                 
 # [3] "--no-restore"                             "--file=./test.r"                         

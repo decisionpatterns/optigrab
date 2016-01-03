@@ -8,9 +8,9 @@
 \usage{
 opt_flags(opts = commandArgs(), style = getOption("optigrab")$style)
 
-is.flag(opts = commandArgs(), style = getOption("optigrab")$style)
+is.flag(x = commandArgs(), style = getOption("optigrab")$style)
 
-which.flag(opts = commandArgs, style = getOption("optigrab")$style)
+which.flag(x = cl(), style = getOption("optigrab")$style)
 }
 \arguments{
 \item{opts}{character; vector of options (Default: \code{commandArgs()})}
@@ -38,11 +38,11 @@ opposed to a value ) by checking against the option style
 }
 \details{
 \code{opt_flags}, \code{is.flag} and \code{which.flag} are internal,
-non-expected functions. It is not expected that these would be called
+non-exported functions. It is not expected that these would be called
 directly.
 
-They are  used to extract and identify which elements of the option vector are
-option flags (as opposed to option values). Options are identified by
+They are  used to extract and identify which elements of the option vector
+are option flags (as opposed to option values). Options are identified by
 \code{getOptions('optigrab')$style$flag_test}. By defailt, \emph{optigrab}
 follows GNU-style command line arguments, i.e. those beginning with
 "--" or "-" and are set at the time of package loading.

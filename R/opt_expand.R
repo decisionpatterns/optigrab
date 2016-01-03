@@ -19,25 +19,26 @@
 #' 
 #' @examples
 #'   optigrab:::opt_expand()
-#'   optigrab:::opt_expand( opts=c( "--foo", "bar") ) 
-#'   
+#'   optigrab:::opt_expand( cl=c( "--foo", "bar") ) 
+#'   optigrab:::opt_expand( cl=c( "--foo", "bar") ) 
 #' @note non-exported 
 
-opt_expand <- function( opts=commandArgs() ) {
+opt_expand <- function( x=cl(), style=getOption('optigrab')$style ) {
   
-  opts <- opt_get_args(opts=opts)
-  opts <- opt_split_args(opts=opts)
+  # if( is.null(cl) ) cl = cl()   # Can't have cl=cl() as function args
+  cl <- cl_args(x=x)
+  args <- opt_split_args(x=cl)
   
   # OPTION BUNDLING:
   # Based on style ... style$unbundle 
   # Expand dash-single-letter arguments.
   #  - splice in everything after -x as the value.
-  #  wh.sd <- grep( "^-[^-]", opts ) 
+  #  wh.sd <- grep( "^-[^-]", cl ) 
   #  for( i in rev(wh.sd) ) {
-  #    p <- sub( "^-[A-z]", "", opts[[i]] ) 
-  #    append( opts, p, i ) 
+  #    p <- sub( "^-[A-z]", "", cl[[i]] ) 
+  #    append( cl, p, i ) 
   #  }
  
-  return(opts) 
+  return(args) 
   
 }

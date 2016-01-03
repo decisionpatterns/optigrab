@@ -12,7 +12,9 @@ gnu_name_to_flag <- function(x) {
 
   return(x)
 
-}   
+}
+
+# gnu_unbundle <- function(x)
 
 #' GNU-style command line options
 #' 

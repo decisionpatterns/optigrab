@@ -2,7 +2,7 @@
 % Please edit documentation in R/opt_split_args.R
 \name{opt_split_args}
 \alias{opt_split_args}
-\title{Split command arguments}
+\title{Split command-line or options}
 \usage{
 opt_split_args(opts = commandArgs())
 }
@@ -12,7 +12,7 @@ opt_split_args(opts = commandArgs())
 \code{opt_split_args} splits and value containing an equal (=) sign}
 }
 \description{
-Splits command argument vector to name, value pairs.
+Splits command argument or options vector to name-value pairs.
 This is an internal function and should generally not be called
 directly.
 }

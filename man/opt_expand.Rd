@@ -2,29 +2,31 @@
 % Please edit documentation in R/opt_expand.R
 \name{opt_expand}
 \alias{opt_expand}
-\title{Expand option vector to split names from values}
+\title{Expand opts to full vector}
 \usage{
-opt_expand(opts = commandArgs())
+opt_expand(x = cl())
 }
 \arguments{
-\item{opts}{character vector of arguments. (Default: commandArgs())
-
+\item{opts}{character vector of arguments. (Default: commandArgs())}
+}
+\description{
+Expand option vector to split names from values. This is an internal function
+and should generally not be called directly.
+}
+\details{
 \code{opt_expand} does two things:
 \itemize{
   \item{"1."}{ removes values preceding and including --args }
   \item{"2."}{ splits and value containing an equal (=) sign }
-}}
 }
-\description{
-This is an internal function and should generally not be called
-directly.
 }
 \note{
 non-exported
 }
 \examples{
 optigrab:::opt_expand()
-  optigrab:::opt_expand( opts=c( "--foo", "bar") )
+  optigrab:::opt_expand( cl=c( "--foo", "bar") )
+  optigrab:::opt_expand( cl=c( "--foo", "bar") )
 }
 \seealso{
 \code{\link{opt_grab}} \cr

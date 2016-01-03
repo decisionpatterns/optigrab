@@ -1,7 +1,10 @@
-* behaviors document
+* Rscript -e fixes and tests
 
-* globbing of path: should be done after 
+* (x) technical specification 
+* implementation specification 
 
+* (?) globbing of target(s): should be done after. No globbing is something to be done by the developers
+  
 * variable name to option name mapping, e.g. --start-date -> start_date
 
 * short options for `opt_fill` 
@@ -9,9 +12,12 @@
 
 * opt_get_all 
 
+
 ## Rename `opt_get` ##
 
-Is `opt_get` really `opt_read`.  It seems that the verb `get` is for retrieving symbols internal to R; `read` is for getting data from outside of R.
+(x) DO NOT DO
+
+Is `opt_get` really `opt_read`.  It seems that the verb `get` is for retrieving symbols internal to R; `read` is for getting data from outside of R.  But command-line variable may be considered part of a special environment.
 
 * change 'opt_get' -> 'opt_read' 
 
@@ -25,7 +31,6 @@ First, the syntax for a global singleton for options is horribly (cf. the `optio
 
 * Number of arguments (n) can use model formula to specify variable range of allowable values opt_get( 'foo', n = 1 ~ 3)
 
- 
 * Consider 'greedy' option, i.e. take all values until the next option flag. This can be set at the option levels as in:
 
     opt_read( ..., n=GREEDY ) 
@@ -35,7 +40,7 @@ First, the syntax for a global singleton for options is horribly (cf. the `optio
 
 ## Coercision 
 
-* Auto-coerce:
+(x) Auto-coerce:
   this is done currently to match the class of `default` opt_grab does not
   accept a default argument
 
@@ -63,8 +68,7 @@ This is probably bad practice
 
 ## `opt_strict` ##
 
-`opt_strict` stops execution if unknown flag is encountered. Like opt_help,
-it must be used after all option processing.
+`opt_strict` stops execution if unknown flag is encountered. Like opt_help, it must be used after all option processing.
 
 
 ## Help 
@@ -82,7 +86,7 @@ it must be used after all option processing.
 * (?) makeActiveBinding( "option.starter" , f, baseenv(baseenv()) ) 
 
   
-## Optiion Bundling
+## Option Bundling
 
 * exact flag vs. specify flag indicators seperately.  If the flag indicators
 are seperate, it allows 

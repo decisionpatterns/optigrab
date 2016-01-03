@@ -16,16 +16,21 @@ This document provides a language-agnostic specification about how application a
 
 An innvocattion of command-line application commonly has this structure: 
 
-    [env] [interpreter] script  [verb] [options] [targets]
-                               <-------- arguments ------->
-    <------------------- command-line -------------------->
+    [env] [interpreter]  script  [verb] [options] [targets]
+    <------------------- command-line --------------------->    
+                                       <------ opts -------> # verb_args? 
+                                <-------- arguments -------> # script_args? 
+                        <--------- exe arguments ----------> # exe_args? r_args?
     
+targets: unbound options at end of the command-line    
 (Components in [bracket] are optional.)    
 
 The sections below, detail and discuss the considerations for parsing each of the components.  
     
     
 ### Environment Variable
+
+Environment variables are handled by the OS.
 
 See (Wikipedia: Environment Variable)[https://en.wikipedia.org/wiki/Environment_variable]
 
@@ -46,16 +51,27 @@ The *script* is the (path to the) program file/code to be run.
 
 ### Arguments
 
-Collectively, [arguments](#Arguments) refers to the [verb}(#Verb), [options](#Options) and [target(s)](#targets).  Each type of argument is handled in its own way.
+Collectively, [arguments](#Arguments) refers to the [verb}(#Verb), [options](#Options) and [target(s)](#targets).  Each type of argument is handled in its own way. 
 
 ####  Verb
 
-A *verb* is a single optional command. (Not all applications use verbs; *git* is one popular application that does). The verb is the first value after the script and before any options. 
+A verb is a single, unbound/unnamed, *optional* argument that generally serves to indicate a function/comand that is invoked. Not all applications use verbs. They are more common in complex, multi-function application; *git* is one popular application that uses verbs. 
 
-The constraint that the verb is the first argument before any options is not universally followed. Some application allow placement of the verb anywhere so long as it is cannot be interpretted as part of an option. This introduces ambiguity with applications that allow the binding of multiple values to a name. This is inherently true of R since R atomistic object are vectors and not scalars.
+The verb is the first value after the script and before any option (flags). 
 
-Typically application allow only one verb. It might be easy to define verbs as all values that occur between the name of the script and the first flag (if any). If there are more than one verbs in the arguments array, the first is taken as the verb and a warning is issued
+The constraint that the verb is the first argument before any options is not universally followed. Some application allow placement of the verb anywhere so long as it is cannot be interpretted as part of an option. This introduces ambiguity within the command line applications when binding of multiple values to a name is allowed. This is inherently true of R since R atomistic object are vectors and not scalars.
 
+It might be easy to define verbs as all values that occur between the name of the script and the first flag (if any). If there are more than one verbs in the arguments array, the first is taken as the verb and a warning is issued
+
+Example                    Output  
+---------------------      ------- 
+--                         `NULL`  
+verb                       `verb`
+--flag ...                 `NULL` 
+verb --flag ...            `verb` 
+verb verb2 ... --flag ...  `verb` (with multiple verb warning)
+
+The `verb` is an example of an unbound argument. 
 
 #### Options
 
@@ -111,7 +127,7 @@ In this example, it is unclear whether `my-file-1` and `my-file-2` should be ass
 Parsing command-line arguments is a bit more tricky than it may appear. Parsing involves severals steps:
 
 1. Retrieve commandArgs()
-2. Pre-process command-line according to the style
+2. Pre-process command-line according to the style -- produce fully expaned cl according to style
 3. Parsing command-line: script [verb] [options] [targets]
 ** Identify script (this_file) 
 ** Identify verb (if exists)  
@@ -120,6 +136,20 @@ Parsing command-line arguments is a bit more tricky than it may appear. Parsing 
 *** Define variabels / assign names and values
 ** Disambuigate target(s) from options
 
+
+## Mising Elements
+
+This describes the behavior of *args* when elements are missing
+
+verb  options  target  Descriptions
+----  -------  ------  ------------
+ T       F       ?     opts -> zero length vector; 
+ F       T       F     normal opts vector; target maybe ambiguous
+ ?       F       T     same as TF?
+ 
+ T       T       F
+   
+ 
 
 ## opt_fill Filling recursive structures
 

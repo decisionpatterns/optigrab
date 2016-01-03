@@ -1,9 +1,8 @@
-#' Get verb from the command line
+#' Command line verb
 #' 
-#' Return the verb for the application. The verb is the first argument that is 
-#' not part of an option. 
+#' Return the command line verb.  
 #' 
-#' @param opts character; Vector from which to parse options 
+#' @param cl character; Vector from which to parse verb 
 #'        (default: \code{commandArgs()} )
 #'
 #' @details
@@ -19,6 +18,9 @@
 #' \code{opt_get_verb} after all \code{opt_get} calls.  For most simple 
 #' applications, it likely doesn't matter.  
 #' 
+#' A verb cannot have the form of an option flag, i.e. 
+#' \code{is.flag(verb) == FALSE}. 
+#' 
 #' @section Assumptions:
 #' 
 #' \code{opt_get_verb} assumes any flags occurring before the verb have 
@@ -30,13 +32,80 @@
 #' \code{NA} if a verb cannot be identified.
 #' 
 #' @seealso 
+#'   Technical Specification#verb /cr
 #'   \code{\link{opt_get}} \cr
-#'   \code{\link{base}{commandArgs}}
+#'   \code{\link{base}{commandArgs}} /cr
 #' 
 #' @examples
-#'   opt_get_verb()
+#'   verb()
+#'    
+#'   str_to_cl("R --args verb1 --foo " )  %>% verb()
+#'   c("R",  "--args", "verb1", "--foo" )  %>% verb()
 #'   
 #' @export
+
+cl_verb <- function(...) verb(...)
+
+verb <- function(x) UseMethod('verb') 
+
+verb.NULL <- function(x) verb( cl() )
+
+verb.cl <- function(x) { 
+  args <- cl_args(x)
+  verb(args)
+}
+
+
+# verb.args <- function(x) {}
+
+
+verb.character <- function(x) {
+  verb( cl(x) )
+}  
+
+
+verb.args <- function(x) { 
+   
+   if( length(x) == 0 )   return(NULL)  # Empty array
+  
+   if( is.flag(x)[[1]] )  return(NULL)  # Not first  
+   
+   if( length(x) == 1 && ! is.flag(x) ) return( x[[1]] ) #verb only
+
+   if( sum(is.flag(x)) == 0 ) {         # No bound options -> return first unbound options
+     return( x[[1]] ) 
+   } 
+   if( length(ff) == 0 ) return( x[[1]] )
+   
+   if( first.flag(x) > 2 )
+     warning( "More than one verb detected: ", paste( x[2:first.flag-1], collapse=", ") )
+   
+   verb <- x[[1]]
+   verb <- command_line(verb)
+   verb <- append_class(verb,"verb")
+   return(verb)
+   
+}
+
+
+# verbs <- function(x)
+# opt_verbs <- function( opts=commandArgs(), style=getOption('optigrab')$style ) {
+#   
+#   opts <- opt
+#   
+#   
+# }
+
+
+ 
+
+# opt_get_verbs <- function( cl=cl() ) { 
+#   
+#   opts <- cl(cl=cl)
+# 
+# }
+
+# deprecate 
 
 opt_get_verb <- function( opts=commandArgs() ) {
   
