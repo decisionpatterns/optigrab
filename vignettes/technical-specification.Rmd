@@ -31,15 +31,20 @@ The sections below, detail and discuss the considerations for parsing each of th
 
 ### Conventions
 
-Comparison to *docopt*: 
+Comparison to [docopt](https://cran.r-project.org/package=docopt): 
 
 Some elements of the command-line have been given different names in order to remove ambiguity:
 
 optigrab  docopt      Comments
 --------  ----------  -------------
-script    my_program  called 'script' to emphasize that its by run by a separate interpreter that might be called the program. Have both(?)
-verb      command     called 'verb' to clarify ambiguity of "command"; also specifies the type of word used -- sometimes this is called "sub-command"
-targets   arguments   called 'targets' since, technically verb, options and targets are all arguments.
+script    my_program  called 'script' to emphasize that its by run by a 
+                      separate interpreter that might be called the program. 
+                      Have both(?)
+verb      command     called 'verb' to clarify ambiguity of "command"; also
+                      specifies the type of word used -- sometimes this is 
+                      called "sub-command"
+targets   arguments   called 'targets' since, technically verb, options and   
+                      targets are all arguments.
 
     
 ### Environment Variable
