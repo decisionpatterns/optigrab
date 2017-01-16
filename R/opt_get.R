@@ -166,8 +166,6 @@ opt_get <- function(
   op <- getOption('optigrab')
   # op$options[[]]
   
-
-  
   for( f in flag ) 
     op$options[[f]] <- list( 
         name     = name

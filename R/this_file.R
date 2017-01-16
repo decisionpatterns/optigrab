@@ -15,11 +15,9 @@
 #'  
 #' \code{this_file} returns the name or path of the executing file whehter 
 #' the file was invoked from \strong{Rscript} or in an interactive session. 
-#' Further it \code{source} 
-#' 
-#' Argument \code{local} controls whether it is the current file (\code{TRUE}) 
-#' or the orignal, top-level file.
-#' 
+#' Further, if the file is run using \code{source}, the name of the argument is
+#' returned. Argument \code{local} controls whether it is the current file 
+#' (\code{TRUE}) or the orignal, top-level file is returned
 #' 
 #' @references
 #'   \url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
@@ -29,7 +27,6 @@
 #' 
 #' @seealso 
 #'   \code{\link{cl}} \cr
-#'   \code{\link{opt_grab}} \cr
 #'   \code{\link{base}{commandArgs}}
 #' 
 #' @examples
@@ -70,9 +67,6 @@ script <- function(
     return(current_script)  
   
 }
-
-#' @rdname script 
-this_file <- script
 
 #' @rdname script 
 this_file <- script

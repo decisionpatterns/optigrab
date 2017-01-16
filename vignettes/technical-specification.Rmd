@@ -7,6 +7,7 @@ vignette: >
   %\VignetteIndexEntry{Command Line Technical Specifications}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+
 ---
 
 This document provides a language-agnostic specification about how application are invoked from an interactive terminal or a text-based/non-gui/batch system. It is intend for developers who wish to understand details and considerations about command-line parsing. It is unlikely to be of much value to end-users looking to add command-line parsing to their own applications.  For the implementation in *optigrab*, please see the accompanying *Using Optigrab* document. 
@@ -18,7 +19,7 @@ An innvocattion of command-line application commonly has this structure:
 
     [env] [interpreter]  script  [verb] [options] [targets]
     <------------------- command-line --------------------->    
-                                       <------ opts -------> # verb_args? 
+                                       <-- command opts ---> # verb_args? (requires verb)
                                 <-------- arguments -------> # script_args? 
                         <--------- exe arguments ----------> # exe_args? r_args?
     
@@ -26,13 +27,26 @@ targets: unbound options at end of the command-line
 (Components in [bracket] are optional.)    
 
 The sections below, detail and discuss the considerations for parsing each of the components.  
-    
+
+
+### Conventions
+
+Comparison to *docopt*: 
+
+Some elements of the command-line have been given different names in order to remove ambiguity:
+
+optigrab  docopt      Comments
+--------  ----------  -------------
+script    my_program  called 'script' to emphasize that its by run by a separate interpreter that might be called the program. Have both(?)
+verb      command     called 'verb' to clarify ambiguity of "command"; also specifies the type of word used -- sometimes this is called "sub-command"
+targets   arguments   called 'targets' since, technically verb, options and targets are all arguments.
+
     
 ### Environment Variable
 
 Environment variables are handled by the OS.
 
-See (Wikipedia: Environment Variable)[https://en.wikipedia.org/wiki/Environment_variable]
+See [Wikipedia: Environment Variable](https://en.wikipedia.org/wiki/Environment_variable)
 
 Things to note about environment variables: 
 - inherited by child processed
@@ -46,7 +60,7 @@ The *interpreter* is the application that executes the *script*. The interpreter
 
 ### Script
 
-The *script* is the (path to the) program file/code to be run. 
+The *script* is the (path to the) program file/code to be run. In docopt this is called `my_program`.  
 
 
 ### Arguments
@@ -107,7 +121,40 @@ command-line    script.r --foo bar   referes to thte complete command-line: scri
     
    value        bar                  the value of the variable
     
-   
+    
+* bundled stacked options can only be logical; cannot contain values. 
+
+WHat is the implications of having the arguments define the types and values...
+* bundled options are taken as from the command-line. Should unbundling set the default values. 
+* Can the last option contain a value -bae 10
+* The last option 
+
+Cases:
+
+#  verb  options  targets  Result
+-  ----  -------  -------  ------
+1   T     T        T       
+2   T     T        F       verb; options
+3   T     F        T       verb; targets (overlap) ve
+4   F     T        T       options; targets
+5   T     F        F       sim. to 3,7
+6   F     T        F       straight-forward
+7   F     F        T       zim. to 3,5
+8   F     F        F       
+
+
+* When options and targers are both present (1,4) it may be ambiguous where options end and targets begin. This 
+  requires specification of n for the final option. 
+  - Define/use all options before targets. 
+  
+* When there are no options (3,5,7,8); confusion between verb and targets.  
+  - Must specify that a verb is required. 
+  - If unspecified and verb occurs -> warn
+  - Multiple verbs warnset verb and warn. Mul
+ 
+
+
+
 
 #### Targets
 
@@ -194,7 +241,12 @@ clobber   & ! create : only clobber values
 
 ## References
 
-(Wikipedia: Environment Variable)[https://en.wikipedia.org/wiki/Environment_variable]
+- (docopt)[docopt.org]
 
+-(Wikipedia: Environment Variable)[https://en.wikipedia.org/wiki/Environment_variable]
 
+-[Differences between Parameters and Arguments](https://en.wikipedia.org/wiki/Parameter_%28computer_programming%29#Parameters_and_arguments)
+  - code/compile time -> parameters
+  - run time -> arguments (values supplied)
+  
 ## Appendix

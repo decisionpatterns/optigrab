@@ -1,7 +1,7 @@
 #' Optigrab  
 #' 
 #' @description 
-#' The optigrab packages providesa function \code{opt_grab} to retrieve 
+#' The optigrab packages provides function \code{opt_get} to retrieve 
 #' options/arguments from the command line.  It is useful for running R in 
 #' batch mode with \code{R CMD BATCH ...} or \code{Rscript}.  
 #' 

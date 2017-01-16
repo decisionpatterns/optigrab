@@ -1,10 +1,10 @@
-' Command line
+#' Command line
 #' 
 #' Vector of the full command line as seen by R
 #' 
 #' @param x vector of command line arguments. (Default: \code{commandArgs()})
 #' 
-#' \code{cl} and \code{cl_cl} return the full, unprocessed command-line vector. 
+#' \code{cl} return the full, unprocessed command-line vector. 
 #' There is no differnce from \code{commandArgs} except for allowing for an 
 #' overwrite of \code{commandArgs}; this is used mainly for testing purposes. 
 #'  
@@ -24,7 +24,7 @@ cl <- function(x, ...) UseMethod('cl')
 #' @export
 cl.NULL <- function(x) cl(commandArgs())
 
-# cl.default(x) <- funct
+
 
 #' @export
 cl.character <- function(x, ...) { 
@@ -40,7 +40,7 @@ cl.character <- function(x, ...) {
 
 is.cl <- function(x) inherits(x,'cl')
 
-# cl.cl <- function(x) x 
+
 
 
 

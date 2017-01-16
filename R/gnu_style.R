@@ -1,5 +1,8 @@
 
 # gnu_flag_test <- function(x) grepl( '^-(-\\S+|\\S)$', x )
+
+#
+# Options flags must begin with
 gnu_flag_test <- 
   function(x) grepl( '^-([[:upper:][:lower:]]|-[[:upper:][:lower:]]\\S+)$', x )
 
@@ -13,8 +16,42 @@ gnu_name_to_flag <- function(x) {
   return(x)
 
 }
+#' @examples 
+#'   x <- c("-abc","--dwf","-xyz") 
+#'   x %>% gnu_stack_test
+gnu_stack_test <- function(x) 
+  stri_detect_regex( x, "^-[A-z]+$" )
 
-# gnu_unbundle <- function(x)
+#' @details 
+#' 
+#'   options flags: -[A-z][A-z]
+#'   -abc -> abc -> a b c -> -a -b -c
+#'   -a10 -> -a 10 unsupported
+#'   
+#' 
+#' @examples
+#'   x <- c("-abc","--dwf","-xy") 
+#'   x %>% gnu_unstack  # -a -b 
+#'   "-abc=7" %>% gnu_stack_test   # FALSE
+
+gnu_unbundle <- function(x) {
+  
+  wh <- which( gnu_stack_test(x) )
+  
+  for( i in rev(wh) ) {
+    new_x <- x[[i]] %>% 
+      stri_replace_all_regex("^-", ""  ) %>% 
+      strsplit("") %>% unlist %>% paste0("-", . )
+    
+    x <- append( x, new_x, after=i )  # splice in 
+    
+    x <- x[-i]
+  } 
+  x
+}
+
+# gnu_unbundle <- gnu_unstack 
+
 
 #' GNU-style command line options
 #' 
@@ -47,4 +84,5 @@ gnu_name_to_flag <- function(x) {
       flag_test        = gnu_flag_test
     , flag_to_name     = gnu_flag_to_name 
     , name_to_flag     = gnu_name_to_flag
+    , unbundle         = gnu_unbundle
   )

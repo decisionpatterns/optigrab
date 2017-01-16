@@ -8,7 +8,7 @@ opt_grab <- function(
   opts        = commandArgs()
 ) {  
 
-   flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
+  flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
   
   # EXPAND opts
   opts <- opt_expand(opts)

@@ -1,0 +1,127 @@
+---
+title: "Command Line R Implementation"
+author: "Decision Patterns"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Command Line R Implementation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+This is a companion document to the Command Line Specification detailing how command line arguments are handled by the *optigrab* package.      
+
+## Comparison to docopt
+
+*optigrab* implements one usage pattern
+
+    my_program [command] [--options] [argument]...
+
+* [argument]... takes precedent over [command]; if no options exists, [command] will not be filled. (Or should it be also filled with the first argument)
+
+* Accessing arguments after options is recommended.  
+
+* **optigrab** functions allow specification of the command-line, thus making debugging and testing easier. 
+
+* (un)stack is confused with utils::(un)stack 
+
+* *docopts* goal is to provide a unified command-line across different languages; *optigrab* additionally tries to unify that across different styles; GNU, Java and Microsoft. 
+
+### Ambiguities 
+
+There are a number of ambiguities in how arguments are interpreted.
+
+--flag value  or --flag argument : could be a flag with a value --> docopt assumes the later; 
+* optigrab does not allow unbound options within options; this is only a concern with the last option; optigrab -- optigrab intelligently guess whether the flag is one or more arguments
+
+    --flag=value # GOOD
+    --flag value # GOOD
+    --flag unbound-argument --flag2 # BAD: WARNS! User is deliberately trying to be obtuse.
+
+
+Bundled short options or one and value.
+-aval =>  -a value , or -a value 
+
+* optigrab requires whitespace or = to separate the options to remove ambiguity, `-aval` is assumed to be `-a -v -a -l` 
+
+
+## Conventions 
+
+Exported arguments are 
+ 
+
+
+# Command Line Variants 
+
+One challenge with R is that the command line vector is inconsistent; sometimes not accessible at all 
+
+   print( commandArgs() )   
+
+## Rstudio 
+
+In Rstudio, commandArgs is not directly accessible. This makes it problematic to test scripts that should run under Rscript.
+
+Refernces:
+   
+- [Rstudio Support](https://support.rstudio.com/hc/en-us/community/posts/200659066-Accessing-command-line-options-in-RStudio)   
+
+- [Stackoverflow](https://stackoverflow.com/questions/14980322/is-it-possible-to-specify-command-line-parameters-to-r-script-in-rstudio/25148513#25148513)   
+
+
+## R 
+
+    Usage: R [options] [< infile] [> outfile]
+    or: R CMD command [arguments]
+     
+    -f FILE, --file=FILE  Take input from 'FILE'
+    -e EXPR               Execute 'EXPR' and exit
+
+
+The R interpretter (`R`) can be used to execute commands directly using `-e` command line option to provide a command directly or use `-f` to specify the file. ( It is not possible to use both `-e` and `-f` together. ) When using either of these, the command line appears as entered.    
+
+In general R should not be used for option processing as any arguments on the command-line since there is nothing that indicates 
+
+
+## R CMD BATCH 
+
+... 
+
+
+## Rscript 
+
+    Usage: /path/to/Rscript [--options] [-e expr [-e expr2 ...] | file] [args]
+
+`Rscript` can execute a file or a command directly. Any expression takes precident over a file. All script arguments / options occur after (the first) `--args` element of `commandArgs()`
+
+
+
+
+
+
+
+## Rscript
+
+Rscript has two methods one using 
+
+   
+   
+Command line                       CommandArgs()            
+---------------------------------  ----------------------------------------
+rstudio file ...                   RStudio --interactive
+R -e '...'                         (Does not support command line options)
+                                   Warns: "unknown options"
+R -f file                                   
+Rscript -e 'cat( commandArgs() )'  R --slave --no-restore -e ...
+Rscript file ...                   R [exe_args] --file=file --args ...
+littler
+
+
+# R 
+
+* cl_list 
+  $ verb 
+  $ options
+  $ targets / postiitonal arguments 
+
+Amiguous the delineations between options and targets/positional arguments ... unless the number of   
+  

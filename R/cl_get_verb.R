@@ -75,6 +75,8 @@ verb.args <- function(x) {
    if( sum(is.flag(x)) == 0 ) {         # No bound options -> return first unbound options
      return( x[[1]] ) 
    } 
+  
+   ff = first.flag(x)
    if( length(ff) == 0 ) return( x[[1]] )
    
    if( first.flag(x) > 2 )

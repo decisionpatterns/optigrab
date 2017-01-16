@@ -128,17 +128,15 @@ Command-line options are often referred to as both 'options' and 'arguments'. Fo
 
 ### Alternatives ###
 
-There are already at least three command-line option ("CLOs") processing 
+There are already at least five command-line option ("CLOs") processing 
 solutions for R:
 
-- *commandArgs()* from the base package returns the command line arguments from
-when the R program was invoked. It can be used as a rudimentary method for 
-option retrieval but lacks the features of a full-featured command-line parsing 
-package 
+- [docopt](https://github.com/docopt/docopt.R) is a popular alternative. *docopt* requires a specification be written -- though the specification is the documentation for the command line program. It is highly configurable, follows a similar paradigm as *optigrab*.   
+
+- *commandArgs()* from the base package returns the command line arguments from when the R program was invoked. It can be used as a rudimentary method for option retrieval but lacks the features of a full-featured command-line parsing package 
 
 - The *optparse* package follows closely Python's optparse semantics 
-and syntax. It provides a `getopt` that emulates C-like behaviors. Both of these
-are designed for languages signigicantly different from R. 
+and syntax. It provides a `getopt` that emulates C-like behaviors. Both of these are designed for languages signigicantly different from R. 
 
 - The *argparse* package has lots of configurations; if you like writting configuration or need the extra features, this package is for you.
 

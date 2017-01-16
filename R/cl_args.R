@@ -7,10 +7,10 @@
 #'
 #' @details
 #' 
-#' Arguments to a program/script are those following the \code{--args} argument,
-#' i.e. those following (the first) \code{--args} flag. This is identical to
-#' what is done by \code{commandArgs( trailingOnly = TRUE )}.  The addition of 
-#' argument \code{x} allows modifying the \code{commandArgs} and is primarily 
+#' Arguments to a Rscript are those following the (first) \code{--args} 
+#' argument. This is identical to what is done by 
+#' \code{commandArgs( trailingOnly = TRUE )}. The addition of argument 
+#' \code{x} allows modifying the \code{commandArgs} and is primarily 
 #' useful for testing.
 #' 
 #' @return 
@@ -25,7 +25,7 @@
 #' 
 #' @examples
 #'   cl_args()
-#'   cl_args( x=c( "Rscript", "-a", "-b", "--args", "verb", "-c", 3, "-d" ) )  # "-c" "3" "-d"
+#'   cl_args( x=c( "Rscript", "-a", "-b", "--args", "verb", "-c", 3, "-d" ) )  # 
 #'   cl_args( x=c( "-a", "-b", "--args", "-c", "--args", "-d" ) )  # "-c" "-d"
 #'   cl_args( x=c( "--args", "some_verb", "--foo", "bar") )
 #'   

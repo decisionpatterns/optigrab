@@ -21,13 +21,14 @@
 #'   optigrab:::opt_expand()
 #'   optigrab:::opt_expand( cl=c( "--foo", "bar") ) 
 #'   optigrab:::opt_expand( cl=c( "--foo", "bar") ) 
+#'   
 #' @note non-exported 
 
 opt_expand <- function( x=cl(), style=getOption('optigrab')$style ) {
   
   # if( is.null(cl) ) cl = cl()   # Can't have cl=cl() as function args
   cl <- cl_args(x=x)
-  args <- opt_split_args(x=cl)
+  args <- opt_split_args(x=cl)    # split on equal sign.
   
   # OPTION BUNDLING:
   # Based on style ... style$unbundle 

@@ -73,3 +73,9 @@ first.flag <- function(x) {
   wh <- which.flag(x)
   if( length(wh) == 0 ) return(NULL) else return( wh[[1]] )
 }
+
+#' @rdname opt_flags
+last.flag <- function(x) { 
+  wh <- which.flag(x)
+  if( length(wh) == 0 ) return(NULL) else return( wh[[ length(wh) ]] )
+}

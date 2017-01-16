@@ -8,8 +8,9 @@ context('opt_expand')
 opts <- optigrab:::str_to_cl("")
 
 t <- optigrab:::opt_expand(opts)
-t  %>% expect_is("character")
-t  %>% length  %>% expect_equal(1)
+t %>% expect_is("command_line")
+t %>% is.character %>% expect_true()
+t %>% length  %>% expect_equal(0)
 
 
 # Value
