@@ -2,12 +2,9 @@
 % Please edit documentation in R/command_line.R
 \name{command_line}
 \alias{command_line}
-\alias{command_line.default}
 \title{Command line}
 \usage{
-command_line(x, ...)
-
-\method{command_line}{default}(x)
+command_line(x = command_args())
 }
 \arguments{
 \item{x}{vector of command line arguments usually \code{commandArgs()}}

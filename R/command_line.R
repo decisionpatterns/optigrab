@@ -26,38 +26,41 @@
 #'   
 #' @export
 
-
-#' @export
-command_line <- function(x, ...) UseMethod('command_line')
-
-
-#' @rdname command_line
-#' @export 
-
-command_line.default <- function(x) command_line( command_args() )
-
-
-#' @rdname commmand_line
-#' @export 
-command_line.character <- function( x = command_args() ) { 
+command_line <- function( x = command_args() ) { 
   x <- as.character(x)
-  if( is.command_line(x) ) return(x)
-  # x <- append_class(x, "command_line")
   x
 }
 
-
-#' @rdname cl
-is.command_line <- function(x) inherits(x,'command_line')
-
-
-#' @rdname cl
-print.command_line <- function(x, ...) {
-
-  # cat("Command line ", attr(x, "command_part"), ":\n", sep="" )
-  # cat("Command line (", class(x)[[1]], "):\n", sep="" )
-  cat( "Command Line:\n")
-  print(as.character(x))
-  # cat(x, sep = ", ")
-  
-}
+#' command_line <- function(x, ...) UseMethod('command_line')
+#' 
+#' 
+#' #' @rdname command_line
+#' #' @export 
+#' 
+#' command_line.default <- function(x) command_line( command_args() )
+#' 
+#' 
+#' #' @rdname commmand_line
+#' #' @export 
+#' command_line.character <- function( x = command_args() ) { 
+#'   x <- as.character(x)
+#'   if( is.command_line(x) ) return(x)
+#'   # x <- append_class(x, "command_line")
+#'   x
+#' }
+#' 
+#' 
+#' #' @rdname cl
+#' is.command_line <- function(x) inherits(x,'command_line')
+#' 
+#' 
+#' #' @rdname cl
+#' print.command_line <- function(x, ...) {
+#' 
+#'   # cat("Command line ", attr(x, "command_part"), ":\n", sep="" )
+#'   # cat("Command line (", class(x)[[1]], "):\n", sep="" )
+#'   cat( "Command Line:\n")
+#'   print(as.character(x))
+#'   # cat(x, sep = ", ")
+#'   
+#' }

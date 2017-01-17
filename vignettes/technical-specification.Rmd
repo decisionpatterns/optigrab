@@ -39,10 +39,30 @@ pertain to options on the command line.
     str <---> vector <---> parsed vector <---> names/values
 
 
-## Toolkit of pipeline processing 
+## CL Parsing Toolkit of pipeline processing 
 
-command_args() %>% script_opts %>% opt_expand() %>% opt_grab("--foo")
+This is designed to be a parsing tool kit
 
+    x %>% command_line() %>% script_opts %>% opt_expand() %>% opt_grab("--flag")
+
+### Parsing Functions
+
+opt_get
+
+
+
+### Functions for getting parts of the command line
+
+exe_name
+exe_opts
+
+script_name
+script_opts
+
+verb 
+target
+
+flags
 
 The command line consists of several components.
 

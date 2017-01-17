@@ -7,15 +7,15 @@
 #' @details 
 #' 
 #' \code{flag} values must be fully specified, so use '--flag' or '-f' instead 
-#' of 'flag'
+#' of 'flag'. Also, \code{n} must be specified for logical flags.
 #' 
 #' @return character; element identified by flag
 #' 
 #' @examples 
-#'   opts <- "R --args --foo bar --baz quux" %>% str_to_cl 
+#'   opts <- "R --args --foo bar --yes --baz quux" %>% str_to_cl 
 #'   
 #'   opts %>% opt_grab( c("-f","--foo") )
-#'   
+#'   opts %>% opt_grab( "--yes" )
 #'   
 #' @rdname opt_get
 #' @export

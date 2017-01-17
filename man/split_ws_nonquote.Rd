@@ -10,7 +10,7 @@ split_ws_nonquote(x)
   "" \%>\% split_ws_nonquote()             # ""
   "foo" \%>\% split_ws_nonquote()          # "foo"
   "foo bar" \%>\% split_ws_nonquote        # "foo" "bar"
-   "'foo bar' baz" \%>\% split_ws_nonquote # "foo bar" "baz"   
-                    
+   "'foo bar' baz" \%>\% split_ws_nonquote # "foo bar" "baz"
+
 }
 

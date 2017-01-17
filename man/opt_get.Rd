@@ -82,7 +82,7 @@ should use \code{opt_get} instead.
 (attempts a) coercion of the return values to the correct class.
 
 \code{flag} values must be fully specified, so use '--flag' or '-f' instead 
-of 'flag'
+of 'flag'. Also, \code{n} must be specified for logical flags.
 }
 \section{Selecting \code{n}}{
 
@@ -145,10 +145,10 @@ number of value(s) an error is raised.
     c('foo', 'f') \%>\% opt_get('bar')
   }
   
-  opts <- "R --args --foo bar --baz quux" \%>\% str_to_cl 
+  opts <- "R --args --foo bar --yes --baz quux" \%>\% str_to_cl 
   
   opts \%>\% opt_grab( c("-f","--foo") )
-  
+  opts \%>\% opt_grab( "--yes" )
   
 }
 \references{

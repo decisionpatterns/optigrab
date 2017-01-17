@@ -26,7 +26,7 @@ non-exported
 \examples{
   opt_expand()
   optigrab:::opt_expand( cl=c( "--foo", "bar") ) 
-  optigrab:::opt_expand( cl=c( "--foo", "bar") ) 
+  optigrab:::opt_expand( cl=c( "--foo=bar") ) 
   
 }
 \seealso{
