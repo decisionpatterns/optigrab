@@ -23,9 +23,9 @@
 
 opt_get_path <- function( opts=commandArgs(), full.name = FALSE ) {
   
-  warning( "'opt_get_path' is deprecated. Use 'this_file' instead.")
+  warning( "'opt_get_path' is deprecated. Use 'script' instead.")
   return( this_file( opts, full.path = full.name) )
-  opts <- opt_split_args(opts)
+  opts <- split_on_eq(opts)
   
   wh.args <- grep( "--file", opts )[1]  # i.e. first occurence of --file
   

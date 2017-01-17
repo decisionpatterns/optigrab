@@ -15,13 +15,105 @@ This document provides a language-agnostic specification about how application a
 
 ## Anatomy of the command-line:
 
-An innvocattion of command-line application commonly has this structure: 
+An command-line application commonly has this structure:
 
-    [env] [interpreter]  script  [verb] [options] [targets]
-    <------------------- command-line --------------------->    
-                                       <-- command opts ---> # verb_args? (requires verb)
-                                <-------- arguments -------> # script_args? 
-                        <--------- exe arguments ----------> # exe_args? r_args?
+    [env] exe [exe_opts]    [script]  [verb] [options] [targets]
+      
+    <------------------- command_line --------------------->  # commandArgs, command_args
+     
+          exe  <-exe_opts >  
+          <--- exe_args --->   
+                          
+                             script  <---- script_opts ---->
+                             <---------- script_args ------>
+                             
+                                       verb <---- verb_opts ---> # verb_args generally not differentiated from 
+
+
+## Representations: Command Line Strings vs command_args vs opts 
+
+The command line string is a string that expresses the entire command line. 
+command_args or commandArgs is that string parsed for the R interpreter. Opts 
+pertain to options on the command line.
+
+    str <---> vector <---> parsed vector <---> names/values
+
+
+## Toolkit of pipeline processing 
+
+command_args() %>% script_opts %>% opt_expand() %>% opt_grab("--foo")
+
+
+The command line consists of several components.
+
+#                                <-------- arguments -------> # script_args? 
+#                        <--------- exe arguments ----------> # exe_args? r_args?
+
+## Functions 
+
+[what]_[item]_[value]
+
+Examples:
+ - script_opts_parsed : get script options parsed.
+ - cl_opts_str      
+ - script_opts_string
+ 
+items: 
+ - command_line 
+ - exe|interpreter
+ - script_line
+ -  script
+ - verb|command
+ - target 
+ - unbound: values not associated with a flag (values)
+ - bound: flags and value, options excluding 
+ 
+ 
+items: 
+ - str(ing): character string the item expressed as a string, collapse raw 
+     vector together
+ - raw: vector as seen by commandArgs
+ - list: names_values
+   - as.list
+ - opts: opt(ion)s
+ - parsed
+ - as.command
+ 
+ 
+Option 1: Series of functions...
+ - scripts_opts_list : name-value list of script options
+ - opt_grab %>% opt_parse  
+
+Option 2: objects and methods
+ - command_line %>% opts %>% as.list
+ - command_line %>% as.vector %>% parse 
+ - script %>% as.list
+ - script_line
+ 
+  
+
+as.string 
+
+script
+
+others:
+ - interpreter, exe
+ - verb
+ - targets
+ - flags 
+ - name_values
+
+
+
+cl_:
+cl_string:
+cl_args:
+cl_opts:
+
+script_string:
+script_opts
+script_
+    
     
 targets: unbound options at end of the command-line    
 (Components in [bracket] are optional.)    
@@ -54,23 +146,31 @@ Environment variables are handled by the OS.
 See [Wikipedia: Environment Variable](https://en.wikipedia.org/wiki/Environment_variable)
 
 Things to note about environment variables: 
-- inherited by child processed
+- inherited by child processes
 - implemented by the OS
                 
                          
 ### Intepreter
 
-The *interpreter* is the application that executes the *script*. The interpreter may be specified on the command line or There are numerous ways the interpreter may appear: `Rscript`, `R CMD BATCH`, r (little-r). On *nix systems the *interpreter* is optional and may be specified in the script through the #! (SHEBANG) syntax.
+The *interpreter* is the application that executes the *script*. The interpreter
+may be specified on the command line or There are numerous ways the interpreter 
+may appear: `Rscript`, `R CMD BATCH`, `r` (little-r). On linux systems the 
+*interpreter* is optional on the command line and may be specified in the script
+through the #! (SHEBANG) syntax.
 
 
 ### Script
 
-The *script* is the (path to the) program file/code to be run. In docopt this is called `my_program`.  
+The *script* is the (path to the) program file/code to be run. In *docopt* this 
+is called `my_program`.  
 
 
 ### Arguments
 
-Collectively, [arguments](#Arguments) refers to the [verb}(#Verb), [options](#Options) and [target(s)](#targets).  Each type of argument is handled in its own way. 
+Collectively, [arguments](#Arguments) refers to the [verb](#Verb), 
+[options](#Options) and [target(s)](#targets).  Each type of argument is handled
+in its own way. 
+
 
 ####  Verb
 

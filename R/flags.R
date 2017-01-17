@@ -8,7 +8,7 @@
 #' 
 #' \code{which.flag} determines whether the options is a flag.
 #'
-#' @param opts character; vector of options (Default: \code{commandArgs()})
+#' @param opts character; vector of options (Default: \code{command_args()})
 #' 
 #' @param style list; list of functions that define the parsing style. 
 #' 
@@ -40,41 +40,36 @@
 #'   
 #'   optigrab:::is.flag(opts) 
 #'   optigrab:::which.flag(opts)
-#'   optigrab:::opt_flags(opts)
+#'   optigrab:::flags(opts)
 #'   
-#' @rdname opt_flags
+#' @rdname flags
 
-opt_flags <- function( opts=commandArgs(), style=getOption('optigrab')$style ) { 
-  opts <- opt_expand(opts) 
+flags <- function( x=command_args(), style=getOption('optigrab')$style ) { 
+  opts <- opt_expand(x) 
   return( opts[ is.flag(opts, style) ] )
 } 
 
-  # cl_flags <- function( cl=cl() ) { 
-  #   
-  #     
-  #   
-  # }
 
-#' @rdname opt_flags
+#' @rdname flags
 #' @return logical 
-is.flag <- function( x=commandArgs(), style=getOption("optigrab")$style ) {
+is.flag <- function( x=command_args(), style=getOption("optigrab")$style ) {
   return( style$flag_test(x) )
 }
 
 
-#' @rdname opt_flags
+#' @rdname flags
 #' @return numeric
 
 which.flag <-function( x=cl(), style=getOption("optigrab")$style ) 
   which( is.flag( x, style ) )
 
-#' @rdname opt_flags
+#' @rdname flags
 first.flag <- function(x) {
   wh <- which.flag(x)
   if( length(wh) == 0 ) return(NULL) else return( wh[[1]] )
 }
 
-#' @rdname opt_flags
+#' @rdname flags
 last.flag <- function(x) { 
   wh <- which.flag(x)
   if( length(wh) == 0 ) return(NULL) else return( wh[[ length(wh) ]] )

@@ -34,11 +34,12 @@
 #' 
 #' @export
 
-script <- function( 
+this_file <- function( 
     cl        = cl()
   , local     = TRUE
   , full.path = TRUE 
 ) { 
+  
   # browser()
   current_script <- 
     if(local)
@@ -48,7 +49,7 @@ script <- function(
   
   if( is.null(current_script) ) {   # No source, RScript?
 
-    cl <- opt_split_args(cl)   
+    cl <- split_on_eq(cl)   
     wh.args <- grep( "--file", cl )[1]  # i.e. first occurence of --filele
     
     if ( is.na(wh.args) || (wh.args == length(cl)) ) return(NA)
@@ -68,8 +69,6 @@ script <- function(
   
 }
 
-#' @rdname script 
-this_file <- script
 
-#' @rdname script 
-this_program <- script
+#' @rdname this_file 
+this_program <- this_file

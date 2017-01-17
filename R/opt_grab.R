@@ -1,17 +1,36 @@
+#' Gets the value associated with a flag 
+#' 
+#' @param x character; 
+#' @param flag character; one or more aliases that indicate a value
+#' @param n number of values 
+#' 
+#' @details 
+#' 
+#' \code{flag} values must be fully specified, so use '--flag' or '-f' instead 
+#' of 'flag'
+#' 
+#' @return character; element identified by flag
+#' 
+#' @examples 
+#'   opts <- "R --args --foo bar --baz quux" %>% str_to_cl 
+#'   
+#'   opts %>% opt_grab( c("-f","--foo") )
+#'   
+#'   
 #' @rdname opt_get
 #' @export
 
 opt_grab <- function( 
+  x = command_args(), 
   flag,
-  n           = 1,
+  n           = 1
   # required    = FALSE, 
-  opts        = commandArgs()
 ) {  
 
   flag.str <- Reduce( function(...) paste(..., sep=", " ), flag )
   
   # EXPAND opts
-  opts <- opt_expand(opts)
+  opts <- opt_expand(x)
   
     
   # IDENTIFY name/alias FLAG(s)

@@ -4,9 +4,13 @@
 #' 
 #' @param x recursive object to use as a template
 #' @param clobber logical; if \code{TRUE}, existing values of \code{x} will
-#'        be clobbered by 
+#'        be clobbered. 
 #' \code{opt_get_these} fills a recursive structure with values from the 
 #' command line using \code{\link{opt_get}}.  
+#' 
+#' @details 
+#' This is similar to \code{modifyList}, but instead using \code{x} to indicate 
+#' which variables should be filled.
 #' 
 #' @return 
 #'   (A copy of) \code{x}, with values filled from the command-line.  If 
@@ -17,12 +21,13 @@
 #' 
 #' @seealso 
 #'   \code{\link{opt_get}} \cr
-#' 
+#'   \code{\link[utils]{modifyList}}
+#'  
 #' @examples 
 #'   proto <- list( foo="a", bar=1 )
 #'   
-#'   opt_fill( proto, opts=c( '--foo', 'list-fill' ))
-#'   opt_fill( proto, opts=c( '--foo', 'list-fill', '--bar', '-9' ))
+#'   opt_fill( proto, opts=c( '--foo', 'filled' ))
+#'   opt_fill( proto, opts=c( '--foo', 'filled', '--bar', '-9' ))
 #'  
 #'   proto <- as.environment(proto)
 #'   opt_fill( proto, opts=c( '--foo', 'env-fill', '--bar', '555' ))
@@ -41,8 +46,6 @@ opt_fill <- function(
   
   if( ! is.recursive(x) ) 
     stop( "'opt_fill' only works for recursive structures: list, environment, etc.")
-  
-  
   
   for( nm in names(x) ) {
     default = x[[nm]]

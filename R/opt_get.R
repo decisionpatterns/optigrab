@@ -101,7 +101,7 @@
 #' @examples
 #'   opts <- c( '--foo', 'bar' )
 #'  
-#'   opt_get('foo')
+#'   opt_get('foo', opts=opts)
 #'   opt_get( c('foo'), opts=opts )    
 #'   opt_grab( c('--foo'), opts=opts ) 
 #'   
@@ -123,7 +123,7 @@ opt_get <- function(
   , n
   , required = FALSE
   , description = NULL
-  , opts  = commandArgs()
+  , opts  = command_args()
   , style = getOption('optigrab')$style 
 ) { 
   
@@ -141,7 +141,7 @@ opt_get <- function(
     }
 
   # Call opt_grab
-  ret <- opt_grab( flag=flag, n=n, opts=opts)
+  ret <- opt_grab( x=opts, flag=flag, n=n)
 
   
   # Apply defaults, including trying to coerce to the defailts

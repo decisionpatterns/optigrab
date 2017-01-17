@@ -47,13 +47,18 @@ Generate auto-help:
 
 Get verb command:
 
-    opt_get_verb()
+    opt_verb()
 
+Get target(s): 
+
+    opt_target 
+    
 Set option style
 
     opt_style(ms_style)
     opt_style(java_style)
     opt_style(gnu+style)  # The default
+
 
 
 ## ADVANTAGES 

@@ -88,16 +88,16 @@ is.cl_args <- function(x)
 
 
 
-# exe_args <- function( x=cl()[-1] ) {
+# exe_opts <- function( x=cl()[-1] ) {
 #   x <- command_line(x)
 #   x <- append_class(x, 'exe')
 #   x
 # }  
 # 
 # 
-# exe_args <- function(x) UseMethod('exe_args') 
+# exe_opts <- function(x) UseMethod('exe_opts') 
 
-# exe_args.cl <- function(x) {
+# exe_opts.cl <- function(x) {
 #   
 #   x <- x[-1]  # Remove exe
 #   class(x) <- 

@@ -1,13 +1,13 @@
 library(magrittr)
 
-context( "opt_get_verb" )
+context( "verb" )
 
 # TYPICAL 
   flags <- 
     "Rscript --slave --no-restore --file=my-file --args cmd1" %>%
     str_to_cl 
 
-  flags %>% opt_get_verb %>% expect_equal("cmd1")
+  flags %>% verb %>% expect_equal("cmd1")
 
   
 # MULTIPLE --file
@@ -16,14 +16,14 @@ context( "opt_get_verb" )
       "Rscript --slave --no-restore --file=my-file --args cmd1 --date now" 
     ) 
 
-  flags %>% opt_get_verb %>% expect_equal("cmd1")
+  flags %>% verb %>% expect_equal("cmd1")
 
 
 
 # NOT IN FIRST POSITION
   flags  <- optigrab:::str_to_cl( "Rscript --slave --no-restore --file=my-file --args --date now cmd1" )
   date   <- opt_get( name="date", n=1, opts=flags )  
-  cmd    <- opt_get_verb( flags )
+  cmd    <- verb( flags )
   
   expect_equal( cmd, "cmd1" )
 
@@ -35,5 +35,5 @@ context( "opt_get_verb" )
   
   verbose <- opt_get( name="verbose", n=0, opts=flags )
   
-  flags %>% opt_get_verb %>% expect_equal("cmd1")
+  flags %>% verb %>% expect_equal("cmd1")
 

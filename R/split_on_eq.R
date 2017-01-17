@@ -1,12 +1,12 @@
-#' Split command-line vector 
+#' Split Elements on Equal
 #' 
-#' Splits options vector elements on '=', creating additional elements. 
-#' This is an internal function and should generally not be called 
+#' Splits vector elements on '=' inserting additional elements at the point of 
+#' the split. This is an internal utility and should generally not be called 
 #' directly. 
 #' 
-#' @param x character; vector of arguments. (Default: commandArgs())
+#' @param x character; vector of values.
 #' 
-#' \code{opt_split_args} splits each element of \code{x} on the equal (=) 
+#' \code{split_on_eq} splits each element of \code{x} on the equal (=) 
 #' sign, expanding the array such that \code{"--foo=bar"} becomes 
 #' \code{c("--foo", "bar")}.
 #' 
@@ -14,16 +14,15 @@
 #' 
 #' @seealso 
 #'   \code{\link{opt_grab}} \cr
-#'   \code{\link{base}{commandArgs}}
 #' 
 #' @examples
 #'   \dontrun{
-#'     opt_split_args( c( "--foo=bar", "-b=qux") )       # --foo, bar -b qux
-#'     opt_split_args( c( "--foo 'b=r'", "-b=goodbye") ) # fails
+#'     split_on_eq( c( "--foo=bar", "-b=qux") )       # --foo, bar -b qux
+#'     split_on_eq( c( "--foo 'b=r'", "-b=goodbye") ) # fails
 #'   }
 #' @note non-exported 
 
-opt_split_args <- function(x) {
+split_on_eq <- function(x) {
 
   # EXPAND/Split  '=' 
   #  - Options defined with an '=', such as '-a=5' or '--alpha=5'
@@ -38,6 +37,3 @@ opt_split_args <- function(x) {
     return(x)  
     
 }
-
-
-
