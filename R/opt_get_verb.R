@@ -48,7 +48,7 @@ opt_get_verb <- function( opts=commandArgs() ) {
   
   found_flag <- FALSE
   
-#   wh <- opts %>% is.flag %>% which %>% tail(1) 
+#   wh <- opts %>% is_flag %>% which %>% tail(1) 
 #  
 #  # No FLAGS FOUND ... first option must be a command
 #  if( length(wh) == 0 ) return( opts[[1]])
@@ -69,7 +69,7 @@ opt_get_verb <- function( opts=commandArgs() ) {
   ops <- getOption('optigrab')$options
 #   i <- 1
 #   while( i <= length(opts) ) { 
-#     if( is.flag(opts) )
+#     if( is_flag(opts) )
 #     ops  
 #     
 #   }
@@ -78,7 +78,7 @@ opt_get_verb <- function( opts=commandArgs() ) {
   n = 0     # how many options needed, starts at 0.  
   for(opt in opts) {
     
-    if( is.flag(opt) ) { 
+    if( is_flag(opt) ) { 
       if( exists( opt, ops ) )
       n <- ops[[opt]][['n']] else 
       n <- 1
