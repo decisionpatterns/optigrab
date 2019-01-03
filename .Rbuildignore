@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 ^.git/.*
 .git/
 .git/.*
@@ -6,11 +8,9 @@
 ^\.Rproj\.user$
 # *.Rproj
 archive/
-
 benchmark
 ^\.travis\.yml$
 ^cran-comments\.md$
 ^NEWS\.md$
 ^revdep$
-
 TODO.md
