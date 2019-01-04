@@ -1,22 +1,21 @@
 #' Return arguments to Rscript
 #' 
-#' Arguments to a script are those following the \code{--args} argument. 
+#' Arguments to a script are those following the `--args` argument. 
 #' 
-#' @param opts character; vector of arguments, (Default: \code{commandArgs()})
+#' @param opts character; vector of arguments, (Default: `commandArgs()`)
 #' 
 #' Returns the user provided arguments, i.e. those following (the first) 
-#' \code{--args} flag. This is identical to what is done by 
-#' \code{commandArgs( trailingOnly = TRUE )} does. This is included an used 
-#' since it supports testing/modifying the \code{commandArgs} array.
+#' `--args` flag. This is identical to what is done by 
+#' `commandArgs( trailingOnly = TRUE )` does. This is included an used 
+#' since it supports testing/modifying the `commandArgs` array.
 #'  
 #' @return 
 #'   character; vector stripping elements preceding and 
-#'   including (the first) \code{--args} flag.
+#'   including (the first) `--args` flag.
 #' 
 #' @seealso 
-#'   \code{\link[base]{commandArgs}} \cr
-#'   \code{\link{opt_grab}} \cr
-#'   \code{\link[base]{commandArgs}}
+#'   - [base::commandArgs()] \cr
+#'   - [opt_grab()] \cr
 #' 
 #' @examples
 #'   opt_get_args()

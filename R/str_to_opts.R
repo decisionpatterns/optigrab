@@ -11,10 +11,10 @@ utils::globalVariables('.')
 #' 
 #' @return 
 #'   A character array that could be similar to that  provided by 
-#'   \code{commandArgs}. 
+#'   `commandArgs`. 
 #'   
 #' @seealso 
-#'   \code{\link[base]{commandArgs}}
+#'   [base::commandArgs()]
 #' 
 #' @examples
 #' 

@@ -12,8 +12,8 @@ opt_split_args(opts = commandArgs())
 \code{opt_split_args} splits and value containing an equal (=) sign}
 }
 \description{
-Splits command argument vector to name, value pairs. 
-This is an internal function and should generally not be called 
+Splits command argument vector to name, value pairs.
+This is an internal function and should generally not be called
 directly.
 }
 \note{
@@ -25,6 +25,7 @@ non-exported
   
 }
 \seealso{
-\code{\link{opt_grab}} \cr
-  \code{\link{base}{commandArgs}}
+\itemize{
+\item \code{\link[=opt_grab]{opt_grab()}}
+}
 }

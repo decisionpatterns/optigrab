@@ -18,17 +18,17 @@ logical. indicating which arguments are flags.
 numeric
 }
 \description{
-Determines if an element of a vector is an option flag (as opposed to a 
+Determines if an element of a vector is an option flag (as opposed to a
 value ) by checking against the option style
 }
 \details{
-\code{is_flag} and \code{which.flag} are internal functions not 
-expected to be called directly. 
- 
-They are  used to identify which elements of the option vector are 
-option names (as opposed to option values). Options are identified by  
-\code{getOptions('optigrab')$style$flag_test}. By defailt, \emph{optigrab} 
-follows GNU-style command line arguments, i.e. those beginning with 
+\code{is_flag} and \code{which.flag} are internal functions not
+expected to be called directly.
+
+They are  used to identify which elements of the option vector are
+option names (as opposed to option values). Options are identified by
+\code{getOptions('optigrab')$style$flag_test}. By defailt, \strong{optigrab}
+follows GNU-style command line arguments, i.e. those beginning with
 "--" or "-" and are set at the time of package loading.
 }
 \examples{

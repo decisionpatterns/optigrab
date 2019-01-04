@@ -7,14 +7,14 @@
 str_to_opts(x = character())
 }
 \arguments{
-\item{x}{character; string to parse as if it is a command line 
+\item{x}{character; string to parse as if it is a command line
 
-This is an internal function used predominantly for testing. It might be 
+This is an internal function used predominantly for testing. It might be
 deprecated in the near future.}
 }
 \value{
-A character array that could be similar to that  provided by 
-  \code{commandArgs}.
+A character array that could be similar to that  provided by
+\code{commandArgs}.
 }
 \description{
 Split a string based on whitespace ignore single- and double quoted entries
@@ -32,5 +32,5 @@ not-exported, by design
   
 }
 \seealso{
-\code{\link[base]{commandArgs}}
+\code{\link[base:commandArgs]{base::commandArgs()}}
 }

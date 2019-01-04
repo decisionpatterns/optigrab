@@ -1,9 +1,14 @@
 Package: optigrab
 Type: Package
 Title: Command-Line Parsing for an R World
-Version: 0.8.0
-Date: 2015-10-08
+Version: 0.9.0
+Date: 2019-01-04
 Author: Christopher Brown, Daryl McCullough
+Authors@R: c(
+      person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
+      person("Daryl", "McCullough", role="aut"),
+      person("Decision Patterns", role = "cph")
+    )
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 URL: https://github.com/decisionpatterns/optigrab
 BugReports: https://github.com/decisionpatterns/optigrab/issues
@@ -20,10 +25,11 @@ Suggests:
     testthat (>= 0.9.1),
     knitr (>= 1.9),
     rmarkdown
-License: GPL (>=2) | file LICENSE
+License: GPL (>=3) | file LICENSE
 LazyLoad: no
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
-Encoding: UTF-8 
+Encoding: UTF-8
 Repository: CRAN
-
+Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))
+NeedsCompilation: no

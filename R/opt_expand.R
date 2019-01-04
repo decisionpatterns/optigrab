@@ -3,19 +3,19 @@
 #' Expand option vector to split names from values. This is an internal function 
 #' and should generally not be called directly. 
 #' 
-#' @param opts character vector of arguments. (Default: commandArgs())
+#' @param opts character vector of arguments. (Default: [base::commandArgs()] )
 #' 
 #' @details 
 #' 
-#' \code{opt_expand} does two things: 
+#' `opt_expand` does two things: 
 #' \itemize{
-#'   \item{"1."}{ removes values preceding and including --args }
-#'   \item{"2."}{ splits and value containing an equal (=) sign }
+#'   #1. Removes values preceding and including `--args`. 
+#'   #2. Splits and value containing an equal (`=``) sign. 
 #' }
 #' 
 #' @seealso 
-#'   \code{\link{opt_grab}} \cr
-#'   \code{\link{base}{commandArgs}}
+#'   - [opt_grab()] 
+#'   - [base::commandArgs()]
 #' 
 #' @examples
 #'   optigrab:::opt_expand()

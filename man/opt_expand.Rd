@@ -7,17 +7,17 @@
 opt_expand(opts = commandArgs())
 }
 \arguments{
-\item{opts}{character vector of arguments. (Default: commandArgs())}
+\item{opts}{character vector of arguments. (Default: \code{\link[base:commandArgs]{base::commandArgs()}} )}
 }
 \description{
-Expand option vector to split names from values. This is an internal function 
+Expand option vector to split names from values. This is an internal function
 and should generally not be called directly.
 }
 \details{
-\code{opt_expand} does two things: 
+\code{opt_expand} does two things:
 \itemize{
-  \item{"1."}{ removes values preceding and including --args }
-  \item{"2."}{ splits and value containing an equal (=) sign }
+#1. Removes values preceding and including \code{--args}.
+#2. Splits and value containing an equal (`=``) sign.
 }
 }
 \note{
@@ -29,6 +29,8 @@ non-exported
   
 }
 \seealso{
-\code{\link{opt_grab}} \cr
-  \code{\link{base}{commandArgs}}
+\itemize{
+\item \code{\link[=opt_grab]{opt_grab()}}
+\item \code{\link[base:commandArgs]{base::commandArgs()}}
+}
 }

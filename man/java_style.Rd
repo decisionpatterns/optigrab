@@ -13,16 +13,18 @@ Functions for enabling Java-style commpand-line option behavior.
 }
 \details{
 Functions for enabling Java-style command-line options. Java-style options
-  are characterized by a single dash (\code{-}) before the option name.  
-  
-  By conventions, Java-style options cannot must begin with a upper or lower
-  case letter.
+are characterized by a single dash (\code{-}) before the option name.
+
+By conventions, Java-style options cannot must begin with a upper or lower
+case letter.
 }
 \seealso{
-Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and 
-  \code{*_name_to_flag} \cr
-  \code{\link{gnu_style}} \cr
-  \code{\link{java_style}} \cr
-  \code{\link{ms_style}}
+\itemize{
+\item Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and
+\code{*_name_to_flag}
+\item \link{gnu_style}
+\item \link{java_style}
+\item \link{ms_style}
+}
 }
 \keyword{datasets}

@@ -6,12 +6,11 @@
 #' 
 #' @param opts character; vector of arguments. (Default: commandArgs())
 #' 
-#' \code{opt_split_args} splits and value containing an equal (=) sign
+#' `opt_split_args` splits and value containing an equal (=) sign
 #' 
 #' @seealso 
-#'   \code{\link{opt_grab}} \cr
-#'   \code{\link{base}{commandArgs}}
-#' 
+#'   - [opt_grab()]
+#'   
 #' @examples
 #'   optigrab:::opt_split_args()
 #'   optigrab:::opt_split_args( opts=c( "--foo=hello", "-b=goodbye") ) 

@@ -11,33 +11,33 @@ opt_assign(x, pos = 1, inherits = FALSE, name = x, ...,
 opt_assign_all(x, ..., assign.na = FALSE)
 }
 \arguments{
-\item{x}{character or list; variable names or alias. If no coercion is done, 
-and the first element of a character vector of length greater than 
+\item{x}{character or list; variable names or alias. If no coercion is done,
+and the first element of a character vector of length greater than
 one will be used, with a warning.}
 
-\item{pos}{where to do the assignment. By default, assigns into the current 
+\item{pos}{where to do the assignment. By default, assigns into the current
 environment. See 'Details' for other possibilities.}
 
-\item{inherits}{logical; should the enclosing frames of the environment be 
-inspected? This is argument is supplied to \code{\link[base]{assign}}.}
+\item{inherits}{logical; should the enclosing frames of the environment be
+inspected? This is argument is supplied to \code{\link[base:assign]{base::assign()}}.}
 
-\item{name}{character; name(s) of option as passed to \code{opt_get}. 
-(Default: \code(x))}
+\item{name}{character; name(s) of option as passed to \code{opt_get}.
+(Default: `x``)}
 
 \item{...}{arguments passed to \code{opt_get}}
 
-\item{assign.na}{logical; whether \code{NA} can be assigned. 
-       (Default: \code{FALSE})
+\item{assign.na}{logical; whether \code{NA} can be assigned.
+(Default: \code{FALSE})
 
 \code{opt_assign} combines \code{opt_get} and \code{assign} in one call. The
-\code{name} argument is passed as \code{opt_get(name=...)}; it defaults to 
-\code{x} so it is generally not needed. 
+\code{name} argument is passed as \code{opt_get(name=...)}; it defaults to
+\code{x} so it is generally not needed.
 
-\code{opt_assign_all} does multiple assignments but does not allow for a 
+\code{opt_assign_all} does multiple assignments but does not allow for a
 names arguments. Values are names by \code{x}.}
 }
 \description{
-Combines \code{opt_get} and \code{assign}
+Combines \code{opt_get} and \code{assign} for convenience.
 }
 \examples{
   opt_assign( "foo", opts=c("--foo","bar") )
@@ -45,6 +45,8 @@ Combines \code{opt_get} and \code{assign}
  
 }
 \seealso{
-\code{\link{opt_get}} \cr
-  \code{\link[base]{assign}}
+\itemize{
+\item \code{\link[=opt_get]{opt_get()}}
+\item \code{\link[base:assign]{base::assign()}}
+}
 }

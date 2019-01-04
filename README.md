@@ -1,6 +1,6 @@
 ## optigrab  
 
-[![License](http://img.shields.io/badge/license-GPL%20%28=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html) 
+[![License](https://img.shields.io/badge/license-GPL%20(%3E=%203)-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html) 
 [![CRAN](http://www.r-pkg.org/badges/version/optigrab)](http://cran.rstudio.com/package=optigrab) 
 [![Downloads](http://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](http://www.r-pkg.org/pkg/optigrab)
 

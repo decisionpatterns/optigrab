@@ -2,21 +2,21 @@
 #' 
 #' Name or path to the current file 
 #' 
-#' @param opts character; vector of arguments. (Default: \code{commandArgs()})
+#' @param opts character; vector of arguments. (Default: `commandArgs()`)
 #' 
-#' @param local logical; if \code{TRUE} returns the most currently sourced 
+#' @param local logical; if `TRUE` returns the most currently sourced 
 #'    script as opposed to the orignal/first source script. 
-#'    (Default: \code{TRUE}) 
+#'    (Default: `TRUE`) 
 #'    
 #' @param full.path logical; Whetther to return the full path to the sourced 
-#'    file. (Default: \code{TRUE})
+#'    file. (Default: `TRUE`)
 #'
 #' @details 
-#' \code{this_file} returns the name or path of the executing file whehter 
+#' `this_file` returns the name or path of the executing file whehter 
 #' the file was invoked from \strong{Rscript} or in an interactive session. 
-#' Further it \code{source} 
+#' Further it `source` 
 #' 
-#' Argument \code{local} controls whether it is the current file (\code{TRUE}) 
+#' Argument `local` controls whether it is the current file (`TRUE`) 
 #' or the orignal, top-level file.
 #' 
 #' 
@@ -24,11 +24,10 @@
 #'   \url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 #'
 #' @return one-element character vector with the path to the current file; 
-#' returns \code{NA} is in an interactive session not in a file.
+#' returns `NA` is in an interactive session not in a file.
 #' 
 #' @seealso 
-#'   \code{\link{opt_grab}} \cr
-#'   \code{\link{base}{commandArgs}}
+#'   - [opt_grab()]
 #' 
 #' @examples
 #'   this_file()

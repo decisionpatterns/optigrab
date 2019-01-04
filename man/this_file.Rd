@@ -9,26 +9,26 @@ this_file(opts = commandArgs(), local = TRUE, full.path = TRUE)
 \arguments{
 \item{opts}{character; vector of arguments. (Default: \code{commandArgs()})}
 
-\item{local}{logical; if \code{TRUE} returns the most currently sourced 
-script as opposed to the orignal/first source script. 
+\item{local}{logical; if \code{TRUE} returns the most currently sourced
+script as opposed to the orignal/first source script.
 (Default: \code{TRUE})}
 
-\item{full.path}{logical; Whetther to return the full path to the sourced 
+\item{full.path}{logical; Whetther to return the full path to the sourced
 file. (Default: \code{TRUE})}
 }
 \value{
-one-element character vector with the path to the current file; 
+one-element character vector with the path to the current file;
 returns \code{NA} is in an interactive session not in a file.
 }
 \description{
 Name or path to the current file
 }
 \details{
-\code{this_file} returns the name or path of the executing file whehter 
-the file was invoked from \strong{Rscript} or in an interactive session. 
-Further it \code{source} 
+\code{this_file} returns the name or path of the executing file whehter
+the file was invoked from \strong{Rscript} or in an interactive session.
+Further it \code{source}
 
-Argument \code{local} controls whether it is the current file (\code{TRUE}) 
+Argument \code{local} controls whether it is the current file (\code{TRUE})
 or the orignal, top-level file.
 }
 \examples{
@@ -39,6 +39,7 @@ or the orignal, top-level file.
 \url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 }
 \seealso{
-\code{\link{opt_grab}} \cr
-  \code{\link{base}{commandArgs}}
+\itemize{
+\item \code{\link[=opt_grab]{opt_grab()}}
+}
 }

@@ -4,37 +4,37 @@
 #' not part of an option. 
 #' 
 #' @param opts character; Vector from which to parse options 
-#'        (default: \code{commandArgs()} )
+#'        (default: `commandArgs()` )
 #'
 #' @details
 #' 
-#' Some applications such as \emph{git} support commend verbs, e.g. \code{push},
-#' \code{fetch}, etc. These can be retrieved by \code{opt_get_verb}.
+#' Some applications such as *git* support command verbs, e.g. `push`,
+#' `fetch`, etc. These style arguments can be retrieved by `opt_get_verb`.
 #' 
-#' \code{opt_get_verb} look for the first unaccounted for options (after 
-#' \code{--args}). The number of options needed by each flags is determined by 
-#' and saved by calls to \code{\link{opt_get}}. See the details to see how 
-#' \code{n} is automatically determined.  When not explicitly defined the number
+#' `opt_get_verb` look for the first unaccounted for options (after 
+#' `--args`). The number of options needed by each flags is determined by 
+#' and saved by calls to [opt_get()]. See the details to see how 
+#' `n` is automatically determined.  When not explicitly defined the number
 #' of options needed by each flag is 1.  Becasue of this, it convention to call 
-#' \code{opt_get_verb} after all \code{opt_get} calls.  For most simple 
+#' `opt_get_verb` after all `opt_get` calls.  For most simple 
 #' applications, it likely doesn't matter.  
 #' 
 #' @section Assumptions:
 #' 
-#' \code{opt_get_verb} assumes any flags occurring before the verb have 
+#' `opt_get_verb` assumes any flags occurring before the verb have 
 #' exactly 1 value. A command line such as "> myscript --verbose verb" will be 
 #' misparsed; the code will assume that "verb" is the value of the 
 #' flag "--verbose"
 #'  
 #' @return character of length 1; the verb found from the command-line. 
-#' \code{NA} if a verb cannot be identified.
+#' `NA` if a verb cannot be identified.
 #' 
 #' @seealso 
-#'   \code{\link{opt_get}} \cr
-#'   \code{\link{base}{commandArgs}}
+#'   - [opt_get()]
+#'   - [base::commandArgs()]
 #' 
 #' @examples
-#'   opt_get_verb()
+#'   opt_get_verb()  # commandArgs()
 #'   
 #' @export
 

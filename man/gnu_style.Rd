@@ -12,22 +12,24 @@ gnu_style
 Functions for enabling GNU-style commpand-line option behavior.
 }
 \details{
-Functions for enabling GNU-style command-line options. GNU-style options 
-  are characterized by a single dash (\code{-}) before single character 
-  option flags and a double dash (\code{--}) before multiple character 
-  option flags.
-  
-  By convention, gnu style options flags must begin with a letter; if numbers 
-  were allowed option flags would be ambiguous with negative option values.
+Functions for enabling GNU-style command-line options. GNU-style options
+are characterized by a single dash (\code{-}) before single character
+option flags and a double dash (\code{--}) before multiple character
+option flags.
+
+By convention, gnu style options flags must begin with a letter; if numbers
+were allowed option flags would be ambiguous with negative option values.
 }
 \references{
-\url{http://www.gnu.org/prep/standards/standards.html}
+[GNU Command Line Standards]{http://www.gnu.org/prep/standards/standards.html}
 }
 \seealso{
-Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and 
-  \code{*_name_to_flag} \cr
-  \code{\link{gnu_style}} \cr
-  \code{\link{java_style}} \cr
-  \code{\link{ms_style}}
+\itemize{
+\item Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and
+\code{*_name_to_flag}
+\item \link{gnu_style}
+\item \link{java_style}
+\item \link{ms_style}
+}
 }
 \keyword{datasets}

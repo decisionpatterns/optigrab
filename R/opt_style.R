@@ -3,12 +3,12 @@
 #' Get or sets the optigrab style
 #' 
 #' @param style named list; containing the following functions: 
-#'        \code{flag_test}, \code{flag_to_name} and \code{name_to_flag}
+#'        `flag_test`, `flag_to_name` and `name_to_flag`
 #'  
-#' If \code{style} is not specified, \code{opt_style} gets the current optigrab
-#' style. If \code{style} is provided, it must be a named list containing 
-#' three functions \code{flag_test}, \code{flag_to_name} and 
-#' \code{name_to_flag}.
+#' If `style` is not specified, `opt_style` gets the current optigrab
+#' style. If `style` is provided, it must be a named list containing 
+#' three functions `flag_test`, `flag_to_name` and 
+#' `name_to_flag`.
 #' 
 #' @section flag_test:
 #' 
@@ -23,18 +23,16 @@
 #' @section name_to_flag:
 #' 
 #' Accepts a character vector of names and transforms them into the flags that
-#' would appear on the command line. This is used by \code{\link{opt_grab}}.
+#' would appear on the command line. This is used by [opt_grab()].
 #'         
 #' @return               
-#'   If \code{style} is not provided, returns a list of styles, otherwise used
+#'   If `style` is not provided, returns a list of styles, otherwise used
 #'   for the side-effect of setting the option
 #'  
 #' @aliases styles
 #'     
 #' @seealso 
-#'   \code{\link{gnu_style}} \cr
-#'   \code{\link{ms_style}} \cr
-#'   \code{\link{ms_style}}   
+#'   [gnu_style], [java_style] or [ms_style]
 #'   
 #' @examples
 #'   opt_style() 

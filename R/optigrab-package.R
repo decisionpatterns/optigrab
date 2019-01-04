@@ -1,9 +1,9 @@
 #' Optigrab  
 #' 
 #' @description 
-#' The optigrab packages providesa function \code{opt_grab} to retrieve 
+#' The optigrab packages providesa function `opt_grab` to retrieve 
 #' options/arguments from the command line.  It is useful for running R in 
-#' batch mode with \code{R CMD BATCH ...} or \code{Rscript}.  
+#' batch mode with `R CMD BATCH ...` or `Rscript`.  
 #' 
 #' GNU-, Java- and Microsoft-style command line options are supported. GNU-style
 #' is the default.
@@ -12,16 +12,16 @@
 #'
 #' 
 #' @seealso 
-#'   \code{\link{opt_get}} \cr
-#'   \code{\link[base]{commandArgs}} \cr
+#'   - [opt_get()]
+#'   - [base::commandArgs()]
 #' 
 #' @references 
-#'   The Jerk. Dir. Carl Reiner. Perf Steve Martin, Bernadette Peters, 
+#'   - The Jerk. Dir. Carl Reiner. Perf Steve Martin, Bernadette Peters, 
 #'   Caitlin Adams. Universal Pictures, 1979. \cr
 #' 
-#'   \url{http://www.gnu.org/prep/standards/standards.html} \cr
+#'   - [GNU Command line standards](http://www.gnu.org/prep/standards/standards.html}) 
 #' 
-#'   \url{ https://github.com/gsscoder/commandline} \cr
+#'   - [GSS Coder Commandline](https://github.com/gsscoder/commandline} \cr
 #'   
 #' @examples
 #' 
