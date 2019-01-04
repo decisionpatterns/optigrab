@@ -25,6 +25,7 @@ non-exported
   
 }
 \seealso{
-\code{\link{opt_grab}} \cr
-  \code{\link{base}{commandArgs}}
+\itemize{
+\item \code{\link[=opt_grab]{opt_grab()}}
+}
 }

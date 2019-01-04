@@ -4,7 +4,7 @@ author: "Christopher Brown"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Using optigrab}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,11 +14,13 @@ vignette: >
 
 ## ABSTRACT ## 
 
-*optigrab* simplifies the creation of command-line interfaces. It 
-favors a easy-to-use, straight-forward conventions that covers 99% of use 
-cases over more complex configuration command-line parsing solutions without 
-sacrificing features when needed. 
+*optigrab* simplifies the creation of command-line interfaces. It favors a easy-to-use, straight-forward conventions and covers 99%+ of use cases of the more complex 
+command-line parsing solutions. Mostly, you can just:
 
+    opt_get('foo')       
+    
+to get the `--foo` argument. *optigrab* infers what is meant by the value of the 
+argument.
 
 ## INSTALLATION ##
 
@@ -35,6 +37,7 @@ From CRAN:
 
 
 ### Getting Single Values ###
+
 Getting a command-line option, is easy:
 
     opt_get('foo')         # -OR-
@@ -50,12 +53,13 @@ Other examples:
     dates <- as.Date( opt_get( 'dates', n=2 ) )  # SAME
     yesNo <- opt_get( c( 'yes', 'y' ), n=0 )     # LOGICAL  
 
+
 ### Get Multiple Values ###
 
 Use `opt_fill` to fill a recursive structure such as a list or environment. 
 
-    l <- list( foo=1, bar=2 )
-    opt_fill(l)
+    defaults <- list( foo=1, bar=2 )
+    opt_fill(defaults)
 
 `optigrab` uses the recursive structure as a template trying to supply arguments to `opt_get`: `name`, `default` and `n`.  `opt_get` will attempt to coerce the option to the same type as the object in the structure. 
 
@@ -346,4 +350,4 @@ These are not really arguments from the script itself, thus all arguments up to 
 
 [GNU command-line standards](http://www.gnu.org/prep/standards/standards.html)
 
-[commandline](https://github.com/gsscoder/commandline) 
+[commandline](https://github.com/commandlineparser/commandline) 

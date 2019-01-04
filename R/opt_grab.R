@@ -69,7 +69,7 @@ opt_grab <- function(
     # TEST: enough values available make sure we don't 
     # encounter any other options
 
-    if( any( is.flag( opts[val_rng] ) ) ) {
+    if( any( is_flag( opts[val_rng] ) ) ) {
       wh <- intersect( which.flag(opts), val_rng )   
       flags <- Reduce( paste, opts[wh] )
       stop( 

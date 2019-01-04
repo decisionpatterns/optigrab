@@ -14,7 +14,7 @@ ms_name_to_flag <- function(x)  paste0( "/" , x )
 #' @details 
 #'   Functions for enabling Microsoft-style command-line options. 
 #'   Microsoft-style options are characterized by a single forward slash 
-#'   (\code{/}) before the option name.  
+#'   (`/`) before the option name.  
 #'   
 #'   Microsoft-style options can be supported by seetting 
 #'   
@@ -23,11 +23,11 @@ ms_name_to_flag <- function(x)  paste0( "/" , x )
 #'   opt_get( "foo", opts=c("/foo", "bar") )  
 #'      
 #' @seealso 
-#'   Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and 
-#'   \code{*_name_to_flag} \cr
-#'   \code{\link{gnu_style}} \cr
-#'   \code{\link{ms_style}} \cr
-#'   \code{\link{ms_style}}
+#'   - Non-exported function `*_flag_test`, `*_flag_to_name` and 
+#'     `*_name_to_flag` 
+#'   - [gnu_style] 
+#'   - [java_style] 
+#'   - [ms_style]
 #'      
 #' @rdname ms_style
 #' @export

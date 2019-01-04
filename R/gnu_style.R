@@ -21,22 +21,22 @@ gnu_name_to_flag <- function(x) {
 #' @details 
 #' 
 #'   Functions for enabling GNU-style command-line options. GNU-style options 
-#'   are characterized by a single dash (\code{-}) before single character 
-#'   option flags and a double dash (\code{--}) before multiple character 
+#'   are characterized by a single dash (`-`) before single character 
+#'   option flags and a double dash (`--`) before multiple character 
 #'   option flags.
 #'   
 #'   By convention, gnu style options flags must begin with a letter; if numbers 
 #'   were allowed option flags would be ambiguous with negative option values.
 #'      
 #' @references
-#'   \url{http://www.gnu.org/prep/standards/standards.html}
+#'   [GNU Command Line Standards]{http://www.gnu.org/prep/standards/standards.html}
 #'   
 #' @seealso 
-#'   Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and 
-#'   \code{*_name_to_flag} \cr
-#'   \code{\link{gnu_style}} \cr
-#'   \code{\link{java_style}} \cr
-#'   \code{\link{ms_style}}
+#'   - Non-exported function `*_flag_test`, `*_flag_to_name` and 
+#'   `*_name_to_flag`
+#'   - [gnu_style]
+#'   - [java_style]
+#'   - [ms_style]
 #'      
 #' @rdname gnu_style
 #' @export

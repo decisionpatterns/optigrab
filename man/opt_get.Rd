@@ -26,16 +26,16 @@ identifies the option.}
 \item{default}{any; the value(s) provided if the flag is not found 
 (default: \code{NA} )}
 
-\item{n}{integer; number of values to retrieve. See Details. 
+\item{n}{integer; number of values to retrieve. See Details.
 (default: determined by default, see \strong{Details} below.)}
 
-\item{required}{logical; whether the value is required. If not found or an 
-incorrect, number of values are found, an error is thrown. 
+\item{required}{logical; whether the value is required. If not found or an
+incorrect, number of values are found, an error is thrown.
 (default: \code{FALSE})}
 
 \item{description}{(character) message to be printed with \code{opt_help}}
 
-\item{opts}{character; vector to parse for options 
+\item{opts}{character; vector to parse for options
 (default: \code{commandArgs()})}
 
 \item{style}{list; list of functions that define the parsing style}
@@ -47,8 +47,8 @@ appear on the command line.}
 \item{...}{additional arguments passed to \code{opt_grab}}
 }
 \value{
-\code{opt_grab} always returns a character; it is either the value for the 
-flags or \code{NA_character} if if they cannot be parsed. 
+\code{opt_grab} always returns a character; it is either the value for the
+flags or \code{NA_character_} if if they cannot be parsed.
 
 \code{opt_get} returns a value the command-line value as specified by 
 the arguments or produces an error if the value could not be 
@@ -58,14 +58,14 @@ determined and \code{required==TRUE}.
 Returns value(s) from the command-line associated with the desired option.
 }
 \details{
-These functions support parsing of command arguments work when using 
-\code{Rscript}, a \code{\#\!} on linux systems or \code{R CMD BATCH}. By 
-default, they closely follows the ubiquitous GNU standards for command-line 
-interfaces. 
-\code{opt_grab} is the workhorse that does the actual parsing. It returns 
-the options values or \code{NA} if it cannot discern 
-them.  It is currently exported, but this may change in future version 
-to be an internal function. Its interface is not guarantted.  The user 
+These functions support parsing of command arguments work when using
+\code{Rscript}, a \code{#!} on linux systems or \code{R CMD BATCH}. By
+default, they closely follows the ubiquitous GNU standards for command-line
+interfaces.
+\code{opt_grab} is the workhorse that does the actual parsing. It returns
+the options values or \code{NA} if it cannot discern
+them.  It is currently exported, but this may change in future version
+to be an internal function. Its interface is not guarantted.  The user
 should use \code{opt_get} instead.
 
 \code{opt_get} supports default values, automated guessing for \code{n} and 
@@ -135,8 +135,8 @@ number of value(s) an error is raised.
   
 }
 \references{
-http://www.gnu.org/prep/standards/standards.html
+\href{http://www.gnu.org/prep/standards/standards.html}{GNU Command Line Standards}
 }
 \seealso{
-\code{\link{commandArgs}}
+\code{\link[=commandArgs]{commandArgs()}}
 }

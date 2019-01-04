@@ -15,8 +15,8 @@ Returns the user provided arguments, i.e. those following (the first)
 since it supports testing/modifying the \code{commandArgs} array.}
 }
 \value{
-character; vector stripping elements preceding and 
-  including (the first) \code{--args} flag.
+character; vector stripping elements preceding and
+including (the first) \code{--args} flag.
 }
 \description{
 Arguments to a script are those following the \code{--args} argument.
@@ -29,7 +29,8 @@ Arguments to a script are those following the \code{--args} argument.
   
 }
 \seealso{
-\code{\link[base]{commandArgs}} \cr
-  \code{\link{opt_grab}} \cr
-  \code{\link[base]{commandArgs}}
+\itemize{
+\item \code{\link[base:commandArgs]{base::commandArgs()}} \cr
+\item \code{\link[=opt_grab]{opt_grab()}} \cr
+}
 }

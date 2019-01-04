@@ -1,29 +1,27 @@
-.onLoad <- function(libname, pkgname) {
+.onAttach <- function( libname, pkgname ) {
 
- # DEFINE AUTOHELP ACTIVE BINDING
-   # makeActiveBinding( "opt_help" , opt_help, baseenv() )
-   
-   # set optigrab options
-   options( optigrab = list( 
+  # suppressWarnings( try( v <- utils::packageVersion(pkgname, libname), silent = TRUE ))
+  # version <- if( exists('v') ) paste0("-", v ) else ""
+
+  dt <- read.dcf( system.file("DESCRIPTION", package = pkgname ), "Date" )
+  yr <- substr(dt,1,4)
+  version <- read.dcf( system.file("DESCRIPTION", package = pkgname ), "Version" )
+
+  if( interactive() )
+    packageStartupMessage(
+        pkgname
+      , "-", version
+      , ifelse( ! is.na(dt), paste0(' (',dt,')'), '' )
+      , " - Copyright \u00a9 ", ifelse(! is.na(yr), yr, '')
+      , " Decision Patterns"
+      , domain = NA
+    )
+
+  options( optigrab = list( 
        help = list()
      , style = gnu_style
      , options = list() 
      )
-   )
-
-}
-
-
-.onAttach <- function( libname, pkgname ) {
-
-  packageStartupMessage( 
-    pkgname ,
-    "-" ,
-    utils::packageVersion(pkgname, libname),
-    " - Copyright \u00a9 ", substr(Sys.Date(),1,4),
-    " Decision Patterns" ,
-    domain = NA
   )
 
 }
-

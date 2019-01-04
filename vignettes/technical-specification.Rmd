@@ -1,0 +1,170 @@
+---
+title: "Command Line Technical Specifications"
+author: "Decision Patterns"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Command Line Technical Specifications}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This document provides a language-agnostic specification about how application are invoked from an interactive terminal or a text-based/non-gui/batch system. It is intend for developers who wish to understand details and considerations about command-line parsing. It is unlikely to be of much value to end-users looking to add command-line parsing to their own applications.  For the implementation in *optigrab*, please see the accompanying *Using Optigrab* document. 
+
+
+## Anatomy of the command-line:
+
+An innvocattion of command-line application commonly has this structure: 
+
+    [env] [interpreter] script  [verb] [options] [targets]
+                               <-------- arguments ------->
+    <------------------- command-line -------------------->
+    
+(Components in [bracket] are optional.)    
+
+The sections below, detail and discuss the considerations for parsing each of the components.  
+    
+    
+### Environment Variable
+
+See (Wikipedia: Environment Variable)[https://en.wikipedia.org/wiki/Environment_variable]
+
+Things to note about environment variables: 
+- inherited by child processed
+- implemented by the OS
+                
+                         
+### Intepreter
+
+The *interpreter* is the application that executes the *script*. The interpreter may be specified on the command line or There are numerous ways the interpreter may appear: `Rscript`, `R CMD BATCH`, r (little-r). On *nix systems the *interpreter* is optional and may be specified in the script through the #! (SHEBANG) syntax.
+
+
+### Script
+
+The *script* is the (path to the) program file/code to be run. 
+
+
+### Arguments
+
+Collectively, [arguments](#Arguments) refers to the [verb}(#Verb), [options](#Options) and [target(s)](#targets).  Each type of argument is handled in its own way.
+
+####  Verb
+
+A *verb* is a single optional command. (Not all applications use verbs; *git* is one popular application that does). The verb is the first value after the script and before any options. 
+
+The constraint that the verb is the first argument before any options is not universally followed. Some application allow placement of the verb anywhere so long as it is cannot be interpretted as part of an option. This introduces ambiguity with applications that allow the binding of multiple values to a name. This is inherently true of R since R atomistic object are vectors and not scalars.
+
+Typically application allow only one verb. It might be easy to define verbs as all values that occur between the name of the script and the first flag (if any). If there are more than one verbs in the arguments array, the first is taken as the verb and a warning is issued
+
+
+#### Options
+
+     [flag[=][value [value]] [flag[=][value [value]] [...]]]
+     
+The *options* are the name-value(s) pairs that can be parsed into variables. Names are identified by a flag, usually a slight syntactical variation on the name such as preceeding it with one or two characters.  "-" (Java-style), "--" (GNU-style) or "/" (Microsoft-style).
+
+    -name
+    --name
+    /name
+
+Associated with each name can be zero, one or several values. If there are no values provided, the type of the variable is assumed to be boolean/logical and the value is taken as TRUE (1)
+
+Parsing and the interpretaion of options are the focus of this library. Options occur after the *script* and any *verbs* and before any targets. The challenge of translating command-line options to variable in the program require several steps. The following conventions are used 
+As an example consider the following simple innvocation:
+
+    script --foo bar
+    
+ 
+   Component    Example              Description
+--------------  ------------------   -----------
+command-line    script.r --foo bar   referes to thte complete command-line: script, verb, etc. 
+  
+  arguments     verb options targets refer to the script arguments as they appear on the command line. By default they have no type.
+
+  opt_string    '--foo bar'          string; options as they are typed at the command-line 
+ 
+   opts         `c('--foo', 'bar')`  character vector; how options appear in `commandArgs`
+    
+   flag         --foo                how the flags can appear on the command line; not needed by the developer
+ 
+   name         foo                  the name used for the option or variable
+    
+   value        bar                  the value of the variable
+    
+   
+
+#### Targets
+
+The *targets* are typically files or other resources that are affected by the commands. See [Target](#Target).
+
+Targets are similar to the [verbs](#Verb) in that they do not require much interpretation.  Typically, they are one or more files or resources. Sometimes the expressions are globs.  
+
+Targets can be ambiguous since *option* can have an indefinite number of values. Consider the following command-line:
+
+    script.r --foo 1 --bar my-file-1 my-file-2 
+
+In this example, it is unclear whether `my-file-1` and `my-file-2` should be associated with `--bar` or or targets or a combination.  
+
+
+## Parsing
+
+Parsing command-line arguments is a bit more tricky than it may appear. Parsing involves severals steps:
+
+1. Retrieve commandArgs()
+2. Pre-process command-line according to the style
+3. Parsing command-line: script [verb] [options] [targets]
+** Identify script (this_file) 
+** Identify verb (if exists)  
+** Parsing options (according to specifications)
+*** Differentiate flags from values
+*** Define variabels / assign names and values
+** Disambuigate target(s) from options
+
+
+## opt_fill Filling recursive structures
+
+`opt_fill` gets values from the command-line using an existing recursive object as a template. Values in the existing recursive structure may be 
+clobberred/overwritten or created. There are several use cases:
+
+
+* `clobber == TRUE`: command-line application in which `opts` are overwritting application defaults.
+
+* `clobber == TRUE && create == TRUE`: same as above, but also get other missing commands such as 
+
+Reursive structures have several options for filling based on `opts`. 
+
+* Only fill existing names in `x`
+name exists
+x/opts:   TRUE                       FALSE    
+-------- -------------------------  -------
+ TRUE     Clobber(?) or not          Keep x as default
+ FALSE    Create(?)                  Keep x as default
+
+It seems there are two use-case.
+
+1. `x` is defaults; values should be clobbered and set.
+2. `x` is set; alternative values should be set
+
+`.clobber` and `.create`
+
+*clobber*: if `x` exists is the value overwritten.  
+
+clobber   &   create : clobber existing values; create new ones 
+                       USE CASE: overwriting default, (commando)
+                       
+clobber   & ! create : only clobber values 
+                       USE CASE: x are all the values that we need ...only                        get those. commando with mutliple commands and one                        config file, etc. (commando: multiple commands)
+                       
+! clobber &   create : get new values (e.g. don't change defaults)
+                       USE CASE: (rare) keep old values adding new ones
+
+! clobber & ! create : non-op (with warning)
+                       USE CASE: None 
+
+
+## References
+
+(Wikipedia: Environment Variable)[https://en.wikipedia.org/wiki/Environment_variable]
+
+
+## Appendix

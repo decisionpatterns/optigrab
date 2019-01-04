@@ -1,20 +1,20 @@
 #' Get path current running script
 #' 
 #' @param opts character; cector from which to parse options 
-#'   (default: \code{commandArgs()} )
+#'   (default: `commandArgs()` )
 #'   
 #' @param full.name boolean; expand to full path(?)
 #'  
-#' \strong{ This function is deprecated, use \code{this_file} instead.}   
+#' \strong{ This function is deprecated, use `this_file` instead.}   
 #'     
-#' @return character; path to Rscript or \code{NA} if there isn't one. 
+#' @return character; path to Rscript or `NA` if there isn't one. 
 #' 
 #' @references
 #'   \url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 #' 
 #' @seealso 
-#'   \code{\link{opt_grab}} \cr
-#'   \code{\link{base}{commandArgs}}
+#'   - [opt_grab()]
+#'   - [base::commandArgs()]
 #' 
 #' @examples
 #'   optigrab:::opt_get_path()

@@ -8,9 +8,9 @@
 opt_style(style)
 }
 \arguments{
-\item{style}{named list; containing the following functions: 
-       \code{flag_test}, \code{flag_to_name} and \code{name_to_flag}
- 
+\item{style}{named list; containing the following functions:
+\code{flag_test}, \code{flag_to_name} and \code{name_to_flag}
+
 If \code{style} is not specified, \code{opt_style} gets the current optigrab
 style. If \code{style} is provided, it must be a named list containing 
 three functions \code{flag_test}, \code{flag_to_name} and 
@@ -18,7 +18,7 @@ three functions \code{flag_test}, \code{flag_to_name} and
 }
 \value{
 If \code{style} is not provided, returns a list of styles, otherwise used
-  for the side-effect of setting the option
+for the side-effect of setting the option
 }
 \description{
 Get or sets the optigrab style
@@ -41,7 +41,7 @@ usually by stripping delimiters that indicate that they are flags
 
 
 Accepts a character vector of names and transforms them into the flags that
-would appear on the command line. This is used by \code{\link{opt_grab}}.
+would appear on the command line. This is used by \code{\link[=opt_grab]{opt_grab()}}.
 }
 
 \examples{
@@ -52,7 +52,5 @@ would appear on the command line. This is used by \code{\link{opt_grab}}.
   
 }
 \seealso{
-\code{\link{gnu_style}} \cr
-  \code{\link{ms_style}} \cr
-  \code{\link{ms_style}}
+\link{gnu_style}, \link{java_style} or \link{ms_style}
 }

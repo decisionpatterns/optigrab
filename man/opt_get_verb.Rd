@@ -7,7 +7,7 @@
 opt_get_verb(opts = commandArgs())
 }
 \arguments{
-\item{opts}{character; Vector from which to parse options 
+\item{opts}{character; Vector from which to parse options
 (default: \code{commandArgs()} )}
 }
 \value{
@@ -19,12 +19,12 @@ Return the verb for the application. The verb is the first argument that is
 not part of an option.
 }
 \details{
-Some applications such as \emph{git} support commend verbs, e.g. \code{push},
-\code{fetch}, etc. These can be retrieved by \code{opt_get_verb}.
+Some applications such as \emph{git} support command verbs, e.g. \code{push},
+\code{fetch}, etc. These style arguments can be retrieved by \code{opt_get_verb}.
 
-\code{opt_get_verb} look for the first unaccounted for options (after 
-\code{--args}). The number of options needed by each flags is determined by 
-and saved by calls to \code{\link{opt_get}}. See the details to see how 
+\code{opt_get_verb} look for the first unaccounted for options (after
+\code{--args}). The number of options needed by each flags is determined by
+and saved by calls to \code{\link[=opt_get]{opt_get()}}. See the details to see how
 \code{n} is automatically determined.  When not explicitly defined the number
 of options needed by each flag is 1.  Becasue of this, it convention to call 
 \code{opt_get_verb} after all \code{opt_get} calls.  For most simple 
@@ -40,10 +40,12 @@ flag "--verbose"
 }
 
 \examples{
-  opt_get_verb()
+  opt_get_verb()  # commandArgs()
   
 }
 \seealso{
-\code{\link{opt_get}} \cr
-  \code{\link{base}{commandArgs}}
+\itemize{
+\item \code{\link[=opt_get]{opt_get()}}
+\item \code{\link[base:commandArgs]{base::commandArgs()}}
+}
 }

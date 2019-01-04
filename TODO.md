@@ -7,6 +7,8 @@
 * short options for `opt_fill` 
   * `match.args` ?
 
+* opt_get_all 
+
 ## Rename `opt_get` ##
 
 Is `opt_get` really `opt_read`.  It seems that the verb `get` is for retrieving symbols internal to R; `read` is for getting data from outside of R.

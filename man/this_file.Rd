@@ -9,11 +9,11 @@ this_file(opts = commandArgs(), local = TRUE, full.path = TRUE)
 \arguments{
 \item{opts}{character; vector of arguments. (Default: \code{commandArgs()})}
 
-\item{local}{logical; if \code{TRUE} returns the most currently sourced 
-script as opposed to the orignal/first source script. 
+\item{local}{logical; if \code{TRUE} returns the most currently sourced
+script as opposed to the orignal/first source script.
 (Default: \code{TRUE})}
 
-\item{full.path}{logical; Whetther to return the full path to the sourced 
+\item{full.path}{logical; Whetther to return the full path to the sourced
 file. (Default: \code{TRUE})}
 }
 \value{
@@ -39,6 +39,7 @@ or the orignal, top-level file.
 \url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 }
 \seealso{
-\code{\link{opt_grab}} \cr
-  \code{\link{base}{commandArgs}}
+\itemize{
+\item \code{\link[=opt_grab]{opt_grab()}}
+}
 }

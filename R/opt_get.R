@@ -6,11 +6,11 @@
 #' @param name character; vector of possible synonymes for the "flag" that
 #'        identifies the option.
 #' @param default any; the value(s) provided if the flag is not found 
-#'        (default: \code{NA} )
+#'        (default: `NA` )
 #' @param n integer; number of values to retrieve. See Details. 
-#'        (default: determined by default, see \strong{Details} below.)
+#'        (default: determined by default, see **Details** below.)
 #'        
-#' @param ... additional arguments passed to \code{opt_grab}
+#' @param ... additional arguments passed to `opt_grab`
 #' @param style list; list of functions that define the parsing style 
 #'        
 #' @param flag character; vector of possible synonyms for the "flag" that 
@@ -18,85 +18,85 @@
 #'        appear on the command line.
 #' @param required logical; whether the value is required. If not found or an 
 #'        incorrect, number of values are found, an error is thrown. 
-#'        (default: \code{FALSE}) 
+#'        (default: `FALSE`) 
 #'  
-#' @param description (character) message to be printed with \code{opt_help}
+#' @param description (character) message to be printed with `opt_help`
 #' 
 #' @param opts character; vector to parse for options 
-#'        (default: \code{commandArgs()})
+#'        (default: `commandArgs()`)
 #'        
 #' @details 
 #'
 #' These functions support parsing of command arguments work when using 
-#' \code{Rscript}, a \code{\#\!} on linux systems or \code{R CMD BATCH}. By 
+#' `Rscript`, a `#!` on linux systems or `R CMD BATCH`. By 
 #' default, they closely follows the ubiquitous GNU standards for command-line 
 #' interfaces. 
  
-#' \code{opt_grab} is the workhorse that does the actual parsing. It returns 
-#' the options values or \code{NA} if it cannot discern 
+#' `opt_grab` is the workhorse that does the actual parsing. It returns 
+#' the options values or `NA` if it cannot discern 
 #' them.  It is currently exported, but this may change in future version 
 #' to be an internal function. Its interface is not guarantted.  The user 
-#' should use \code{opt_get} instead.
+#' should use `opt_get` instead.
 #'
-#' \code{opt_get} supports default values, automated guessing for \code{n} and 
+#' `opt_get` supports default values, automated guessing for `n` and 
 #' (attempts a) coercion of the return values to the correct class.  
 #' 
-#' @section Selecting \code{n}:
+#' @section Selecting `n`:
 #' 
-#' Except in rare-caces, the user should not have to specify \code{n}. This is 
-#' determined from the value of \code{default}. 
+#' Except in rare-caces, the user should not have to specify `n`. This is 
+#' determined from the value of `default`. 
 #' 
-#' If \code{default} is a logical value, i.e. \code{TRUE} or \code{FALSE}, 
-#' \code{n} is assumed to take no arguments. Presents of the flag on the command
-#' line will return \code{TRUE}, absense of the flag returns false. 
+#' If `default` is a logical value, i.e. `TRUE` or `FALSE`, 
+#' `n` is assumed to take no arguments. Presents of the flag on the command
+#' line will return `TRUE`, absense of the flag returns false. 
 #' 
-#' If \code{default} is another type than logical, \code{n} is selected as 
-#' \code{length(default)}. 
+#' If `default` is another type than logical, `n` is selected as 
+#' `length(default)`. 
 #' 
-#' If \code{default} is missing, \code{n} is 1.  
+#' If `default` is missing, `n` is 1.  
 #'  
 #'  
 #' @section automatic coercision:
 #' 
-#' Command-line arguments are character vectors.  If \code{default} is supplied
-#' then the \code{opt_get} attempts to coerce the values it returns to 
-#' \code{class(default)}.  The user might wish to supply the correct methods to 
+#' Command-line arguments are character vectors.  If `default` is supplied
+#' then the `opt_get` attempts to coerce the values it returns to 
+#' `class(default)`.  The user might wish to supply the correct methods to 
 #' handle the conversions.
 #' 
 #' 
 #' @section side-effects:
 #'    
-#' \code{opt_grab} has the additional side-effect of keeping track of the 
+#' `opt_grab` has the additional side-effect of keeping track of the 
 #' arguments. This is useful for keeping track of      
 #'    
-#' \code{flag} is used to identify the command line flag. It can include all 
+#' `flag` is used to identify the command line flag. It can include all 
 #' synonyms for the flags. 
 #' 
-#' \code{n} the number of value(s) to retrieve from the command line.  If 
-#' \code{n=0}, then a logical value is returned indicating whether the flag 
+#' `n` the number of value(s) to retrieve from the command line.  If 
+#' `n=0`, then a logical value is returned indicating whether the flag 
 #' exists 
 #' 
-#' \code{required} indicates if a value is required. If the the flag is not 
-#' found and there is no \code{default} given or if there is not the correct 
+#' `required` indicates if a value is required. If the the flag is not 
+#' found and there is no `default` given or if there is not the correct 
 #' number of value(s) an error is raised.  
 #'  
-#' \code{opts} is the vector from which options are parsed. By default, this is  
-#' \code{commandArgs()}.             
+#' `opts` is the vector from which options are parsed. By default, this is  
+#' `commandArgs()`.             
 #'  
 #' @return 
 #' 
-#' \code{opt_grab} always returns a character; it is either the value for the 
-#' flags or \code{NA_character} if if they cannot be parsed. 
+#' `opt_grab` always returns a character; it is either the value for the 
+#' flags or `NA_character_` if if they cannot be parsed. 
 #'
-#' \code{opt_get} returns a value the command-line value as specified by 
+#' `opt_get` returns a value the command-line value as specified by 
 #' the arguments or produces an error if the value could not be 
-#' determined and \code{required==TRUE}.  
+#' determined and `required==TRUE`.  
 #'
 #' @references 
-#'   http://www.gnu.org/prep/standards/standards.html
+#'   [GNU Command Line Standards](http://www.gnu.org/prep/standards/standards.html)
 #' 
 #' @seealso 
-#'   \code{\link{commandArgs}}
+#'   [commandArgs()]
 #' 
 #' @examples
 #'   opts <- c( '--foo', 'bar' )

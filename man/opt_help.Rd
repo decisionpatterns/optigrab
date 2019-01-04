@@ -9,18 +9,18 @@ opt_help(name = c("help", "?"), opts = commandArgs())
 \arguments{
 \item{name}{character; vector of names/aliases to use}
 
-\item{opts}{character; vector from which to parse options 
-       (default: \code{commandArgs()} )
+\item{opts}{character; vector from which to parse options
+(default: \code{commandArgs()} )
 
-Usage information is generated from \code{opt_get} calls made prior to 
-\code{opt_help}. \code{opt_help} shused will will not be shown.  It is considered best practice to handle all 
-option parsing in a block at the beginning of the application. \code{optihelp}
+Usage information is generated from \code{opt_get} calls made prior to
+\code{opt_help}. \code{opt_help} shused will will not be shown.  It is considered best practice to handle all
+option parsing in a block at the beginning of the application. \code{opt_help()}
 would be best placed at the end of that block}
 }
 \value{
 logical; returns \code{TRUE} if command-line options contain a help flag,
-  \code{FALSE} otherwise. Mainly \code{opt_help} is used for side-effects of 
-  printing usage/help information,
+\code{FALSE} otherwise. Mainly \code{opt_help} is used for side-effects of
+printing usage/help information,
 }
 \description{
 Prints program usage information and, if used non-interactively, exits.
@@ -32,5 +32,5 @@ Prints program usage information and, if used non-interactively, exits.
 
 }
 \seealso{
-\code{\link[base]{commandArgs}}
+\code{\link[base:commandArgs]{base::commandArgs()}}
 }

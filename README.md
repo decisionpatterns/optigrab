@@ -1,6 +1,6 @@
 ## optigrab  
 
-[![License](http://img.shields.io/badge/license-GPL%20%28=%202%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html) 
+[![License](https://img.shields.io/badge/license-GPL%20(%3E=%203)-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html) 
 [![CRAN](http://www.r-pkg.org/badges/version/optigrab)](http://cran.rstudio.com/package=optigrab) 
 [![Downloads](http://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](http://www.r-pkg.org/pkg/optigrab)
 
@@ -10,10 +10,7 @@
 
 ## ABSTRACT
 
-*optigrab* simplifies the creation of command-line interfaces. It 
-favors a easy-to-use, straight-forward conventions that covers 99% of use 
-cases over more complex configuration command-line parsing solutions without 
-sacrificing features when needed. 
+*optigrab* simplifies the creation of command-line interfaces. It favors a easy-to-use, straight-forward conventions that covers 99% of use cases over more complex configuration command-line parsing solutions without sacrificing features when needed. 
 
 
 ## INSTALLATION
@@ -107,7 +104,7 @@ To start, clearing up some nomenclature will be beneficial.
 
 ### Options vs Arguments
 
-Command-line options are often referred to as both 'options' and 'arguments'. For this document, the term 'option(s)' are preferred. 'Arguments' refers to function or method arguments used within the R language or other information on the command line that does not have an option flag.. This distinction makes it clear the difference between those values provided on the command-line ("options") and those provided to functions and methods ("arguments").
+Command-line options are often referred to as both 'options' and 'arguments'. For this document, the term 'option(s)' are preferred. 'Arguments' refers to function or method arguments used within the R language or other information on the command line that does not have an option flag. This distinction makes it clear the difference between those values provided on the command-line ("options") and those provided to functions and methods ("arguments").
 
 
 ### Alternatives ###
@@ -115,14 +112,9 @@ Command-line options are often referred to as both 'options' and 'arguments'. Fo
 There are already at least three command-line option ("CLOs") processing 
 solutions for R:
 
-- *commandArgs()* from the base package returns the command line arguments from
-when the R program was invoked. It can be used as a rudimentary method for 
-option retrieval but lacks the features of a full-featured command-line parsing 
-package 
+- *commandArgs()* from the base package returns the command line arguments from when the R program was invoked. It can be used as a rudimentary method for option retrieval but lacks the features of a full-featured command-line parsing package. 
 
-- The *optparse* package follows closely Python's optparse semantics 
-and syntax. It provides a `getopt` that emulates C-like behaviors. Both of these
-are designed for languages signigicantly different from R. 
+- The *optparse* package follows closely Python's optparse semantics and syntax. It provides a `getopt` that emulates C-like behaviors. Both of these are designed for languages signigicantly different from R.
 
 - The *argparse* package has lots of configurations; if you like writting configuration or need the extra features, this package is for you.
 
@@ -130,21 +122,20 @@ are designed for languages signigicantly different from R.
 
 
 ### Differentiation from Alternatives
- 
-Handling CL options in R is tricky.  R variables are not single
-scalar values, but are vectors that can assume many values. It is not 
-unreasonable to assume that command-line options should accommodate 
-vectors by default.
 
-Common programming practice is to assign one variable at a time each assignment on its ownline.  Packages **getopt**, **optparse** and **argparse**; require the user to write a specification that is parses command-line and assigns values all-at-once. For a application that support many options, the specification quickly becomes complex and hard to read/follow/debug. These packages assign  values to a list and then subsequently referenced and validated as needed. This means that the logic for parsing the command-line and using those value, e.g. to build objects is often times distant in the program, making debugging doubly hard.  
+The main difference between *optigrab* and the alternatives are:
 
-There are good reasons for the specification of option all-at-once. With all 
-specification in one place: 
+1. *optigrab* handles the entire command-line: *script*, *verbs*, *options* and *targets*
+2. *optigrab* is designed for R and accomodating vector arguments
+
+Handling CL options in R is tricky.  R variables are not single scalar values, but are vectors that can assume many values. It is not unreasonable to assume that command-line options should accommodate vectors by default.
+
+Common programming practice is to assign one variable at a time each assignment on its ownline.  Packages **getopt**, **optparse** and **argparse**; require the user to write a specification that parses command-line and assigns values all-at-once. For a application that support many options, the specification quickly becomes complex and hard to read/follow/debug. These packages assign  values to a list and then subsequently referenced and validated as needed. This means that the logic for parsing the command-line and using those value, e.g. to build objects is often times distant in the program, making debugging doubly hard.  
+
+There are good reasons for the specification of option all-at-once. With all specification in one place: 
 * an automatic help file can be provided
 
-The all-at-once specification does not gracefully handle application whose 
-arguments are indeterminant or not known at execution time. This may be typical 
-of certain applications.
+The all-at-once specification does not gracefully handle application whose arguments are indeterminant or not known at execution time. This may be typical of certain applications.
 
 While the define-all-at-once syntax works; a better approach is to have the abillity to specify each option when it is needed.  
 
@@ -316,11 +307,17 @@ Command-line option processing should mostly focus on batch processing since thi
 
 In Batch processing, the preferred way to launch a session is by using Rscript. Rscript introduces several arguments to the command-line.  These are:  
 
-    [1] "/opt/r/R-2.13.0-default/lib/R/bin/exec/R" "--slave"                                    
-    [3] "--no-restore"                             "--file=./test.r"                             
+    [1] "/usr/lib/R/bin/exec/R" "--slave"                                    
+    [3] "--no-restore"          "--file=./test.r"                             
     [5] "--args
 
 These are not really arguments from the script itself, thus all arguments up to and including the first `--args` are not considered options.
+
+
+# FAQ
+
+Q. Why is this called optigrab
+A. I am a Jerk. See [References](#REFERENCES) below.
 
 
 

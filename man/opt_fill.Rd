@@ -7,32 +7,43 @@
 opt_fill(x, opts = commandArgs(), style = getOption("optigrab")$style)
 }
 \arguments{
-\item{x}{recursive object to use as a template
+\item{x}{list-like (recursive)) object with names to use as a template.}
 
-\code{opt_get_these} fills a recursive structure with values from the 
-command line using \code{\link{opt_get}}.}
+\item{opts}{character command-line option list (Default: commandArgs() )}
+
+\item{style}{string; the command-line style (Default: getOption('optigrab')$style}
 }
 \value{
-(A copy of) \code{x}, with values filled from the command-line.  If 
-  \code{x} is a reference structure, this is done by reference. 
-  
-  The result is returned invisibly.
+(A copy of) \code{x}, with values filled from the command-line.  If
+\code{x} is a reference structure, this is done by reference, returning
+the object invisibly.
 }
 \description{
 Fill a recursive structure with command-line arguments
 }
+\details{
+\code{opt_fill} uses \code{x} as a template of values to be retrieved. Named elements
+of \code{x} are retrieved from the command line using \code{\link[=opt_get]{opt_get()}}. Values are
+coerced to the type/class of the elements of x.
+
+This gives a handy way of defining and retrieving all setting at once
+overridding the defaults.
+
+\code{opt_fill} is similar to \code{\link[utils:modifyList]{utils::modifyList()}} but does not work recursively.
+}
 \examples{
-  proto <- list( foo="a", bar=1 )
+  defaults <- list( foo="a", bar=1 )
   
-  opt_fill( proto, opts=c( '--foo', 'list-fill' ))
-  opt_fill( proto, opts=c( '--foo', 'list-fill', '--bar', '-9' ))
+  opt_fill( defaults, opts=c( '--foo', 'command-line-foo' ))
+  opt_fill( defaults, opts=c( '--foo', 'command-line-foo', '--bar', '9999' ))
  
-  proto <- as.environment(proto)
-  opt_fill( proto, opts=c( '--foo', 'env-fill', '--bar', '555' ))
+  defaults <- as.environment(defaults)
+  opt_fill( defaults, opts=c( '--foo', 'env-fill', '--bar', '555' ))
   
-  str( as.list(proto) )
+  str( as.list(defaults) )
 
 }
 \seealso{
-\code{\link{opt_get}} \cr
+\code{\link[=opt_get]{opt_get()}}
+\code{\link[utils:modifyList]{utils::modifyList()}}
 }

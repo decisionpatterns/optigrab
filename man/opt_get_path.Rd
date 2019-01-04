@@ -7,7 +7,7 @@
 opt_get_path(opts = commandArgs(), full.name = FALSE)
 }
 \arguments{
-\item{opts}{character; cector from which to parse options 
+\item{opts}{character; cector from which to parse options
 (default: \code{commandArgs()} )}
 
 \item{full.name}{boolean; expand to full path(?)
@@ -28,6 +28,8 @@ Get path current running script
 \url{http://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script}
 }
 \seealso{
-\code{\link{opt_grab}} \cr
-  \code{\link{base}{commandArgs}}
+\itemize{
+\item \code{\link[=opt_grab]{opt_grab()}}
+\item \code{\link[base:commandArgs]{base::commandArgs()}}
+}
 }
