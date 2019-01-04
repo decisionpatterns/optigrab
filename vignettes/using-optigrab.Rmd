@@ -14,7 +14,8 @@ vignette: >
 
 ## ABSTRACT ## 
 
-*optigrab* simplifies the creation of command-line interfaces. It favors a easy-to-use, straight-forward conventions that covers 99% of use cases over more complex command-line parsing solutions. Mostly, you can just:
+*optigrab* simplifies the creation of command-line interfaces. It favors a easy-to-use, straight-forward conventions and covers 99%+ of use cases of the more complex 
+command-line parsing solutions. Mostly, you can just:
 
     opt_get('foo')       
     
@@ -349,4 +350,4 @@ These are not really arguments from the script itself, thus all arguments up to 
 
 [GNU command-line standards](http://www.gnu.org/prep/standards/standards.html)
 
-[commandline](https://github.com/gsscoder/commandline) 
+[commandline](https://github.com/commandlineparser/commandline) 
