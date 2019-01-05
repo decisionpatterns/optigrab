@@ -2,8 +2,8 @@
 
 > Command-line parsing for an R world 
 
-![](https://img.shields.io/cran/l/:optigrab.svg) <!-- License --> 
-![](https://img.shields.io/cran/v/:optigrab.svg) <!-- Version --> 
+![](https://img.shields.io/cran/l/optigrab.svg) <!-- License --> 
+![](https://img.shields.io/cran/v/optigrab.svg) <!-- Version --> 
 [![CRAN status](https://www.r-pkg.org/badges/version/optigrab)](https://cran.r-project.org/package=optigrab)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Downloads](https://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](https://www.r-pkg.org/pkg/optigrab)
