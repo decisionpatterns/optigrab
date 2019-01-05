@@ -7,8 +7,7 @@
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Downloads](https://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](https://www.r-pkg.org/pkg/optigrab)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/optigrab)](https://cran.rstudio.com/web/packages/optigrab/index.html)
-[![software impact](https://depsy.org/api/package/r/optigrab/badge.svg)](https://depsy.org/package/r/optigrab)
-
+[![Research software impact](http://depsy.org/api/package/cran/optigrab/badge.svg)](http://depsy.org/package/r/optigrab)
 
 
 ## ABSTRACT
