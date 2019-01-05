@@ -5,3 +5,8 @@ doc
 .RData
 .Rproj
 inst/doc
+
+optigrab.Rcheck/
+optigrab_*.gz
+
+
