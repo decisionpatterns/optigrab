@@ -1,10 +1,10 @@
 ---
-title: "Using optigrab"
+title: "Using Optigrab"
 author: "Christopher Brown"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using optigrab}
+  %\VignetteIndexEntry{Using Optigrab}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
