@@ -1,16 +1,22 @@
-## optigrab  
+# optigrab  
 
-[![License](https://img.shields.io/badge/license-GPL%20(%3E=%203)-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html) 
-[![CRAN](http://www.r-pkg.org/badges/version/optigrab)](http://cran.rstudio.com/package=optigrab) 
-[![Downloads](http://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](http://www.r-pkg.org/pkg/optigrab)
+> Command-line parsing for an R world 
 
+[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html) 
+[![CRAN status](https://www.r-pkg.org/badges/version/optigrab)](https://cran.r-project.org/package=optigrab)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Downloads](https://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](https://www.r-pkg.org/pkg/optigrab)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/optigrab)](https://cran.rstudio.com/web/packages/optigrab/index.html)
+[![software impact](https://depsy.org/api/package/r/optigrab/badge.svg)](https://depsy.org/package/r/optigrab)
 
-> Command-line parsing for an R world emphasizing convention over configuration
 
 
 ## ABSTRACT
 
-*optigrab* simplifies the creation of command-line interfaces. It favors a easy-to-use, straight-forward conventions that covers 99% of use cases over more complex configuration command-line parsing solutions without sacrificing features when needed. 
+*optigrab* simplifies the creation of command-line interfaces. It favors a 
+easy-to-use, straight-forward conventions that covers 99% of use cases over 
+more complex configuration command-line parsing solutions without sacrificing 
+features when needed. 
 
 
 ## INSTALLATION
