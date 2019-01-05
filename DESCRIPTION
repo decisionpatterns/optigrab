@@ -1,7 +1,7 @@
 Package: optigrab
 Type: Package
 Title: Command-Line Parsing for an R World
-Version: 0.9.1
+Version: 0.9.2
 Date: 2019-01-05
 Authors@R: c(
       person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
