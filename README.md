@@ -4,11 +4,10 @@
 
 ![](https://img.shields.io/cran/l/optigrab.svg) <!-- License --> 
 ![](https://img.shields.io/cran/v/optigrab.svg) <!-- Version --> 
-[![CRAN status](https://www.r-pkg.org/badges/version/optigrab)](https://cran.r-project.org/package=optigrab)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Downloads](https://cranlogs.r-pkg.org/badges/optigrab?color=brightgreen)](https://www.r-pkg.org/pkg/optigrab)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/optigrab)](https://cran.rstudio.com/web/packages/optigrab/index.html)
-[![Research software impact](http://depsy.org/api/package/cran/optigrab/badge.svg)](http://depsy.org/package/r/optigrab)
+<!-- [![Research software impact](http://depsy.org/api/package/cran/optigrab/badge.svg)](http://depsy.org/package/r/optigrab) -->
 
 
 ## ABSTRACT
