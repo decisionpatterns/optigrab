@@ -15,5 +15,5 @@ benchmark
 ^revdep$
 TODO.md
 
-optigrab_*.tar.gz
+^optigrab_.*\.tar\.gz$
 
