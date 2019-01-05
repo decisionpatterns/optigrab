@@ -1,9 +1,8 @@
 Package: optigrab
 Type: Package
 Title: Command-Line Parsing for an R World
-Version: 0.9.0
-Date: 2019-01-04
-Author: Christopher Brown, Daryl McCullough
+Version: 0.9.1
+Date: 2019-01-05
 Authors@R: c(
       person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
       person("Daryl", "McCullough", role="aut"),
