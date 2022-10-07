@@ -62,7 +62,7 @@ opt_help <- function( name=c('help','?'), opts=commandArgs() ) {
     for( nm in names(opts) ) 
       cat( paste(' ', nm, ":", opts[[nm]], sep=" "), sep="\n" )
   
-  if( ! interactive() ) quit( save = FALSE )
+  if( ! interactive() ) quit( save = "no" )
   
   return(TRUE) 
   
