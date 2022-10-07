@@ -9,4 +9,5 @@ inst/doc
 optigrab.Rcheck/
 optigrab_*.gz
 
-
+# binary packages from building using install_local()
+R/*/
