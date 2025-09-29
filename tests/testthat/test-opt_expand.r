@@ -95,6 +95,6 @@ expanded <- optigrab:::opt_expand( opts=opts )
 
 
 
-expect_that( is.character(expanded), is_true() )
+expect_true( is.character(expanded))
 expect_equal( length(expanded), 10 )
 expect_identical( expanded, compare ) 
