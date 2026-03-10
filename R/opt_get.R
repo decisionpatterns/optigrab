@@ -144,7 +144,7 @@ opt_get <- function(
   ret <- opt_grab( flag=flag, n=n, opts=opts)
 
   
-  # Apply defaults, including trying to coerce to the defailts
+  # Apply defaults, including trying to coerce to the defaults
   # class
   if( ! missing(default) ) { 
     if( is.na(ret) ) 
@@ -157,7 +157,7 @@ opt_get <- function(
   if( is.na(ret) && missing(default) && required == TRUE )
     stop( 
           call. = FALSE 
-        , "\n\tOption(s): [", flag, "] is required, but was not supplied."
+        , "\n\tOption(s): [", paste(flag, collapse=", "), "] is required, but was not supplied."
     )
   
   
